@@ -9,29 +9,28 @@
  * ========================================================= */
 (function ($) {
     $.fn.tab = function (options) {
-        var defaults = {//第一事件类型
-            events: "mouseover"
-        }
-        var options = $.extend(defaults, options);
+
         this.each(function () {
             //code...
-            var e = $(this), oli = e.children("dt").children("ul").children("li");
-            var odd = e.children("dd");
-            oli.bind(options.events, function () {
-                var index = oli.index(this), $this = $(this);
-                $this.addClass("active").siblings().removeClass("active").end();
-                odd.eq(index).addClass("active").siblings("dd").removeClass("active").end();
-            })
+            var $this=$(this),
+            eli=$this.children(),
+            _target=$this.attr("data-target"),
+            etarget=$(_target),
+            $event = ($this.attr("data-type")) || "mouseover";
+            function Setactive(){
+                 
+                var index=eli.index(this);
+                $(this).addClass("active").siblings().removeClass("active");
+                etarget.eq(index).addClass("active").siblings().removeClass("active");
+             console.log(index)
+           }
+            //event
+        eli.on($event,Setactive);
         });
     };
 })(jQuery);
 
 /*  DARA API  */
-$(function () {
-    var $otab = $('[data-event="tab"]');
-    $otab.each(function (index, elem) {
-        var $this = $(this);
-        var $type = ($this.attr("data-type")) || "mouseover";
-        $(this).tab({events: $type});
-    });
+jQuery(function ($) {
+  $('[data-event="tab"]').tab();
 });

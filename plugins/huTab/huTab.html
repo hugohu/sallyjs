@@ -28,10 +28,10 @@
 </head>
 <body>
 <!--滑动门-->
-<dl class="m-tab" data-event="tab">
+<dl class="m-tab" >
 	<dt class="m-hd"> 
 
-		<ul>
+		<ul data-event="tab" data-target=".m-tab dd">
         <li class="active"><a href="#">默认：居左，不定宽</a></li>
         <li><a href="#">“标题”和“更多”可删</a></li>
         <li><a href="#">扩展类可以自由组合</a></li>
@@ -52,10 +52,10 @@
 		4
 	</dd>
 </dl>
-<dl class="m-tab" data-event="tab" data-type="click">
+<dl class="m-tab" id="md2">
 	<dt class="m-hd"> 
 
-		<ul>
+		<ul data-event="tab" data-target="#md2 dd" data-type="click">
         <li class="active"><a href="javascript:">默认：居左，不定宽</a></li>
         <li><a href="javascript:">“标题”和“更多”可删</a></li>
         <li><a href="javascript:">扩展类可以自由组合</a></li>
