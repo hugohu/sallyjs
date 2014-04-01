@@ -1,0 +1,86 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../../assets/reset.css" />
+<style>
+	/* 操作型弹出浮层-默认居中 */
+.m-masklayer{position:fixed;_position:absolute;z-index:999;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);}
+.m-layer{position: fixed;left: 50%;margin-left: -285px;width:560px;top: 10%;border:5px solid #aaa;border:5px solid rgba(0,0,0,0.3);box-shadow:0 2px 10px rgba(0,0,0,0.2);_position: absolute;z-index: 1002;}
+.m-layer .lyhead{position:relative;padding:10px;height:20px;margin:0 0 -1px;line-height:20px;border-bottom:1px solid #ddd;background:#fafafa;}
+.m-layer .lyhead .u-tt{float:left;font-size:16px;}
+.m-layer .close{float:right;font-weight:bold;font-family:arial;font-size:24px;_font-size:16px;color:#ccc;text-shadow:0 1px #fff;cursor:pointer;}
+.m-layer .lyclose:hover{color:#aaa;}
+.m-layer .lyct{padding:20px;background:#fff;}
+.m-layer .lybt{height:30px;line-height:30px;padding:10px;margin:-1px 0 0;border-top:1px solid #ddd;background:#f7f7f7;}
+.m-layer .lyother{float:left;color:#999;}
+.m-layer .lybtns{float:right;}
+.m-layer .lybtns button{float:left;margin-left:10px;}
+
+/*animation*/
+.f-layer-show .m-masklayer,.f-layer-show .m-layer{visibility: visible;opacity: 1}
+
+.m-layer{
+    -webkit-transform-origin:0 0;
+    -moz-transform-origin:0 0;
+    -ms-transform-origin:0 0;
+    -o-transform-origin:0 0;
+    transform-origin:0 0;
+    -webkit-transform: scale(0.1);
+    -moz-transform: scale(0.1);
+    -ms-transform: scale(0.1);
+    -o-transform: scale(0.1);
+    transform: scale(0.1);  
+}
+.f-layer-show .m-layer{
+    left:50%!important;
+    top: 10%!important;
+    -webkit-transform: scale(1);
+    -moz-transform: scale(1);
+    -ms-transform: scale(1);
+    -o-transform: scale(1);
+    transform: scale(1);  
+}
+.m-masklayer,.m-layer{visibility: hidden;opacity:0;}
+.m-masklayer,.m-layer{
+-webkit-transition: 0.35s;
+-moz-transition: 0.35s;
+-ms-transition: 0.35s;
+-o-transition: 0.35s;
+transition: 0.35s;
+
+}
+</style>
+<title>弹窗</title>
+</head>
+<body>
+
+<div class="demo">
+	<button type="button" class="u-btn u-btn-green" data-event="layer" data-target="layer" >点我</button>
+</div>
+<!--代码部分 可以任意编辑-->
+    <div class="m-layer" id="layer">
+        <div class="lyhead"><strong class="u-tt">标题</strong><span class="close" data-event="close" >×</span></div>
+        <div class="lyct">
+            <p>默认固定居中，有遮罩，按钮区标题区都可删</p>
+            <p>内容区：其他模块</p>
+        </div>
+        <div class="lybt">
+            <div class="lyother">
+                <p>其他信息，比如提示</p>
+            </div>
+            <div class="lybtns">
+                <button type="button" class="u-btn u-btn-blue">确定</button>
+                <button type="button" class="u-btn" data-event="close">取消</button>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+<script src="layer.js"></script>
+</body>
+</html>
