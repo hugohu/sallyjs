@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../../assets/reset.css" />
+<style>
+  *{padding: 0;margin: 0;}
+/* 含标题和Tab的模块头部-默认不定宽 */
+
+/*m-tab部分样式*/
+.m-tab{display: block;}
+.m-tab .tab-hd{overflow: hidden;}
+.m-tab .tab-hd li{float: left;margin-right: 100px;}
+.m-tab .tab-bd{height: 100px;}
+.m-tab .item{display: none;}
+.m-tab .item.active{display: block;}
+</style>
+<title>滑动门</title>
+</head>
+<body>
+<!--滑动门-->
+<div class="m-tab" data-event="tab">
+	<ul class="tab-hd">
+        <li class="active">默认：居左，不定宽</li>
+        <li>“标题”和“更多”可删</li>
+        <li>扩展类可以自由组合</li>
+        <li>标签标签</li>
+  </ul> 
+	<div class="tab-bd">
+		<div class="item active">1</div>
+		<div class="item">2</div>
+		<div class="item">3</div>
+		<div class="item">4</div>
+	</div>
+</div>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script type="text/javascript" src="tab.js"></script>
+</body>
+</html>
