@@ -21,14 +21,17 @@
 			}
 			var masklayer = $(".m-masklayer");
 			//set offset
-			var off=$this.offset();
-			etarget.css({"left":off.left,"top":off.top})
+			var off = $this.offset();
+			etarget.css({
+				"left": off.left,
+				"top": off.top
+			})
 			var layer = {
 				open: function() {
 					body.on('keyup', this.onDocumentKeyup)
-					.on("click", this.onDocumentClick)
-					.addClass("f-layer-show");
-						
+						.on("click", this.onDocumentClick)
+						.addClass("f-layer-show");
+
 				},
 				closed: function() {
 					body.off('keyup', this.onDocumentKeyup)
@@ -48,7 +51,7 @@
 				}
 			}
 			//event
-			$this.on("click",function(){
+			$this.on("click", function() {
 				layer.open();
 			})
 
@@ -57,6 +60,6 @@
 	};
 })(jQuery);
 
-jQuery(function($){
-$('[data-event="layer"]').layer();
+jQuery(function($) {
+	$('[data-event="layer"]').layer();
 })
