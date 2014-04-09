@@ -16,41 +16,39 @@
 .m-layer .lyother{float:left;color:#999;}
 .m-layer .lybtns{float:right;}
 .m-layer .lybtns button{float:left;margin-left:10px;}
-
 /*animation*/
 .f-layer-show .m-masklayer,.f-layer-show .m-layer{visibility: visible;opacity: 1}
-
 .m-layer{
     -webkit-transform-origin:0 0;
     -moz-transform-origin:0 0;
     -ms-transform-origin:0 0;
     -o-transform-origin:0 0;
     transform-origin:0 0;
-    -webkit-transform: scale(0.1);
-    -moz-transform: scale(0.1);
-    -ms-transform: scale(0.1);
-    -o-transform: scale(0.1);
-    transform: scale(0.1);  
+    -webkit-transform: scale(0.1) skew(-10deg);
+    -moz-transform: scale(0.1) skew(-10deg);
+    -ms-transform: scale(0.1) skew(-10deg);
+    -o-transform: scale(0.1) skew(-10deg);
+    transform: scale(0.1) skew(-10deg);  
 }
 .f-layer-show .m-layer{
     left:50%!important;
     top: 10%!important;
-    -webkit-transform: scale(1);
-    -moz-transform: scale(1);
-    -ms-transform: scale(1);
-    -o-transform: scale(1);
-    transform: scale(1);  
+    -webkit-transform: scale(1) skew(0deg);
+    -moz-transform: scale(1) skew(0deg);
+    -ms-transform: scale(1) skew(0deg);
+    -o-transform: scale(1) skew(0deg);
+    transform: scale(1) skew(0deg);  
 }
 .m-masklayer,.m-layer{
     visibility: hidden;
     opacity:0;
 }
 .m-masklayer,.m-layer{
--webkit-transition: 0.35s;
--moz-transition: 0.35s;
--ms-transition: 0.35s;
--o-transition: 0.35s;
-transition: 0.35s;
+-webkit-transition: 0.5s;
+-moz-transition: 0.5s;
+-ms-transition: 0.5s;
+-o-transition: 0.5s;
+transition: 0.5s;
 }
 </style>
 <title>弹窗</title>
