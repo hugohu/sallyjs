@@ -5,20 +5,20 @@
  * DIV切换
  */
 (function($) {
-	$.fn.fixed = function(options) {
+	$.fn.roll = function(options) {
 		this.each(function() {
 			var $this = $(this),
 				_target = $this.attr("data-target") || "active",
-				_event = $this.attr("data-event");
-			switch (_event) {
-				case "fixed":
+				_event = $this.attr("data-roll");
+			var build = {
+				fixed: function() {
 					HEIGTH_THIS = $this.height(),
 					WIDTH_THIS = $this.width(),
 					TOP = $this.offset().top;
 					//SETHTML
 					$this.wrap('<div style="width:' + WIDTH_THIS + 'px; height:' + HEIGTH_THIS + 'px;position:relative">' + '</div>');
-					break;
-				case "gotop":
+				},
+				gotop: function() {
 					$(this).on("click", function(e) {
 						$("html, body").animate({
 							scrollTop: 0
@@ -26,22 +26,22 @@
 						e.preventDefault();
 					});
 					var TOP = 0;
-			}
-
-			function setFiexd() {
-				var st = $(window).scrollTop();
-				if (st > TOP) {
-					$this.addClass(_target);
-				} else {
-					$this.removeClass(_target);
 				}
-			}
+			};
+			function setFiexd() {
+						var st = $(window).scrollTop();
+						if (st > TOP) {
+							$this.addClass(_target);
+						} else {
+							$this.removeClass(_target);
+						}
+					}
+			build[_event] && build[_event]();
 			//event
-			$(document).scroll($.throttle(37, setFiexd));
+			$(document).on("scroll",$.throttle(37, setFiexd));
 		});
 	};
 })(jQuery);
 jQuery(function() {
-	$("[data-event='fixed']").fixed();
-	$("[data-event='gotop']").fixed();
+	$("[data-roll]").roll();
 });
