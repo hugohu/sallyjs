@@ -12,11 +12,13 @@
 				_event = $this.attr("data-roll");
 			var build = {
 				fixed: function() {
-					HEIGTH_THIS = $this.height(),
-					WIDTH_THIS = $this.width(),
-					TOP = $this.offset().top;
+					var HEIGTH_THIS = $this.height(),
+						WIDTH_THIS = $this.width(),
+						delay = 37;
+					this.top = $this.offset().top;
 					//SETHTML
 					$this.wrap('<div style="width:' + WIDTH_THIS + 'px; height:' + HEIGTH_THIS + 'px;position:relative">' + '</div>');
+					this.start(delay, this.setFiexd);
 				},
 				gotop: function() {
 					$(this).on("click", function(e) {
@@ -25,20 +27,25 @@
 						}, 120);
 						e.preventDefault();
 					});
-					var TOP = 0;
+					this.top = 0,
+					delay = 37;
+					this.start(delay, this.setFiexd);
+				},
+				setFiexd: function() {
+					var st = $(window).scrollTop();
+					if (st > build.top) {
+						$this.addClass(_target);
+					} else {
+						$this.removeClass(_target);
+					}
+				},
+				start: function(delay, f) {
+					$(document).on("scroll", $.throttle(delay, f));
 				}
 			};
-			function setFiexd() {
-						var st = $(window).scrollTop();
-						if (st > TOP) {
-							$this.addClass(_target);
-						} else {
-							$this.removeClass(_target);
-						}
-					}
+
 			build[_event] && build[_event]();
 			//event
-			$(document).on("scroll",$.throttle(37, setFiexd));
 		});
 	};
 })(jQuery);
