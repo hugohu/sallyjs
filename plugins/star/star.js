@@ -1,11 +1,11 @@
 /* =========================================================
- * huTab 0.1
+ * star 0.1
  * http://huugle.org/
  * =========================================================
- * Copyright (c) 2013 Huugle
+ * Copyright (c) 2014 Huugle
  *
  * Date: 2013-01-21
- * 滑动门可以实现div切换
+ * 选择星星
  * ========================================================= */
 //star
 jQuery.fn.star = function (options) {
@@ -19,19 +19,21 @@ jQuery.fn.star = function (options) {
         var input = $this.find("input");
         $this.on({
             "mouseover": function () {
-                var active = child.filter(".active");
-                var index = child.index(active);
+                var eActive = child.filter(".active"),
+                    index = child.index(eActive);
                 $this.data("index", index);
-                active.removeClass("active");
+                eActive.removeClass("active");
             },
             "mouseout": function () {
-                var index = $this.data("index");
-                input.val(index + 1);
-                child.eq(index).addClass("active");
+                var index = $this.data("index"),
+                eActive=child.eq(index),
+                value=eActive.attr("data-value");
+                input.val(value);
+                eActive.addClass("active");
             },
             "click": function (e) {
-                var ob = e.target;
-                var index = child.index(ob);
+                var eTarget = e.target;
+                var index = child.index(eTarget);
                 $this.data("index", index);
             }
         });
