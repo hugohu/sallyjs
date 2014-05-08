@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../../assets/reset.css" />
+<style>
+.m-star,.m-star a{display: inline-block;background:url(img/rating.png) no-repeat;height:16px;vertical-align: middle;}
+.m-star{width: 100px;position: relative;background-position:0 -130px;}
+.m-star a{background-position:0 -9999px;position: absolute;left:0;}
+.m-star a:hover,.m-star a.active{background-position: 0 -40px;}
+.m-star a:hover span,.m-star a.active span{display: block;}
+.m-star span{display: none;position: absolute;top:-5px;left:100px;white-space: nowrap;}
+.m-star .s01{width:17px;z-index: 5;}
+.m-star .s02{width: 34px;z-index: 4;}
+.m-star .s03{width: 51px;z-index: 3;}
+.m-star .s04{width: 68px;z-index: 2;}
+.m-star .s05{width: 84px;z-index: 1;}
+</style>
+<title>滑动门</title>
+</head>
+<body>
+
+<label for="">商品满意度</label> :
+						<div class="m-star aStar" data-event="star">
+						<a href="javascript:" class="s01" title="good"><span>不错哦</span></a>
+						<a href="javascript:" class="s02" title="good2"><span>不错哦1</span></a>
+						<a href="javascript:" class="s03 active" title="good3"><span>不错哦2</span></a>
+						<a href="javascript:" class="s04" title="good4"><span>不错哦4</span></a>
+						<a href="javascript:" class="s05" title="good5"><span>不错哦5</span></a>
+						<input type="hidden" value="" name="">
+					</div>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+<script type="text/javascript" src="star.js"></script>
+</body>
+</html>
