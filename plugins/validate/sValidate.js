@@ -16,8 +16,8 @@ jQuery.fn.sValidate = function (options) {
   this.each(function () {
 
     var $this = $(this),
-      einput = $("input", $this),
-      required = $("[required]", $this),
+      einput = $("input,textarea", $this),
+      required = $("input[required],textarea[required]", $this),
       echeck = $("[data-type='required']", $this),
       esubmit = $this.find(":submit");
     // Validate obj length
@@ -27,9 +27,9 @@ jQuery.fn.sValidate = function (options) {
     // 		noRequired= !("required" in tem_input),
     // 		Nopattern = !("pattern" in tem_input);
     var Validate = {
+      //Processing method set class
       verification: function (elem) {
         var parent = elem.sparent || elem.parent();
-
         var boole = elem.boole;
         //console.log(boole)
         if (boole) {
@@ -41,14 +41,28 @@ jQuery.fn.sValidate = function (options) {
           return false;
         }
       },
-      required: function () {
-        required.each(function (index, elem) {
+      //Organizing text box
+      required: function (ele) {
+        var ele = ele || required
+        ele.each(function (index, elem) {
           var _this = $(this);
-          Validate.vali(_this);
+          _this.pattern = _this.attr("pattern");
+          _this.value = $.trim(_this.val());
+          //required
+          _this.boole = $.trim(_this.val());
+          Validate.verification(_this);
+          //pattern
+          if (_this.boole && _this.pattern) {
+            Validate.pattern(_this);
+          }
+          //ajax
+          
         });
       },
-      echecked: function () {
-        echeck.each(function (index, elem) {
+      //select box
+      echecked: function (ele) {
+        var ele = ele || echeck;
+        ele.each(function (index, elem) {
           var _this = $(this);
           var echecked = _this.find(":checked");
           _this.boole = echecked.length;
@@ -56,18 +70,7 @@ jQuery.fn.sValidate = function (options) {
           Validate.verification(_this);
         });
       },
-      vali: function (elem) {
-        
-        elem.pattern = elem.attr("pattern");
-        elem.value = $.trim(elem.val());
-        //required
-          elem.boole = $.trim(elem.val());
-          Validate.verification(elem);
-        //pattern
-        if (elem.pattern) {
-          Validate.pattern(elem);
-        }
-      },
+      //regexp 
       pattern: function (elem) {
         var reg = new RegExp(elem.pattern);
         var value = elem.value;
@@ -86,13 +89,17 @@ jQuery.fn.sValidate = function (options) {
           "blur": function (e) {
             var _this = $(this),
               isRequired = _this.attr("required"),
-              parent = _this.parent();
-              parent.removeClass("focus");
+              isRadio = _this.is(":radio");
+            parent = _this.parent();
+            parent.removeClass("focus");
             //
-            if(isRequired){
-               Validate.vali(_this);
+            if (isRequired) {
+              Validate.required(_this);
             }
-           
+            //radio
+            if (isRadio) {
+              Validate.echecked(parent);
+            }
           }
         });
         // echeck event
@@ -111,7 +118,6 @@ jQuery.fn.sValidate = function (options) {
     }
     Validate.init();
     //event
-
   });
 };
 
