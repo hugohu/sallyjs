@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../../assets/reset.css" />
+<style>
+.error{background-color: #000;}
+.error .tips{visibility: visible;op}
+</style>
+<title>DIV跟随浮动</title>
+</head>
+<body>
+<form action="http://www.baidu.com" method="POST" data-event='validate' >
+	<ul class="form-list">
+	<li><label for="t1">选项一*</label><input type="text" id="t1" name="op2"  required />
+	<span class="tips"><i class="icon"></i>必填项</span>
+	</li>
+	<li><label for="t2">选项一</label><input type="text" id="t2" name="op1"  pattern="^[0-9]*$"/></li>
+	<li><label for="t3">选项一*</label><input type="text" id="t3" name="op"   required  pattern="^[1-9]*$"/></li>
+	<li><label for="t4">选项一</label><input type="text" id="t4" name="op6" /></li>
+	<li data-type="required"><label for="n">111</label><input type="radio" name="n" id="n"   /><input type="radio" name="n" id=""  /></li>
+	<li><textarea required rows="" cols="" name=""></textarea></li>
+		<li class="sub"><input type="submit" value="submit" /></li>
+</ul>
+</form>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+
+<script type="text/javascript" src="sValidate.js"></script>
+</body>
+</html>
