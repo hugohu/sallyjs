@@ -6,20 +6,36 @@
 <style>
   *{padding: 0;margin: 0;}
 /* 含标题和Tab的模块头部-默认不定宽 */
-
+.demo .tab-hd li{background-color: #f8f8f8;padding: 5px 10px}
+.demo .tab-hd {position: relative;}
 /*m-tab部分样式*/
 .m-tab{display: block;}
 .m-tab .tab-hd{overflow: hidden;}
-.m-tab .tab-hd li{float: left;margin-right: 100px;}
+.m-tab .tab-hd li{float: left;margin-right:15px;}
 .m-tab .tab-bd{height: 100px;}
 .m-tab .item{display: none;}
 .m-tab .item.active{display: block;}
+
+/* am */
+.tab-hd li:last-child::after{content: "";width: 60px;height: 2px;background-color: #000;position: absolute;left: 0;top: 0}
+.tab-hd li:last-child::after{
+	-webkit-transition: 0.35s;
+-moz-transition: 0.35s;
+-ms-transition: 0.35s;
+-o-transition: 0.35s;
+transition: 0.35s;
+}
+/*.m-tab .tab-hd li:hover ~ li:last-child::before{}*/
+.m-tab .tab-hd li:nth-child(1):hover ~ li:last-child::after{left: 0}
+.m-tab .tab-hd li:nth-child(2):hover ~ li:last-child::after{left: 100px}
+.m-tab .tab-hd li:nth-child(3):hover ~ li:last-child::after{left: 200px}
+.m-tab .tab-hd li:nth-child(4):hover ~ li:last-child::after{left: 300px}
 </style>
 <title>滑动门</title>
 </head>
 <body>
 <!--滑动门-->
-<div class="m-tab" data-event="tab">
+<div class="m-tab demo" data-event="tab">
 	<ul class="tab-hd">
         <li class="active">默认：居左，不定宽</li>
         <li>“标题”和“更多”可删</li>
