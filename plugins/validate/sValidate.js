@@ -106,7 +106,7 @@ jQuery.fn.sValidate = function(options) {
         ele.each(function (index, elem) {
           var _this=$(this);
           var txt=_this.next(".tips").text() || _this.attr("data-tips") || ""
-            html+=txt+"<br />";
+            html+=txt;
         })
         return html;
       },
@@ -115,11 +115,13 @@ jQuery.fn.sValidate = function(options) {
         var vlen=$("[data-validation=1]",$this).length;
         if(vlen==count){
            $this.attr("data-state", 1);
-          esubmit.removeClass("disabled");
+          esubmit.removeAttr("disabled");
+          //esubmit.removeClass("disabled");
         } else{
-          console.log(this.tips())
          $this.attr("data-state", 0);
-          esubmit.addClass("disabled");
+         
+          esubmit.attr("disabled","disabled");
+           //esubmit.addClass("disabled");
         }
       },
       init: function() {
@@ -133,7 +135,7 @@ jQuery.fn.sValidate = function(options) {
           "blur": function(e) {
             var _this = $(this),
               isRequired = _this.attr("required"),
-              isRadio = _this.is(":radio");
+              isRadio = _this.is(":radio" || ":checkbox")
             
             //
             if (isRequired) {
