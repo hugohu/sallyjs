@@ -18,6 +18,7 @@ jQuery.fn.sValidate = function(options) {
     var $this = $(this),
       einput = $("input,textarea", $this),
       required = $("input[required],textarea[required],[data-type='required']", $this),
+      checkbox = $("input[type=radio],input[type=checkbox]",$this),
       esubmit = $this.find(":submit");
     // Validate obj length
     var count = required.length;
@@ -34,31 +35,22 @@ jQuery.fn.sValidate = function(options) {
         if (boole) {
           elem.attr("data-validation", 1);
           if(setClass){
-              parent.removeClass("error");
-          parent.addClass("completed");
+            parent.removeClass("error");
+            parent.addClass("completed");
           }
         } else {
           elem.attr("data-validation", 0);
           if(setClass){
-                      parent.addClass("error");
+            parent.addClass("error");
           parent.removeClass("completed");
           }
         };
-      },
-      setClass: function(elem) {
-        
-        var boole = elem.boole;
-        if (boole && setClass) {
-          
-        } else {
-
-          return false;
-        }
       },
       addMod: function() {
         var select=function(_this) {
           var echecked = _this.find(":checked");
           _this.boole = echecked.length;
+          //sconsole.log(_this.boole)
           _this.sparent = _this;
           Validate.validation(_this);
         }
@@ -126,7 +118,7 @@ jQuery.fn.sValidate = function(options) {
       },
       init: function() {
         // input event
-        einput.on({
+        required.on({
           "focus": function() {
             var _this = $(this),
               parent = _this.parent();
@@ -134,25 +126,24 @@ jQuery.fn.sValidate = function(options) {
           },
           "blur": function(e) {
             var _this = $(this),
-              isRequired = _this.attr("required"),
-              isRadio = _this.is(":radio" || ":checkbox")
-            
+              isRequired = _this.attr("required");
             //
             if (isRequired) {
               Validate.required(_this);
-            }
-            //radio
-            if (isRadio) {
-              Validate.required(parent);
             }
             Validate.setState();
              // end to removeClass
             parent = _this.parent();
            parent.removeClass("focus");
           }
-
-         
         });
+        // active
+        checkbox.on("change",function(){
+          var _this = $(this),
+            parent = _this.closest("[data-validation]");
+            Validate.required(parent);
+            Validate.setState();
+        })
         // echeck event
         esubmit.on("click.Validate", function(e) {
          var _this=$(this);
