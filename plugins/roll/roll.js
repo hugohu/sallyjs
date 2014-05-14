@@ -92,7 +92,7 @@
       },
       start: function (delay, f) {
         f();
-        $(document).on("scroll", $.throttle(delay, f));
+        $(window).on("scroll", $.throttle(delay, f));
       }
     };
       build[_event] && build[_event]();

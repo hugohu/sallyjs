@@ -28,18 +28,22 @@
 						if (iframe.length == 1) {
 							var href = $this.attr("href");
 							iframe.attr("src", href);
+							iframe.addClass("active");
+							iframe.load(function() {
+								iframe.removeClass("active");
+								});
 						}
 						// end
 					},
 					open: function() {
 						this.type();
-						body.on('keyup', this.onDocumentKeyup)
-							.on("click", this.onDocumentClick)
+						body.on('keyup.layer', this.onDocumentKeyup)
+							.on("click.layer", this.onDocumentClick)
 							.addClass("f-layer-show");
 					},
 					closed: function() {
-						body.off('keyup', this.onDocumentKeyup)
-							.off("click", this.onDocumentClick)
+						body.off('keyup.layer', this.onDocumentKeyup)
+							.off("click.layer", this.onDocumentClick)
 							.removeClass("f-layer-show");
 					},
 					onDocumentKeyup: function(e) {
