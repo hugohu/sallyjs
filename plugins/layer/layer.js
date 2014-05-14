@@ -20,41 +20,55 @@
 				$("body").append('<div class="m-masklayer"></div>');
 			}
 			var masklayer = $(".m-masklayer");
-			//set offset
-			var off = $this.offset();
-			etarget.css({
-				"left": off.left,
-				"top": off.top
-			})
-			var layer = {
-				open: function() {
-					body.on('keyup', this.onDocumentKeyup)
-						.on("click", this.onDocumentClick)
-						.addClass("f-layer-show");
 
-				},
-				closed: function() {
-					body.off('keyup', this.onDocumentKeyup)
-						.off("click", this.onDocumentClick)
-						.removeClass("f-layer-show");
-				},
-				onDocumentKeyup: function(e) {
-					if (e.keyCode === 27) {
-						layer.closed();
-					}
-				},
-				onDocumentClick: function(e) {
-					if ($(e.target).is('[data-event="close"],.m-masklayer')) {
-						e.preventDefault();
-						layer.closed();
+			var layer = {
+					type: function() {
+						// type iframe
+						var iframe = etarget.find("iframe");
+						if (iframe.length == 1) {
+							var href = $this.attr("href");
+							iframe.attr("src", href);
+						}
+						// end
+					},
+					open: function() {
+						this.type();
+						body.on('keyup', this.onDocumentKeyup)
+							.on("click", this.onDocumentClick)
+							.addClass("f-layer-show");
+					},
+					closed: function() {
+						body.off('keyup', this.onDocumentKeyup)
+							.off("click", this.onDocumentClick)
+							.removeClass("f-layer-show");
+					},
+					onDocumentKeyup: function(e) {
+						if (e.keyCode === 27) {
+							layer.closed();
+						}
+					},
+					onDocumentClick: function(e) {
+						if ($(e.target).is('[data-event="close"],.m-masklayer')) {
+							e.preventDefault();
+							layer.closed();
+						}
 					}
 				}
-			}
-			//event
-			$this.on("click", function() {
-				layer.open();
+				//event
+			$this.on({
+				"click": function(e) {
+					layer.open();
+					e.preventDefault();
+				},
+				"mouseover": function() {
+					//set offset
+					var off = $this.offset();
+					etarget.css({
+						"left": off.left,
+						"top": off.top
+					})
+				}
 			})
-
 			//end !
 		});
 	};
