@@ -126,7 +126,7 @@ jQuery.fn.sValidate = function(options) {
           $this.timeout=setTimeout(function(){
               Validate.required(_this);
               Validate.setState();
-            },250);
+            },150);
           },
           "focus.sValidate": function() {
             var _this = $(this),
