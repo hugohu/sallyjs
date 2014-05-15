@@ -22,6 +22,7 @@ jQuery.fn.sValidate = function(options) {
       esubmit = $this.find(":submit");
     // Validate obj length
     var count = required.length;
+     $this.timeout=null;
     //validation attr
     // var tem_input=document.createElement("input"),
     // 		noRequired= !("required" in tem_input),
@@ -118,34 +119,35 @@ jQuery.fn.sValidate = function(options) {
       },
       init: function() {
         // input event
-        required.on({
-          "focus": function() {
+        required.not("[data-type='required']").on({
+          "keyup.sValidate":function(e){
+              var _this = $(this);
+              clearTimeout($this.timeout);
+          $this.timeout=setTimeout(function(){
+              Validate.required(_this);
+              Validate.setState();
+            },250);
+          },
+          "focus.sValidate": function() {
             var _this = $(this),
               parent = _this.parent();
             parent.addClass("focus");
           },
-          "blur": function(e) {
-            var _this = $(this),
-              isRequired = _this.attr("required");
-            //
-            if (isRequired) {
-              Validate.required(_this);
-            }
-            Validate.setState();
-             // end to removeClass
-            parent = _this.parent();
-           parent.removeClass("focus");
+          "blur.sValidate": function(e) {
+            var _this = $(this);
+               parent = _this.parent();
+            parent.removeClass("focus");
           }
         });
         // active
-        checkbox.on("change",function(){
+        checkbox.on("change.sValidate",function(){
           var _this = $(this),
             parent = _this.closest("[data-validation]");
             Validate.required(parent);
             Validate.setState();
         })
         // echeck event
-        esubmit.on("click.Validate", function(e) {
+        esubmit.on("click.sValidate", function(e) {
          var _this=$(this);
          if(_this.hasClass("disabled")){
           return false;
