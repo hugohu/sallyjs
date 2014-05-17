@@ -69,11 +69,11 @@
         this.start(delay, setfollow);
       },
       gotop: function () {
+        this.top = $(window).height();
         $this.on("click", function (e) {
          build.setTop()
           e.preventDefault();
         });
-        this.top = 0;
         var  delay = 37;
         this.start(delay, this.setFiexd);
       },
