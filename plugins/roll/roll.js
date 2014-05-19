@@ -73,7 +73,7 @@
          build.setTop()
           e.preventDefault();
         });
-        this.top = 0;
+        this.top = 500;
         var  delay = 37;
         this.start(delay, this.setFiexd);
       },
