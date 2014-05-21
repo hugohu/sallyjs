@@ -69,6 +69,7 @@
         this.start(delay, setfollow);
       },
       gotop: function () {
+        this.top = $(window).height();
         $this.on("click", function (e) {
          build.setTop()
           e.preventDefault();
