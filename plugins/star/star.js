@@ -7,8 +7,18 @@
  * Date: 2013-01-21
  * 选择星星
  * ========================================================= */
-//star
-jQuery.fn.star = function (options) {
+
+(function( factory ) {
+    if ( typeof define === "function" && define.amd ) {
+        // AMD. Register as an anonymous module.
+        define( [ "jquery" ], factory );
+    } else {
+        // Browser globals
+        factory( jQuery );
+    }
+}(function( $ ) {
+    // code
+ $.fn.star = function (options) {
     var defaults = {};
     var options = $.extend(defaults, options);
     // options fn 
@@ -39,7 +49,9 @@ jQuery.fn.star = function (options) {
         });
 
     });
-};
-jQuery(function ($) {
-    $("[data-event='star']").star();
-})
+}; 
+  //data api
+   $("[data-event='star']").star();  
+    
+    //return $.widget;
+}));

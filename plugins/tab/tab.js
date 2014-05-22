@@ -7,8 +7,19 @@
  * Date: 2013-01-21
  * 滑动门可以实现div切换
  * ========================================================= */
-(function($) {
-    $.fn.tab = function(options) {
+
+
+(function( factory ) {
+    if ( typeof define === "function" && define.amd ) {
+        // AMD. Register as an anonymous module.
+        define( [ "jquery" ], factory );
+    } else {
+        // Browser globals
+        factory( jQuery );
+    }
+}(function( $ ) {
+    // code
+      $.fn.tab = function(options) {
         this.each(function() {
             //code...
             var $this = $(this),
@@ -25,9 +36,7 @@
             ehead.on($event, Setactive);
         });
     };
-})(jQuery);
-
-/*  DARA API  */
-jQuery(function($) {
-    $('[data-event="tab"]').tab();
-});
+  /*  DARA API  */  
+ $('[data-event="tab"]').tab();    
+    //return $.widget;
+}));

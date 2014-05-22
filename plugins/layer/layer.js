@@ -4,8 +4,19 @@
  * Date: 2014-01-21
  * layer
  */
-(function($) {
-  $.fn.layer = function(options) {
+
+(function( factory ) {
+    if ( typeof define === "function" && define.amd ) {
+        // AMD. Register as an anonymous module.
+        define( [ "jquery" ], factory );
+    } else {
+        // Browser globals
+        factory( jQuery );
+    }
+}(function( $ ) {
+    // code
+
+      $.fn.layer = function(options) {
     var defaults = {};
     var options = $.extend(defaults, options);
     this.each(function() {
@@ -90,8 +101,9 @@
       //end !
     });
   };
-})(jQuery);
+  //DATA API
+$('[data-event="layer"]').layer();  
+   // return $.widget;
 
-jQuery(function($) {
-	$('[data-event="layer"]').layer();
-})
+}));
+

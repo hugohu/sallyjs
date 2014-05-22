@@ -14,7 +14,17 @@
  *
  *
  */
-(function($) {
+
+(function(factory) {
+	if (typeof define === "function" && define.amd) {
+		// AMD. Register as an anonymous module.
+		define(["jquery"], factory);
+	} else {
+		// Browser globals
+		factory(jQuery);
+	}
+}(function($) {
+	// 这里放模块代码
 	$.fn.carousel = function(options) {
 		return this.each(function() {
 			//code
@@ -40,7 +50,7 @@
 			} else {
 				var html = '<i class="prev" data-dir="-"></i><i class="next" data-dir="+"></i><span class="dot"><i class="active" data-index="0"></i>';
 				for (var i = 1; i < nlen; i++) {
-					html += '<i data-index="'+i+'"></i>';
+					html += '<i data-index="' + i + '"></i>';
 				}
 				html += "</span>"
 			}
@@ -136,8 +146,6 @@
 			// end
 		});
 	};
-})(jQuery);
-/*  DARA API  */
-jQuery(function($) {
+	//DATA API
 	$('[data-event="carousel"]').carousel();
-});
+}));

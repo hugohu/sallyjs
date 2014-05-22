@@ -10,7 +10,18 @@
  * tips
  *
  */
-jQuery.fn.sValidate = function(options) {
+
+(function( factory ) {
+    if ( typeof define === "function" && define.amd ) {
+        // AMD. Register as an anonymous module.
+        define( [ "jquery" ], factory );
+    } else {
+        // Browser globals
+        factory( jQuery );
+    }
+}(function( $ ) {
+    // code
+ $.fn.sValidate = function(options) {
   var defaults = {};
   var options = $.extend(defaults, options);
   this.each(function() {
@@ -177,19 +188,10 @@ jQuery.fn.sValidate = function(options) {
     Validate.init();
     //event
   });
-};
+};   
+  //data api
+  $("[data-event='validate']").sValidate();  
+    
+    //return $.widget;
+}));
 
-
-
-jQuery(function() {
-  $("[data-event='validate']").sValidate();
-  esubmit = $(":submit");
-  esubmit.on("click", function(e) {
-    var form = $(this).parents("form");
-    var isok = form.data("state");
-    if (isok) {
-      form.ajaxsubmit();
-      e.preventDefault();
-    }
-  })
-});
