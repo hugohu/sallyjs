@@ -10,7 +10,7 @@
  * ebox 配置进行轮播的主体 默认为第一个子元素.可以自己任意更改为
  * class
  *
- * 配置方法 设置元素的 data-set={"key":"value"} json格式即可.
+ * 配置方法 设置元素的 data-set='{"key":"value"}' json格式即可.
  *
  *
  */
@@ -36,11 +36,11 @@
 			}
 			// set html		
 			if (edot) {
-				html = html =  '<i class="prev"></i><i class="next"></i>';
+				html = html = '<i class="prev" data-dir="-"></i><i class="next" data-dir="+"></i>';
 			} else {
-				var html = '<i class="prev"></i><i class="next"></i><span class="dot"><i class="active"></i>';
+				var html = '<i class="prev" data-dir="-"></i><i class="next" data-dir="+"></i><span class="dot"><i class="active" data-index="0"></i>';
 				for (var i = 1; i < nlen; i++) {
-					html += "<i></i>";
+					html += '<i data-index="'+i+'"></i>';
 				}
 				html += "</span>"
 			}
