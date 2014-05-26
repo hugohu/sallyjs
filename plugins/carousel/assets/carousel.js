@@ -1,5 +1,5 @@
 /*
- * huCroll 1.0
+ * carousel 1.0
  * Copyright (c) 2013 Huugle  http://huugle.org/
  * Date: 2014-03-13
  * 代码完全重构

@@ -28,20 +28,20 @@
         var child = $this.children();
         var input = $this.find("input");
         $this.on({
-            "mouseover": function () {
+            "mouseover.star": function () {
                 var eActive = child.filter(".active"),
                     index = child.index(eActive);
                 $this.data("index", index);
                 eActive.removeClass("active");
             },
-            "mouseout": function () {
+            "mouseout.star": function () {
                 var index = $this.data("index"),
                 eActive=child.eq(index),
                 value=eActive.attr("data-value");
                 input.val(value);
                 eActive.addClass("active");
             },
-            "click": function (e) {
+            "click.star": function (e) {
                 var eTarget = e.target;
                 var index = child.index(eTarget);
                 $this.data("index", index);
