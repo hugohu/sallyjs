@@ -32,4 +32,11 @@ transition: 0.5s;
  	transition: 4s;
 }
 .m-banner:hover .dot i.active{background-color:#f2395b;}
-.m-banner:hover .dot i.active:before{width: 0;}
+.m-banner:hover .dot i.active:before{
+	width: 0;
+ 	-webkit-transition: 0s;
+ 	-moz-transition: 0s;
+ 	-ms-transition: 0s;
+ 	-o-transition: 0s;
+ 	transition: 0s;
+}
