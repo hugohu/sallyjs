@@ -5,7 +5,7 @@ table{border-collapse:collapse;border-spacing:0;}
 th{text-align:inherit;}
 fieldset,img{border:0;vertical-align:middle;}
 iframe{display:block;}
-ol,ul{list-style:none;}
+ul{list-style:none;}
 h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:500;}
 a{color:#0088cc;text-decoration:none;}
 a:hover,a:focus{color:#f84858;text-decoration:underline;}
