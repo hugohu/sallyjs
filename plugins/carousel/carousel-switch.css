@@ -12,7 +12,7 @@
 .carousel-switch .dot i:hover{background: #ddd;}
 .carousel-switch .dot i.active{background-color:#f2395b;}
 
-.carousel-switch .dir{background:url(img/i-icon-arr.png) no-repeat;cursor: pointer;display: block;height:100%;width:30px;position: absolute;z-index:2;top:30px;background-color:rgba(255,255,255,0.4);}
+.carousel-switch .dir{background:url(img/i-icon-arr.png) no-repeat;cursor: pointer;display: block;height:100%;width:30px;position: absolute;z-index:2;top:30px;background-color:rgba(255,255,255,0.6);}
 .carousel-switch .dir.hide{visibility: hidden;opacity: 0}
 .carousel-switch .prev.hide{left: -30px}
 .carousel-switch .next.hide{right: -30px}
