@@ -1,8 +1,8 @@
 {
 	"state": "插件导航模块",
 	"data": "2014.05.28",
-	"navfile": "mod/",
-	"modfile": "mod/",
+	"navfile": "./",
+	"modfile": "doc/",
 	"nav": [{
 		"id": "index",
 		"title": "插件库"
@@ -15,8 +15,6 @@
 			"title": "图片轮播",
 			"version": "1.0",
 			"description": "图片切换轮播插件",
-			"file":"plugins/carousel/README.md",
-			"relate": ["plugins/carousel/assets/carousel.css","plugins/carousel/assets/carousel.js"]
-		}
+			"file":"plugins/carousel/README.md"		}
 	}
 }
