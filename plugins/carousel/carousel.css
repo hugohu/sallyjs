@@ -1,11 +1,12 @@
 @charset "utf-8";
-.m-banner{width:600px;overflow: hidden;position: relative;background:url(img/loading.gif) center center no-repeat;}
-.m-banner .mod{display: block;width: 100%;white-space: nowrap;font-size: 0;}
+.m-banner{width:100%;overflow: hidden;position: relative;background:url(img/loading.gif) center center no-repeat;}
+.m-banner .mod{display: block;width: 100%;white-space: nowrap;font-size: 0;text-align: center;}
+.m-banner .mod img{max-width: 100%;height: auto;}
 .m-banner .mod li{display: inline-block; *display: inline; *zoom:1;width: 100%}
 .m-banner .dot{display: block;position:absolute; bottom:0;right:10px;height:25px;z-index:2;}
 .m-banner .dot i{display: inline-block; width:20px;height:8px; cursor:pointer; overflow:hidden; background:#fff;margin:5px 4px 0 0;*display:inline;*zoom:1;*float: left;}
 .m-banner .dot i:hover{background: #ddd;}
-.prev,.next{background:url(img/i-icon-arr.png) no-repeat;cursor: pointer;}
+.prev,.next{background:rgba(255,255,255,0.6) url(img/i-icon-arr.png) no-repeat;cursor: pointer;}
 .m-banner .next, .m-banner .prev{display: block;visibility: hidden;opacity:0;height:50px;width:50px;position: absolute;z-index:2;top:50%;margin-top:-20px;}
 .m-banner .prev{background-position: 15px 4px;left:0}
 .m-banner .next{background-position: -65px 4px;right:0}

@@ -1,11 +1,11 @@
-<div data-loadiframe="carousel" data-setheight="375px"></div>
+<div data-loadiframe="carousel" data-setheight="511px"></div>
 
 1. __data-event="carousel"__: data api事件,表示调用carousel事件.
 2. __class="mod"__: 轮播主体结构.js会读取子元素进行横排轮播
 3. mod 子元素内的内容自定义,任意编辑
 4. js会自动生成上一页下一页以及下标.可以自行隐藏.
 
-<div data-loadiframe="carousel-switch" data-setheight="185px"></div>
+<div data-loadiframe="carousel-switch" data-setheight="360px"></div>
 ##参数说明
 _data-event="carousel"_ 里添加 **data-set='{"key":"value"}'** json格式可以设置更多参数.
 
