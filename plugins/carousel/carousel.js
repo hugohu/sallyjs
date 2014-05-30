@@ -48,9 +48,9 @@
 			}
 			// set html		
 			if (edot) {
-				html = html = '<i class="prev" data-dir="-"></i><i class="next" data-dir="+"></i>';
+				html = html = '<i class="dir prev hide" data-dir="-"></i><i class="dir next" data-dir="+"></i>';
 			} else {
-				var html = '<i class="prev" data-dir="-"></i><i class="next" data-dir="+"></i><span class="dot"><i class="active" data-index="0"></i>';
+				var html = '<i class="dir prev hide" data-dir="-"></i><i class="dir next" data-dir="+"></i><span class="dot"><i class="active" data-index="0"></i>';
 				for (var i = 1; i < nlen; i++) {
 					html += '<i data-index="' + i + '"></i>';
 				}
