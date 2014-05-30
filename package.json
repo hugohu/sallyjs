@@ -1,0 +1,10 @@
+{
+	"name": "sally",
+	"version": "0.1.0",
+	"devDependencies": {
+		"grunt": "~0.4.2",
+		"grunt-contrib-uglify": "*",
+		"grunt-contrib-concat": "*",
+		"grunt-contrib-cssmin":"*"
+	}
+}
