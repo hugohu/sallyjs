@@ -16,7 +16,7 @@
 .carousel-switch .dir.hide{visibility: hidden;opacity: 0}
 .carousel-switch .prev.hide{left: -30px}
 .carousel-switch .next.hide{right: -30px}
-.carousel-switch .dir:hover{background-color: #fff;}
+.carousel-switch .dir:hover{background-color: #eee;}
 .carousel-switch  .prev{background-position: 15px 150px;left:0}
 .carousel-switch  .next{background-position: -65px 150px;right:0}
 .carousel-switch .mod,.carousel-switch .dir,.carousel-switch .mod li{

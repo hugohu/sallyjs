@@ -143,7 +143,7 @@ var build = {
             height=$this.attr("data-setheight") || "100%";
           var url=build.file+apage+".html";
           var scss=build.file+apage+".css";
-           var html = $('<iframe src="'+url+'" frameborder="0" style="width: 100%;height:'+height+'"></iframe><a href="'+url+'">查看页面</a><a href="'+scss+'">查看样式</a>');
+           var html = $('<iframe src="'+url+'" frameborder="0" style="width: 100%;height:'+height+'"></iframe><a href="'+url+'" class="s-html">查看页面</a><a href="'+scss+'" class="s-css">查看样式</a>');
            $this.append(html)
         })
       },
