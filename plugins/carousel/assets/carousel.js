@@ -39,7 +39,9 @@
 				ebox = oSetOptions.ebox ? $this.find(oSetOptions.ebox) : $this.children().first(),
 				edot = oSetOptions.edot,
 				emod = ebox.children(),
-				nlen = emod.size();
+				emod_len = emod.size(),
+				emod_width=emod.width()*emod_len,
+				nlen=Math.ceil(emod_width/_WIDTH);
 
 			if (nlen <= 1) {
 				return;
@@ -64,6 +66,7 @@
 				index: 0,
 				play: function(arr, ind) {
 					var index = this.setIndex(arr, ind);
+
 					var dis = -_WIDTH * index;
 					var isIE9_ = document.all && !window.atob;
 					if (isIE9_) {
@@ -71,16 +74,29 @@
 							"margin-left": dis
 						}, 350)
 					} else {
+						var eli = ebox.children();
+						var delayLong = 35 * eli.length;
 						var translate = 'translate(' + dis + 'px,0px)  translateZ(0px)';
-						ebox.css({
-							'transform': translate,
-							'-webkit-transform': translate,
-							'-moz-transform': translate,
-							'-ms-transform': translate,
-							'-o-transform': translate
+						eli.each(function(index, elem) {
+							if(arr=="-"){
+								delay = delayLong - 35 * index;	
+							}else{
+								delay = (35 * index) >delayLong ? delayLong :(35 * index);
+							}
+							var _this = $(this);
+							setTimeout(function() {
+								_this.css({
+									'transform': translate,
+									'-webkit-transform': translate,
+									'-moz-transform': translate,
+									'-ms-transform': translate,
+									'-o-transform': translate
+								})
+							}, delay)
 						})
 					};
 					this.setActive(index);
+					!auto && this.hideButton(index);
 				},
 				setIndex: function(arr, ind) {
 					var index = this.index;
@@ -100,7 +116,7 @@
 							}
 							break;
 						case "click":
-							return this.index = ind;
+								return this.index = ind;
 					}
 				},
 				setActive: function(index) {
@@ -113,6 +129,19 @@
 				},
 				stop: function() {
 					clearInterval(carousel.loop);
+				},
+				hideButton:function(index){
+					if (index == nlen - 1){
+						enext.addClass("hide");
+						eprev.removeClass("hide");
+					}else if(index==0){
+						eprev.addClass("hide");
+						enext.removeClass("hide");
+					}else{
+						enext.removeClass("hide");
+						eprev.removeClass("hide");
+					}	
+						
 				},
 				init: function() {
 					if (auto) {

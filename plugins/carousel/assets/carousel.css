@@ -1,5 +1,5 @@
 @charset "utf-8";
-.m-banner{width: 600px;overflow: hidden;position: relative;background:url(img/loading.gif) center center no-repeat;}
+.m-banner{width:600px;overflow: hidden;position: relative;background:url(img/loading.gif) center center no-repeat;}
 .m-banner .mod{display: block;width: 100%;white-space: nowrap;font-size: 0;}
 .m-banner .mod li{display: inline-block; *display: inline; *zoom:1;width: 100%}
 .m-banner .dot{display: block;position:absolute; bottom:0;right:10px;height:25px;z-index:2;}
@@ -13,13 +13,14 @@
 .m-banner:hover .next,.m-banner:hover .prev{visibility:visible;opacity: 1;}
 .m-banner:hover .next{right:10px;}
 .m-banner:hover .prev{left:10px;}
-.m-banner .mod,.m-banner .next, .m-banner .prev{
+.m-banner .mod,.m-banner .next, .m-banner .prev,.m-banner .mod li{
 -webkit-transition: 0.5s;
 -moz-transition: 0.5s;
 -ms-transition: 0.5s;
 -o-transition: 0.5s;
 transition: 0.5s;
 }
+
 .m-banner .dot i.active{background-color:#f2395b;background-color:rgba(255,255,255,0.95);}
 /**Animation can be deleted**/
 .m-banner .dot i:before {content: "";width: 0;display: block;height:20px;background:#F15C22;opacity:1;}

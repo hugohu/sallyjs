@@ -9,7 +9,7 @@
 <body>
 	实例:
 	<div class="m-banner" data-event="carousel">
-		<ul class="mod">
+		<ul class="mod" data-carousel="mod">
 			<li>
 				<a href="#">
 					<img src="http://ww1.sinaimg.cn/large/51a2bfdagw1egtrbr14chj20go09d75q.jpg" alt="伊丽莎白" />
@@ -35,6 +35,27 @@
 					<img src="http://ww2.sinaimg.cn/mw690/51a2bfdagw1egtrbp668pj20go09dq3w.jpg" alt="托尼托尼乔巴" />
 				</a>
 			</li>
+		</ul>
+	</div>
+
+<style>
+#demo li{width: 200px;padding:0 10px}	
+#demo{background:none;}
+#demo .dot{display: none;}
+#demo .hide{display: none;}
+</style>
+	<div class="m-banner" id="demo" data-event="carousel" data-set='{"auto":"false"}'>
+		<ul class="mod">
+			<li><img src="http://placehold.it/200x150" alt="" /></li>
+				<li><img src="http://placehold.it/200x150" alt="" /></li>
+					<li><img src="http://placehold.it/200x150" alt="" /></li>
+						<li><img src="http://placehold.it/200x150" alt="" /></li>
+							<li><img src="http://placehold.it/200x150" alt="" /></li>
+								<li><img src="http://placehold.it/200x150" alt="" /></li>
+				<li><img src="http://placehold.it/200x150" alt="" /></li>
+					<li><img src="http://placehold.it/200x150" alt="" /></li>
+						<li><img src="http://placehold.it/200x150" alt="" /></li>
+							<li><img src="http://placehold.it/200x150" alt="" /></li>
 		</ul>
 	</div>
 	<script src='http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js'></script>
