@@ -1,0 +1,23 @@
+
+
+@charset "utf-8";
+.carousel-tab{padding-top:50px;}
+.carousel-box,.carousel-tab{width:600px;overflow: hidden;position: relative;}
+.carousel-box .mod{display: block;width: 100%;white-space: nowrap;font-size: 0;}
+.carousel-box .mod .item{display: inline-block; *display: inline; *zoom:1;width: 100%;text-align: center;min-height: 200px;font-size: 12px;}
+
+
+.carousel-tab .dot{display: block;position:absolute; top:0;right:0;height:25px;z-index:2;}
+.carousel-tab .dot span{display: inline-block; padding:5px 10px;margin-right: 10px;  cursor:pointer; overflow:hidden; background:#eee;margin:5px 4px 0 0;*display:inline;*zoom:1;*float: left;}
+.carousel-tab .dot span:hover{background: #ddd;}
+.carousel-tab .dot span.active{background-color:#f2395b;}
+
+.carousel-tab .dir{display: none;}
+
+.carousel-tab .dot span,.carousel-tab .mod .item{
+-webkit-transition: 0.5s ease-in-out;
+-moz-transition: 0.5s ease-in-out;
+-ms-transition: 0.5s ease-in-out;
+-o-transition: 0.5s ease-in-out;
+transition: 0.5s ease-in-out;
+}
