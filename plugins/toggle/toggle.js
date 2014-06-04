@@ -1,63 +1,102 @@
-/* =========================================================
- * toggle 0.2
- * http://huugle.org/
- * =========================================================
- * Copyright (c) 2014 Huugle
- *
- * Date: 2014-04-02
- * 关闭提示框
- * ========================================================= */
-(function($) {
-    $.fn.sallytoggle = function(options) {
-      var defaults = {};
-      var options = $.extend(defaults, options);
-      this.each(function() {
-          //code...
-          var $this = $(this);
-          var tar = $this.attr("data-target");
-          var eventName = $this.attr("data-toggle");
-          //根据不同的事件名称来绑定不同的事件类型
-          var modal = {
-            close: function() { //关闭事件,关闭指定的父级元素
-              $this.on("click", function(e) {
-                $(this).parents("." + tar).fadeOut();
-                e.preventDefault();
-                e.stopPropagation();
-              });
-            },
-            hover: function() {
-              //模拟鼠标划过,添加对应的class
-              //$this.ctimes=null;
-              $this.on("mouseenter", function() {
-                clearTimeout($this.ctimes);
-                $this.addClass(tar);
-              }).on("mouseleave", function() {
-                clearTimeout($this.ctimes);
-                $this.ctimes = setTimeout(function() {
-                  $this.removeClass(tar);
-                }, 0);
+/*
+ * layer 0.1
+ * Copyright (c) 2013 Huugle  http://huugle.org/
+ * Date: 2014-01-21
+ * layer
+ */
 
-              });
-            },
-            dropdown: function() { //模拟下拉菜单,点击显示点击隐藏
-              var son = $this.children("." + tar);
-              $this.on("click.dropdown", function(e) {
-                son.toggle();
-                e.preventDefault();
-                e.stopPropagation();
-              });
-              $(document).on("click.dropdown", function(e) {
-                !son.is(":hidden") && son.hide();
-              });
-            }
-          }
-            //判断是否为空,不为空就执行绑定事件
-            !!modal[eventname] && modal[eventname]();
+(function( factory ) {
+    if ( typeof define === "function" && define.amd ) {
+        // AMD. Register as an anonymous module.
+        define( [ "jquery" ], factory );
+    } else {
+        // Browser globals
+        factory( jQuery );
+    }
+}(function( $ ) {
+    // code
 
+     $.fn.sallytoggle = function(options) {
+    var defaults = {};
+    var options = $.extend(defaults, options);
+    this.each(function() {
+      var $this = $(this);
+      var tar = $this.attr("data-target") || "active";
+      var eventname = $this.attr("data-toggle");
+      var modal = {
+        hover: function() {
+          $this.on("mouseover", function() {
+            clearTimeout($this.ctimes);
+            $this.ctimes = setTimeout(function() {
+              $this.addClass(tar)
+            }, 250);
+          }).on("mouseout", function() {
+            clearTimeout($this.ctimes);
+            $this.ctimes = setTimeout(function() {
+              $this.removeClass(tar);
+            }, 0);
           });
+        },
+        colsed: function() {
+          $this.on("click", function() {
+            $(this).parent().hide(350);
+          })
+        },
+        anchor: function() {
+          var is_a = !!$this.attr("href");
+          var ele = is_a ? $this : ($("a", $this));
+          //event
+          ele.on("click", function(e) {
+            var _this = $(this);
+            var href = $(this).attr("href");
+            var _id = $(href);
+            var TOP = parseInt(_id.offset().top) - 70;
+            $("html, body").animate({
+              scrollTop: TOP
+            }, 500);
+            e.preventDefault()
+          })
+
+        },
+        actived: function() {
+          var child = $this.children();
+          var item = child.not(".disabled");
+          item.on("click", function(e) {
+            $(this).addClass(tar).siblings().removeClass(tar);
+          })
+        },
+        tclass: function() {
+          $this.on("click", function() {
+            $this.toggleClass(tar)
+          })
+        },
+        loading: function() {
+          var text = $this.attr("data-loading-text");
+          var value = $this.val() || $this.text();
+          $this.on("click", function() {
+            var _this = $(this);
+            _this.attr("disabled", "disabled");
+            _this.val(text);
+            var load_timout = setTimeout(function() {
+              _this.removeAttr("disabled");
+              _this.val(value);
+            }, 1000);
+          })
+        },
+        state: function() {
+          var count = $(".i-count", $this),
+            numb = parseInt(count.html());
+          if (numb >= 3) {
+            $this.addClass(tar);
+          }
+        }
       };
-    })(jQuery);　
-  /*  DARA API  */
-  jQuery(function($) {
-    $('[data-toggle]').sallytoggle();
-  });
+      modal[eventname]();
+    });
+  };
+  //DATA API
+$('[data-toggle]').sallytoggle();
+   // return $.widget;
+
+}));
+

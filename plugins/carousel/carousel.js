@@ -94,6 +94,7 @@
 							}
 							delay+="ms";
 							var _this = $(this);
+							//内容不多 所以直接处理
 							_this.css({
 									'-webkit-transform': translate,
 									'-moz-transform': translate,

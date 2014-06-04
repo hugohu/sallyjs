@@ -1,0 +1,28 @@
+
+#nav .row{height:45px;background-color: #626a73;position: relative;z-index: 10;border-radius: 3px}
+.m-sib-sort,.nav{float: left;position: relative;z-index: 11;}
+.m-sib-sort{width: 240px;height: 45px;font-size: 14px;z-index: 998;}
+.m-sib-sort .tt{background-color: #f2395b;}
+#nav .tt{display: block;z-index: 2;color: #eee;height: 45px;line-height: 45px;padding-left: 20px;}
+#nav .tt:hover{color: #fff;}
+
+/* 模块主体 */
+.m-sib-sort .tt .icon{position: absolute;right: 0}
+.m-sib-sort > .hide{left:0px;top:45px;width:239px;height:579px;border-radius: 0;box-shadow:none}
+.m-sib-sort .m-sib-sort-list{padding: 15px 0 5px 0;position: relative;}
+.m-sib-sort .item{display: block;background:url(data:image/gif;base64,R0lGODlhBwAKAMIEAObm5uvr6/Dw8P39/f///////////////yH5BAEKAAcALAAAAAAHAAoAAAMWSDPUGoE5AaIj1M4qMW+ZFDYD1ClnAgA7) no-repeat;background-position:215px 10px ;color: #999;line-height:30px;padding: 0 15px 0 13px;font-size: 12px;border-left: 2px solid #fff;}
+.m-sib-sort .item > a{display: block;}
+.m-sib-sort .m-hide{display: none;position: absolute;left:100%;top:-1px;border: 1px solid;border-color:#eee #eee #eee #f6f6f6;background: #fff;padding: 10px;width: 500px;height:559px;}
+.m-sib-sort:hover > .hide{box-shadow: 0 2px 4px 0 rgba(0,0,0,0.13);-webkit-box-shadow: 0 2px 4px 0 rgba(0,0,0,0.13);}
+.m-sib-sort .m-hide{box-shadow: 4px 2px 4px 0 rgba(0,0,0,0.13);-webkit-box-shadow:: 4px 2px 3px 0 rgba(0,0,0,0.13); }
+.m-sib-sort .all-more{display: block;line-height:33px;position: absolute;margin-left: 15px;bottom: 0;font-size: 12px;}
+.m-sib-sort .all-more .icon{margin-right: 10px;}
+.m-sib-sort .item.active{border-color: #f2395b;margin-left: -1px;padding-left: 14px;background-color: #f8f8f8;background-image: url(data:image/gif;base64,R0lGODlhBwAKAMIEAICAgJmZmbOzs/f39////////////////yH5BAEKAAcALAAAAAAHAAoAAAMWSDPUGoE5AaIj1M4qMW+ZFDYD1ClnAgA7);color: #333}
+.m-sib-sort .item.active .m-hide{display: block;}
+.m-sib-sort .item .mic{position: absolute;bottom:0px;right:-19px;z-index: 1}
+.m-sib-sort .item .list{position: absolute;top:20px;left:20px;width: 220px;z-index: 2;font-weight: normal;}
+.m-sib-sort .item .list li{color: #444;line-height: 16px;padding: 0 0 7px 0;font-size: 13px;white-space: nowrap;}
+.m-sib-sort .item .list li.u-t{color: #F15C22;font-weight: bold;font-size: 14px;}
+.m-sib-sort .item .list .nav_tag {display: block;font-size: 11px;line-height: 13px;font-weight: normal;color: #999;white-space: normal;}
+.m-sib-sort .item .list.right{left:255px;}
+.m-sib-sort .item .list .nav_divider_before {border-top: 1px solid #eee;padding-top: 9px;}
