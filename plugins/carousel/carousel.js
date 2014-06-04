@@ -92,16 +92,20 @@
 							} else {
 								delay = (35 * index) > delayLong ? delayLong : (35 * index);
 							}
+							delay+="ms";
 							var _this = $(this);
-							var Timeout=setTimeout(function() {
-								_this.css({
-									'transform': translate,
+							_this.css({
 									'-webkit-transform': translate,
 									'-moz-transform': translate,
 									'-ms-transform': translate,
-									'-o-transform': translate
+									'-o-transform': translate,
+									'transform': translate,
+									'-webkit-transition-delay': delay,
+									'-moz-transition-delay': delay,
+									'-ms-transition-delay': delay,
+									'-o-transition-delay': delay,
+									'transition-delay': delay,
 								})
-							}, delay)
 						})
 					};
 					this.setActive(index);
