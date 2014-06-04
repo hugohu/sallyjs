@@ -41,7 +41,7 @@
       anchor: function($this) {
         var href = $this.attr("href");
         if (!href) {
-          return false
+          return false;
         }
         var _id = $(href);
         var TOP = parseInt(_id.offset().top) - 70;
@@ -50,7 +50,7 @@
         }, 500);
       },
       tclass: function($this, tar) {
-        $this.toggleClass(tar)
+        $this.toggleClass(tar);
       },
       alert: function($this) {
         $this.parent().hide();
@@ -62,7 +62,7 @@
         $this.on("mouseover", function() {
           clearTimeout($this.timeout);
           $this.timeout = setTimeout(function() {
-            $this.addClass(tar)
+            $this.addClass(tar);
           }, 200);
         }).on("mouseout", function() {
           clearTimeout($this.timeout);
@@ -85,7 +85,7 @@
       }
 
     }
-  })
+  });
   // code
   $.fn.stoggle = function(options) {
     var defaults = {};
