@@ -50,9 +50,9 @@ transform-origin: 50% 50%;
 }
 .m-masklayer,.m-layer{visibility: hidden;opacity:0;}
 .m-masklayer,.m-layer,.m-layer .close,#loading{
--webkit-transition: 0.35s cubic-bezier(0.35, 0.885, 0.32, 1.10);
--moz-transition: 0.35s cubic-bezier(0.35, 0.885, 0.32, 1.10);
--ms-transition: 0.35s cubic-bezier(0.35, 0.885, 0.32, 1.10);
--o-transition: 0.35s cubic-bezier(0.35, 0.885, 0.32, 1.10);
-transition: 0.35s cubic-bezier(0.35, 0.885, 0.32, 1.10);
+-webkit-transition: 0.35s;
+-moz-transition: 0.35s;
+-ms-transition: 0.35s;
+-o-transition: 0.35s;
+transition: 0.35s;
 }
