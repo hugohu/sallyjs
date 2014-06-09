@@ -30,12 +30,22 @@ module.exports = function(grunt) {
           '<%= pkg.name %>.min.css': ['plugins/**/*.css']
         }
       }
+    },
+    copy: {
+      main: {
+        expand: true,
+        src: 'plugins/**/*.js',
+        dest: 'js/sally/',
+        flatten: true,
+        filter: 'isFile'
+      }
     }
   });
 
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
-  grunt.registerTask('default', ['concat', 'uglify', 'cssmin']);
+  grunt.loadNpmTasks('grunt-contrib-copy');
+  grunt.registerTask('default', ['concat', 'uglify', 'cssmin', 'copy']);
 
 };
