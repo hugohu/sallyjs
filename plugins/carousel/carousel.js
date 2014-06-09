@@ -247,7 +247,7 @@
 			});
 			//edot
 			_this.edot.on("click", function() {
-				var index = edot.index(this);
+				var index = _this.edot.index(this);
 				carousel.play("click", index);
 			})
 		}
