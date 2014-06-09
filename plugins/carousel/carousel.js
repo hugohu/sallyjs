@@ -276,7 +276,7 @@
 	// code
 	$.fn.carousel = function(params) {
 		var s = new Carousel($(this), params);
-		$(this).data('swiper', s);
+		$(this).data('carousel', s);
 		return s;
 	};
 	//DATA API
