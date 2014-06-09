@@ -1,3 +1,15 @@
+/*
+ * carousel 1.2
+ * Copyright (c) 2014 Huugle  http://huugle.org/
+ * Date: 2014-06-09
+ *
+ * 焦点图片切换 代码完全重构
+ *
+ * 配置方法 设置元素的 data-set='{"key":"value"}' json格式即可.
+ * {number}跟{boolean}类型不需要加 " ";
+ *
+ */
+
 (function(factory) {
 	if (typeof define === "function" && define.amd) {
 		// AMD. Register as an anonymous module.
@@ -10,12 +22,44 @@
 
 	var Carousel = function($this, params) {
 		var _this = this;
-
 		_this.$this = $this;
 		_this.index = 0;
 		_this.dataSet = _this.$this.attr("data-set");
 		_this.set = _this.dataSet ? $.parseJSON(_this.dataSet) : {};
-		//设置默认参数
+		/**
+		 * [defaults 默认参数列表]
+		 * @type {Object}
+		 * 参数说明---
+		 * [width 轮播的宽度]
+		 * @type {number}
+		 *
+		 * [auto 是否自动轮播]
+		 * @type {boolean}
+		 *
+		 * [outTime 轮播等待的时间]
+		 * @type {number}
+		 *
+		 * [ebox 进行轮播的父元素]
+		 * @type {selector string}
+		 *
+		 * [edot 下标元素]
+		 * @type {selector string}
+		 *
+		 * [eprev enext  上一页 下一页]
+		 * @type {selector string}
+		 *
+		 * [hasDot 是否有生成下标]
+		 * @type {boolean}
+		 *
+		 * [hasArr 是否生成左右箭头]
+		 * @type {boolean}
+		 *
+		 * [easyPlay 是否启用简单轮播模式]
+		 * @type {boolean}
+		 * @描述 这个是确定轮播的宽度设置在父元素还是子元素上,
+		 * 高级浏览器有效.
+		 *
+		 */
 		var defaults = {
 			width: _this.$this.width(),
 			auto: true,
@@ -28,9 +72,19 @@
 			hasArr: false,
 			easyPlay: false
 		};
+
+		/**
+		 * [params 载入参数]
+		 * @type {[object]}
+		 * @描述 三部分,默认参数,用户data-set 里的参数或者直接调用的参数.
+		 */
 		_this.params = $.extend(defaults, params || _this.set);
 
-		//set 程序运行需要的参数
+
+		/**
+		 * 程序运行需要的参数
+		 *
+		 */
 		_this.slideBox = _this.$this.find(_this.params["ebox"]).children();
 		_this.slideBoxLen = _this.slideBox.size();
 		_this.slideBoxWidth = _this.slideBox.width();
@@ -40,8 +94,10 @@
 		_this.pageCount = Math.ceil(_this.slideBoxLen / _this.pageLen);
 
 
-		// 设置箭头
-		_this.setCarousel = function(Temp) {
+		/**
+		 * [setCarousel 设置初始轮播点跟左右箭头]
+		 */
+		_this.setCarousel = function() {
 			var html = "";
 			if (!_this.params["hasDot"]) {
 				html += '<span class="dot">\n' +
@@ -60,7 +116,11 @@
 			_this.eprev = _this.$this.find(_this.params["eprev"]);
 			_this.enext = _this.$this.find(_this.params["enext"]);
 		}
-		//
+		/**
+		 * [play 进行轮播主体内容]
+		 * @param  {[string]} arr [方向标志"+" or "-"]
+		 * @param  {[number]} ind [第几张]
+		 */
 		_this.play = function(arr, ind) {
 			var index = _this.setIndex(arr, ind);
 			var isIE9_ = document.all && !window.atob;
@@ -99,7 +159,11 @@
 			_this.setActive(index);
 			!_this.params["auto"] && _this.hideButton(index);
 		}
-
+		/**
+		 * [setIndex 设置索引]
+		 * @param {[string]} arr [方向 "+" or "-"]
+		 * @param {[number]} ind [索引]
+		 */
 		_this.setIndex = function(arr, ind) {
 			var index = _this.index;
 			switch (arr) {
@@ -121,16 +185,25 @@
 					return _this.index = ind;
 			}
 		}
-
+		/**
+		 * [setActive 设置下标选中]
+		 * @param {[number]} index [索引]
+		 */
 		_this.setActive = function(index) {
 			_this.edot.eq(index).addClass("active").siblings().removeClass("active");
 		}
+		/**
+		 * [autoPlay 设置自动轮播]
+		 */
 		_this.autoPlay = function() {
 			_this.stopPlay();
 			_this.loop = setInterval(function() {
 				_this.play("+");
 			}, _this.params["outTime"])
 		}
+		/**
+		 * [autoPlay 停止自动轮播]
+		 */
 		_this.stopPlay = function() {
 			clearInterval(_this.loop);
 		}
@@ -178,7 +251,6 @@
 				carousel.play("click", index);
 			})
 		}
-
 		_this.init();
 	}
 	Carousel.prototype = {
@@ -189,26 +261,11 @@
 			var isIE9_ = document.all && !window.atob
 			return !!isIE9_;
 		},
-		getformat: function(template, json) {
-			return template.replace(/{{(.*?)}}/g, function(all, key) {
-				return json && (key in json) ? json[key] : "";
-			});
-		},
-		setTransform: function(el, transform) {
-			'use strict';
-			var es = el.style;
-			es.webkitTransform = es.MsTransform = es.msTransform = es.MozTransform = es.OTransform = es.transform = transform;
-		},
 		setTranslate: function(el, dis) {
 			'use strict';
 			var es = el.style;
 			var transformString = 'translate(' + dis + 'px,0px)  translateZ(0px)'
 			es.webkitTransform = es.MsTransform = es.msTransform = es.MozTransform = es.OTransform = es.transform = transformString;
-		},
-		setTransitionDuration: function(el, duration) {
-			'use strict';
-			var es = el.style;
-			es.webkitTransitionDuration = es.MsTransitionDuration = es.msTransitionDuration = es.MozTransitionDuration = es.OTransitionDuration = es.transitionDuration = duration + 'ms';
 		},
 		setTransitionDelay: function(el, Delay) {
 			'use strict';
