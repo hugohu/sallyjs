@@ -70,7 +70,8 @@
 			enext: ".next",
 			hasDot: false,
 			hasArr: false,
-			easyPlay: false
+			easyPlay: false,
+			hideButton:false
 		};
 
 		/**
@@ -157,7 +158,7 @@
 			}
 			//others
 			_this.setActive(index);
-			!_this.params["auto"] && _this.hideButton(index);
+			_this.params["hideButton"] && _this.hideButton(index);
 		}
 		/**
 		 * [setIndex 设置索引]
@@ -248,7 +249,7 @@
 			//edot
 			_this.edot.on("click", function() {
 				var index = _this.edot.index(this);
-				carousel.play("click", index);
+				_this.play("click", index);
 			})
 		}
 		_this.init();
