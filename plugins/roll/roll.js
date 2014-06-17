@@ -213,7 +213,7 @@ jQuery.fn.roll = function(options) {
       },
       gotop: function() {
         $this.on("click", function(e) {
-          build.setTop()
+          build.setTop();
           e.preventDefault();
         });
         this.top = 600;
@@ -223,7 +223,7 @@ jQuery.fn.roll = function(options) {
       setTop: function() {
         $("html, body").animate({
           scrollTop: 0
-        }, 120);
+        }, 350);
       },
       setFiexd: function() {
         var st = $(window).scrollTop();
