@@ -1,58 +1,9 @@
-    /* 操作型弹出浮层-默认居中 */
-/* layer */
-.m-masklayer{position:fixed;_position:absolute;z-index:999;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);}
-.m-layer{position: fixed;left: 50%;top: 10%;_position: absolute;z-index: 1002;}
-/* div box */
-#quick{width: 680px;margin-left:-330px;background:#fff;}
-#quick #loading{visibility: hidden;opacity: 0;width: 100%;height: 100%;background-color: #fff;position: absolute;left:0;top: 0}
-#quick #loading.active{visibility: visible;opacity:1;filter: alpha(opacity=100);}
-#quick iframe{border:0;display: block;height: 100%;width: 100%;}
-.m-layer .lyct{height: 450px}
-.m-layer .close{
-position: absolute;right:-40px;height: 40px;width: 40px;text-align: center;background-color: #000;color: #999;font-size:32px;line-height: 40px;cursor: pointer;
--webkit-transform-origin: 50% 50%;
--moz-transform-origin: 50% 50%;
--ms-transform-origin: 50% 50%;
--o-transform-origin: 50% 50%;
-transform-origin: 50% 50%;
-}
-.m-layer .close:hover{
-   -webkit-transform: rotate(-90deg);
-   -moz-transform: rotate(-90deg);
-   -ms-transform: rotate(-90deg);
-   -o-transform: rotate(-90deg);
-   transform: rotate(-90deg);
-    color: #fff;
-}
-/*animation*/
-.f-layer-show .m-masklayer,.f-layer-show .m-layer{visibility: visible;opacity: 1}
 
-.m-layer{
-    -webkit-transform-origin: top center;
-    -moz-transform-origin: top center;
-    -ms-transform-origin: top center;
-    -o-transform-origin: top center;
-    transform-origin: top center;
-    -webkit-transform: scale(0.1) translateZ(0px);
-    -moz-transform: scale(0.1) translateZ(0px);
-    -ms-transform: scale(0.1) translateZ(0px);
-    -o-transform: scale(0.1) translateZ(0px);
-    transform: scale(0.1) translateZ(0px); 
-}
-.f-layer-show .m-layer{
-    left:50%!important;
-    top: 10%!important;
-    -webkit-transform: scale(1) translateZ(0px);
-    -moz-transform: scale(1) translateZ(0px);
-    -ms-transform: scale(1) translateZ(0px);
-    -o-transform: scale(1) translateZ(0px);
-    transform: scale(1) translateZ(0px); 
-}
-.m-masklayer,.m-layer{visibility: hidden;opacity:0;}
-.m-masklayer,.m-layer,.m-layer .close,#loading{
--webkit-transition: 0.35s;
--moz-transition: 0.35s;
--ms-transition: 0.35s;
--o-transition: 0.35s;
-transition: 0.35s;
-}
+.m-alert{visibility:hidden;opacity: 0;min-height:50px;padding:15px 10px 10px 10px;width:320px;background-color: #000;position: fixed;top:0;left: 50%;margin-left: -160px;z-index: 999;color: #fff;}
+.m-alert .closed{position: absolute;right:5px;top:8px;color: #ddd;font-size: 14px;width: 20px;height: 20px;display: block;cursor: pointer;text-align: center;line-height: 20px;font-weight: bold;}
+.m-alert .closed:hover{color: #fff;}
+.m-alert .text{padding:15px 0;font-size: 14px;font-weight: bold; }
+.m-alert .progress{position: absolute;top:0;left:0;width:0;height:4px;background-color: #f60;}
+
+.m-alert.active{visibility: visible;opacity: 1;}
+.m-alert.active .progress{width: 100%}
