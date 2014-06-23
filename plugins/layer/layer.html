@@ -12,13 +12,13 @@
 <body>
 
     <div class="demo">
-        <button type="button" class="u-btn u-btn-green" data-event="layer" data-target="quick"  >点我</button>
-        <p style="line-height: 500px;"><button type="button" class="u-btn u-btn-green" data-event="layer" data-target="quick"  >点我</button></p>
+        <button type="button" class="u-btn u-btn-green"  data-event="layer"  data-set='{"target":"quick"}'>点我</button>
+        <p style="line-height: 500px;"><button type="button" class="u-btn u-btn-green" data-event="layer"  data-set='{"target":"quick"}'>点我</button></p>
     </div>
-  
+
+<!-- 区块命名规范:id为 templ-模块名称
+可配置变量 #{data}进行替换 -->
 <script type="text/html" id="templ-quick">
-// 区块命名规范:id为 templ-模块名称
-//可配置变量 #{data}进行替换
     <div class="m-layer" id="quick">
         <span class="close" data-event="close">×</span>
         <div class="lyct">
