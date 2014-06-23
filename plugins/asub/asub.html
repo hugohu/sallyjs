@@ -8,17 +8,41 @@
 	<title>弹窗</title>
 </head>
 <body>
+<button class="btn" data-event="layer" data-json='{"text":"json"}' data-target="alert">点我</button>
 
-	<script type="text/html" id="templ-alert">
-	<div class="m-alert #{state}" id="alert">
+<script type="text/html" id="templ-alert">
+<div class="m-alert" id="alert">
  	<span class="closed">X</span>
  	<span class="state"></span>
- 	<p class="text">#{text}</p>
+ 	<p class="text">{{text}}</p>
  	<div class="progress"><i></i></div>
  </div>
 </script>
 
 	<script src="http://libs.baidu.com/jquery/1.8.2/jquery.min.js"></script>
 	<script src="asub.js"></script>
+	<script>
+	$(function(){
+		$(document).on("click","[data-event=layer]",function(){
+			var json=$(this).data("json");
+			var target=$(this).data("target");
+			var ele=$("#"+target);
+					function format(template, json) {
+                    return template.replace(/\{\{(.*?)\}\}/g, function(all, key) {
+                        return json && (key in json) ? json[key] : "";
+                    });
+                }
+			if(ele.length==0){
+						var templ=$("#templ-"+target);
+				var templ_html=templ.html();
+						templ_html=format(templ_html,json);
+				$("body").append(templ_html);
+			}
+			var timeout=setTimeout(function(){
+				$("#"+target).addClass("active");
+			}, 0)
+		})
+	})
+	</script>
 </body>
 </html>

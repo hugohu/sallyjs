@@ -1,3 +1,18 @@
+.m-alert{
+-webkit-transition: 0.35s;
+-moz-transition: 0.35s;
+-ms-transition: 0.35s;
+-o-transition: 0.35s;
+transition: 0.35s;
+}
+.m-alert .progress{
+  -webkit-transition: 4s;
+  -moz-transition: 4s;
+  -ms-transition: 4s;
+  -o-transition: 4s;
+  transition: 4s;
+  
+}
 
 .m-alert{visibility:hidden;opacity: 0;min-height:50px;padding:15px 10px 10px 10px;width:320px;background-color: #000;position: fixed;top:0;left: 50%;margin-left: -160px;z-index: 999;color: #fff;}
 .m-alert .closed{position: absolute;right:5px;top:8px;color: #ddd;font-size: 14px;width: 20px;height: 20px;display: block;cursor: pointer;text-align: center;line-height: 20px;font-weight: bold;}
