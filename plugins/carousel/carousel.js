@@ -71,7 +71,7 @@
 			hasDot: false,
 			hasArr: false,
 			easyPlay: false,
-			hideButton:false
+			hideButton: false
 		};
 
 		/**
