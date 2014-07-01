@@ -12,7 +12,7 @@
 <body>
 
     <div class="demo">
-        <button type="button" class="u-btn u-btn-green"  data-event="layer"  data-set='{"target":"quick"}'>点我</button>
+        <button type="button" class="u-btn u-btn-green"  data-event="layer"  data-set='{"target":"quick","type":"iframe"}'>点我</button>
         <p style="line-height: 500px;"><button type="button" class="u-btn u-btn-green" data-event="layer"  data-set='{"target":"quick"}'>点我</button></p>
     </div>
 <!-- 区块命名规范:id为 templ-模块名称
@@ -29,5 +29,18 @@
 
 <script src="http://libs.baidu.com/jquery/1.8.2/jquery.min.js"></script>
     <script src="layer.js"></script>
+    <script>
+    //test
+        $(function(){
+            $.layer("layer",{"open":function(){
+               this.isclosed=false;
+               console.log(this.isclosed)
+            },
+            "closed":function(){
+               this.isclosed=true
+            }
+            })
+        })
+    </script>
 </body>
 </html>
