@@ -71,7 +71,8 @@
 			hasDot: false,
 			hasArr: false,
 			easyPlay: false,
-			hideButton:false
+			hideButton:false,
+			hideButtonClass:"hide"
 		};
 
 		/**
@@ -109,7 +110,7 @@
 				html += "</span>";
 			}
 			if (!_this.params["hasArr"]) {
-				html += '<i class="dir prev hide" data-dir="-"></i>\n' +
+				html += '<i class="dir prev" data-dir="-"></i>\n' +
 					'<i class="dir next" data-dir="+"></i>'
 			}
 			$(html).appendTo(_this.$this);
@@ -209,15 +210,16 @@
 			clearInterval(_this.loop);
 		}
 		_this.hideButton = function(index) {
+			var hideButtonClass =_this.params["hideButtonClass"]
 			if (index == _this.pageCount - 1) {
-				_this.enext.addClass("hide");
-				_this.eprev.removeClass("hide");
+				_this.enext.addClass(hideButtonClass);
+				_this.eprev.removeClass(hideButtonClass);
 			} else if (index == 0) {
-				_this.eprev.addClass("hide");
-				_this.enext.removeClass("hide");
+				_this.eprev.addClass(hideButtonClass);
+				_this.enext.removeClass(hideButtonClass);
 			} else {
-				_this.enext.removeClass("hide");
-				_this.eprev.removeClass("hide");
+				_this.enext.removeClass(hideButtonClass);
+				_this.eprev.removeClass(hideButtonClass);
 			}
 		}
 		_this.init = function() {
@@ -225,6 +227,7 @@
 				return;
 			}
 			_this.setCarousel();
+		_this.params["hideButton"] && _this.hideButton(0);
 			//添加事件
 			if (_this.params["auto"]) {
 				_this.autoPlay();
