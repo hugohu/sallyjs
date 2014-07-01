@@ -70,7 +70,7 @@
 			enext: ".next",
 			hasDot: false,
 			hasArr: false,
-			easyPlay: false,
+			easyPlay: true,
 			hideButton:false,
 			hideButtonClass:"hide"
 		};
