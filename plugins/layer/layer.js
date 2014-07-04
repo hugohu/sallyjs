@@ -48,7 +48,7 @@
     _this.open = function() {
       $("body").on('keyup', this.onDocumentKeyup)
         .on("click", this.onDocumentClick)
-        .addClass("f-layer-show");
+        .addClass("f-layer-show "+_this.type+"-show");
       _this.run("open");
     }
     _this.closed = function() {
@@ -56,7 +56,7 @@
       if (_this.isclosed) {
         $("body").off('keyup', this.onDocumentKeyup)
           .off("click", this.onDocumentClick)
-          .removeClass("f-layer-show");
+          .removeClass("f-layer-show "+_this.type+"-show");
       }
     }
     _this.onDocumentKeyup = function(e) {
