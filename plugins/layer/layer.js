@@ -24,7 +24,8 @@
       json: {},
       target: "",
       fn: {},
-      type: "layer"
+      type: "layer",
+      position:true
     };
     /**
      * [params 载入参数]
@@ -85,13 +86,15 @@
         $("body").append(templ_html);
         _this.showbox = $("#" + _this.target);
       }
-      var off = $this.offset();
+      if(_this.params["position"]){
+        var off = $this.offset();
       var scrollTop = $(window).scrollTop();
       var _Top = off.top - scrollTop;
       _this.showbox.css({
         "left": off.left,
         "top": _Top
       })
+      }
       _this.run("start");
       var timeout = setTimeout(function() {
         _this.showbox.addClass("active");
@@ -116,7 +119,7 @@
   $.fn.layer = function(params) {
     //code
     var s = new Layer($(this), params);
-    $(this).data('carousel', s);
+    $(this).data('layer', s);
     return s;
   };
   //DATA API
