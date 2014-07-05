@@ -9,14 +9,21 @@
     max-width: 100%;
     opacity: 1;
     -webkit-perspective:600; 
-    -webkit-transform:rotateY(0deg);
     -webkit-transform-style:preserve-3d; 
+    -webkit-transform:rotateY(0deg);
+    -moz-transform:rotateY(0deg);
+
 }
 #picInfo{margin-top: 500px;margin-left: 100px;}
 #picInfo,#picshow,.showbox{height:530px;width: 450px;}
 #picshow{text-align: center;display:table-cell;vertical-align:middle;*font-family:Arial;*line-height:1;}
 #picshow,#picshow img,.maskpic,.showbox{
--webkit-transition:0.65s; 
+-webkit-transition: 0.5s;
+-moz-transition: 0.5s;
+-ms-transition: 0.5s;
+-o-transition: 0.5s;
+transition: 0.5s;
+
 }
 #picshow{
     position: relative;
@@ -26,12 +33,20 @@
     opacity: 0;
     *visibility: hidden;
 -webkit-transform:rotateY(180deg);
+    -moz-transform:rotateY(180deg);
 }
 .img-show .m-masklayer{background: rgba(0,0,0,0.7);}
-.showbox img{-webkit-transition:0.45s; max-height: 100%;max-width: 100%;text-align: center;}
+.showbox img{
+-webkit-transition: 0.45s;
+-moz-transition: 0.45s;
+-ms-transition: 0.45s;
+-o-transition: 0.45s;
+transition: 0.45s;
+ max-height: 100%;max-width: 100%;text-align: center;}
 .showbox img.show{
         opacity: 0;
 -webkit-transform:rotateY(90deg);
+-moz-transform:rotateY(90deg);
 }
 .showbox{
     position: fixed;left: 50%;margin-left: -226px;top:100px;
