@@ -52,8 +52,14 @@
       tclass: function($this, tar) {
         $this.toggleClass(tar);
       },
-      alert: function($this) {
-        $this.parent().hide();
+      closed: function($this,tar) {
+        $this.closest(tar).removeClass("active");
+      },
+      timeout:function(start,stop,delay){
+        start();
+        setTimeout(function(){
+        stop();
+        }, delay)
       }
     },
     sMethods: [{

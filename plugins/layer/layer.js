@@ -25,7 +25,8 @@
       target: "",
       fn: {},
       type: "layer",
-      position:true
+      position:true,
+      timeout:"150"
     };
     /**
      * [params 载入参数]
@@ -99,7 +100,7 @@
       var timeout = setTimeout(function() {
         _this.showbox.addClass("active");
         _this.open();
-      }, 150)
+      }, _this.params["timeout"])
 
     }
     _this.init();

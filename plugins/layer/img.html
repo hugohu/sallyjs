@@ -5,73 +5,118 @@
     <link rel="stylesheet" href="../../assets/css/reset.css" />
     <link rel="stylesheet" href="layer.css" />
     <style>
-#picshow img,.showbox img{
-    max-width: 100%;
-    opacity: 1;
-    -webkit-perspective:600; 
-    -webkit-transform-style:preserve-3d; 
-    -webkit-transform:rotateY(0deg);
-    -moz-transform:rotateY(0deg);
+    #picshow img,.showbox img{max-width:100%;opacity:1;-webkit-transform-style:preserve-3d;-webkit-transform:perspective(0) rotateY(0deg);-moz-transform:rotateY(0deg);}
+#picInfo{margin-top:500px;margin-left:100px;}
+#picInfo,#picshow,.showbox{height:530px;width:450px;}
+#picshow{text-align:center;display:table-cell;vertical-align:middle;*font-family:Arial;*line-height:1;}
+#picshow,#picshow img,.maskpic,.showbox{-webkit-transition:0.5s;-moz-transition:0.5s;-ms-transition:0.5s;-o-transition:0.5s;transition:0.5s;}
+#picshow{position:relative;z-index:999;}
+.img-show #picshow img{opacity:0;*visibility:hidden;-webkit-transform:rotateY(180deg);-moz-transform:rotateY(180deg);}
+.img-show .m-masklayer{background:rgba(0,0,0,0.7);}
+.showbox img{-webkit-transition: 0.45s;
+-moz-transition: 0.45s;
+max-width:100%;height:auto;text-align:center;}
+.showbox.loading img{
+opacity:0;-webkit-transform:perspective(0px) rotateY(180deg);-moz-transform:rotateY(180deg);}
+.showbox{position:fixed;left:50%;margin-left:-226px;top:50px;visibility:hidden;opacity:0;border:1px solid #000;background:#fff;background-color:rgba(255,255,255,0);background-position: center center;z-index:1002;text-align:center;}
+.img-show .showbox{-webkit-transition-delay:150ms;visibility:visible;opacity:1;background-color:rgba(255,255,255,1);}
+.showbox span{position:absolute;right:-50px;width:50px;height:50px;line-height:50px;background-color:#000;color:#999;font-weight: bold;text-align:center;font-size:20px;margin: 0;cursor: pointer;}
+.showbox span:hover{color: #fff;}
+.showbox span.close{top:0}
+.showbox .preview--next{top:100px;}
+.showbox .preview--prev{top:170px;}
+.showbox.loading{background:#fff url(../images/loading.gif) center center no-repeat;}
 
-}
-#picInfo{margin-top: 500px;margin-left: 100px;}
-#picInfo,#picshow,.showbox{height:530px;width: 450px;}
-#picshow{text-align: center;display:table-cell;vertical-align:middle;*font-family:Arial;*line-height:1;}
-#picshow,#picshow img,.maskpic,.showbox{
--webkit-transition: 0.5s;
--moz-transition: 0.5s;
--ms-transition: 0.5s;
--o-transition: 0.5s;
-transition: 0.5s;
-
-}
-#picshow{
-    position: relative;
-    z-index: 999;
-}
-.img-show #picshow img{
-    opacity: 0;
-    *visibility: hidden;
--webkit-transform:rotateY(180deg);
-    -moz-transform:rotateY(180deg);
-}
-.img-show .m-masklayer{background: rgba(0,0,0,0.7);}
-.showbox img{max-width: 100%;height: auto;text-align: center;}
-.showbox img.show{
-        opacity: 0;
--webkit-transform:rotateY(90deg);
--moz-transform:rotateY(90deg);
-}
-.showbox{
-    position: fixed;left: 50%;margin-left: -226px;top:100px;
-    visibility: hidden;opacity: 0;
-   border: 1px solid #000;
-    background:#fff; background-color:rgba(255,255,255,0);z-index: 1002;
-    
-    text-align: center;
-}
-.img-show .showbox{-webkit-transition-delay:150ms;visibility: visible;opacity: 1;background-color:rgba(255,255,255,1);}
-#img-list{display: none;}
-.showbox span{position: absolute;right: -40px;width: 40px;height: 40px;background-color: #000;color: #fff;line-height: 40px;text-align: center;font-size: 16px;}
-.showbox span.close{top: 0}
-.showbox .next{bottom:50px;}
-.showbox .prev{bottom:0;}
 </style>
+
+
     <title>弹窗</title>
 </head>
 <body>
 
-    <div id="picInfo">
+    <div class="info preview--main">
+        
+<div id="picInfo">
         <div id="picshow" class="u-img">
-            <img alt="" src="http://b.hiphotos.baidu.com/image/w%3D2048/sign=e32990b6eb50352ab1612208677bfaf2/2e2eb9389b504fc20cb82f04e7dde71191ef6dc8.jpg" data-index="1"></div>
+            <img alt="" src="http://b.hiphotos.baidu.com/image/w%3D2048/sign=e32990b6eb50352ab1612208677bfaf2/2e2eb9389b504fc20cb82f04e7dde71191ef6dc8.jpg" data-index="1" class="preview--start" ></div>
     </div>
 
-<div class="showbox">
-    <img src="" alt="" />
-    <span class="next">+</span>
-    <span class="prev">-</span>
-    <span class="close">X</span>
-</div>
+           <ul class="mod preview--list" id="img-list" >
+                                <li>
+                                    <a data-burl="http://ww2.sinaimg.cn/mw690/51a2bfdagw1egwnhnjwnyj208m0c874h.jpg" href="http://ww2.sinaimg.cn/mw690/51a2bfdagw1egwnhnjwnyj208m0c874h.jpg" class="u-img">
+                                        <img src="http://ww2.sinaimg.cn/mw690/51a2bfdagw1egwnhnjwnyj208m0c874h.jpg" alt=""></a>
+                                </li>
+                                <li>
+                                    <a data-burl="http://ww4.sinaimg.cn/mw690/51a2bfdagw1egwnhn047lj208m0caq3h.jpg" href="http://ww4.sinaimg.cn/mw690/51a2bfdagw1egwnhn047lj208m0caq3h.jpg" class="u-img">
+                                        <img src="http://ww4.sinaimg.cn/mw690/51a2bfdagw1egwnhn047lj208m0caq3h.jpg" alt=""></a>
+                                </li>
+                                <li>
+                                    <a data-burl="http://ww4.sinaimg.cn/mw690/51a2bfdagw1egwnhjccjzj208m0cqq37.jpg" href="http://ww4.sinaimg.cn/mw690/51a2bfdagw1egwnhjccjzj208m0cqq37.jpg" class="u-img">
+                                        <img src="http://ww 4.sinaimg.cn/mw690/51a2bfdagw1egwnhjccjzj208m0cqq37.jpg" alt=""></a>
+                                </li>
+                                <li>
+                                    <a data-burl="http://ww4.sinaimg.cn/mw690/51a2bfdagw1egwnhisjyij208m0ccq3a.jpg" href="http://ww4.sinaimg.cn/mw690/51a2bfdagw1egwnhisjyij208m0ccq3a.jpg" class="u-img">
+                                        <img src="http://ww4.sinaimg.cn/mw690/51a2bfdagw1egwnhisjyij208m0ccq3a.jpg" alt=""></a>
+                                </li>
+                                <li>
+                                    <a data-burl="http://ww4.sinaimg.cn/mw690/51a2bfdagw1egwnhi1geyj208m0bgt93.jpg" href="http://ww4.sinaimg.cn/mw690/51a2bfdagw1egwnhi1geyj208m0bgt93.jpg" class="u-img">
+                                        <img src="http://ww4.sinaimg.cn/mw690/51a2bfdagw1egwnhi1geyj208m0bgt93.jpg" alt=""></a>
+
+                                </li>
+                                <li>
+                                    <a data-burl="http://ww2.sinaimg.cn/mw690/51a2bfdagw1egwnhhdnpzj208m0ccq37.jpg" href="http://ww2.sinaimg.cn/mw690/51a2bfdagw1egwnhhdnpzj208m0ccq37.jpg" class="u-img">
+                                        <img src="http://ww2.sinaimg.cn/mw690/51a2bfdagw1egwnhhdnpzj208m0ccq37.jpg" alt=""></a>
+
+                                </li>
+                                <li>
+                                    <a data-burl="http://ww4.sinaimg.cn/mw690/51a2bfdagw1egwnhgtwxsj208m0c674m.jpg" href="http://ww4.sinaimg.cn/mw690/51a2bfdagw1egwnhgtwxsj208m0c674m.jpg" class="u-img">
+                                        <img src="http://ww4.sinaimg.cn/mw690/51a2bfdagw1egwnhgtwxsj208m0c674m.jpg" alt=""></a>
+
+                                </li>
+                                <li>
+                                    <a data-burl="http://ww1.sinaimg.cn/mw690/51a2bfdagw1egwnhg6d76j208m0bz3yz.jpg" href="http://ww1.sinaimg.cn/mw690/51a2bfdagw1egwnhg6d76j208m0bz3yz.jpg" class="u-img">
+                                        <img src="http://ww1.sinaimg.cn/mw690/51a2bfdagw1egwnhg6d76j208m0bz3yz.jpg" alt=""></a>
+
+                                </li>
+                                <li>
+                                    <a data-burl="http://ww1.sinaimg.cn/mw690/51a2bfdagw1egwnhf63hdj208m0brdg0.jpg" href="http://ww1.sinaimg.cn/mw690/51a2bfdagw1egwnhf63hdj208m0brdg0.jpg" class="u-img">
+                                        <img src="http://ww1.sinaimg.cn/mw690/51a2bfdagw1egwnhf63hdj208m0brdg0.jpg" alt=""></a>
+
+                                </li>
+                                <li>
+                                    <a data-burl="http://ww1.sinaimg.cn/mw690/51a2bfdagw1egwnheckxdj208m0ci0t3.jpg" href="http://ww1.sinaimg.cn/mw690/51a2bfdagw1egwnheckxdj208m0ci0t3.jpg" class="u-img">
+                                        <img src="http://ww1.sinaimg.cn/mw690/51a2bfdagw1egwnheckxdj208m0ci0t3.jpg" alt=""></a>
+
+                                </li>
+                                <li>
+                                    <a data-burl="http://ww2.sinaimg.cn/mw690/51a2bfdagw1egwnheqdf6j208m0cpq33.jpg" href="http://ww2.sinaimg.cn/mw690/51a2bfdagw1egwnheqdf6j208m0cpq33.jpg" class="u-img">
+                                        <img src="http://ww2.sinaimg.cn/mw690/51a2bfdagw1egwnheqdf6j208m0cpq33.jpg" alt=""></a>
+
+                                </li>
+                                <li>
+                                    <a data-burl="http://ww3.sinaimg.cn/mw690/51a2bfdagw1egwnhdj7x3j208m0c6aac.jpg" href="http://ww3.sinaimg.cn/mw690/51a2bfdagw1egwnhdj7x3j208m0c6aac.jpg" class="u-img">
+                                        <img src="http://ww3.sinaimg.cn/mw690/51a2bfdagw1egwnhdj7x3j208m0c6aac.jpg" alt=""></a>
+
+                                </li>
+                                <li>
+                                    <a data-burl="http://ww4.sinaimg.cn/mw690/51a2bfdagw1egwnh9oiflj208m0ck0t5.jpg" href="http://ww4.sinaimg.cn/mw690/51a2bfdagw1egwnh9oiflj208m0ck0t5.jpg" class="u-img">
+                                        <img src="http://ww4.sinaimg.cn/mw690/51a2bfdagw1egwnh9oiflj208m0ck0t5.jpg" alt=""></a>
+
+                                </li>
+                                <li>
+                                    <a data-burl="http://ww1.sinaimg.cn/mw690/51a2bfdagw1egwnh8o3zkj208m0cfjrk.jpg" href="http://ww1.sinaimg.cn/mw690/51a2bfdagw1egwnh8o3zkj208m0cfjrk.jpg" class="u-img">
+                                        <img src="http://ww1.sinaimg.cn/mw690/51a2bfdagw1egwnh8o3zkj208m0cfjrk.jpg" alt=""></a>
+
+                                </li>
+                                <li>
+                                    <a data-burl="http://ww4.sinaimg.cn/mw690/51a2bfdagw1egwnh83glcj208m0c30sv.jpg" href="http://ww4.sinaimg.cn/mw690/51a2bfdagw1egwnh83glcj208m0c30sv.jpg" class="u-img">
+                                        <img src="http://ww4.sinaimg.cn/mw690/51a2bfdagw1egwnh83glcj208m0c30sv.jpg" alt=""></a>
+
+                                </li>
+                            </ul>
+
+    </div>
+
     <!-- 区块命名规范:id为 templ-模块名称
 可配置变量 #{data}进行替换 -->
     <script type="text/html" id="templ-quick">
@@ -88,315 +133,200 @@ transition: 0.5s;
     <script src="layer.js"></script>
     <script>
     //test
-        $(function(){
-            $.layer("img",{
-                "start":function(){
-                    //视窗高宽
-                    var winW=$(window).width();
-                    var winH=$(window).height();
-                     //初始位置
-                    var _ow= this.showbox.offset().left;
-                    var _oh= this.showbox.offset().top;
-                    //元素的宽高
-                    var _W=this.showbox.width();
-                    var _H=this.showbox.height();
+    $(function() {
+         function Preview($this) {
+            var _this = this;
+            _this.imgReady = (function() {
+                var list = [],
+                    intervalId = null,
+                    // 用来执行队列
+                    tick = function() {
+                        var i = 0;
+                        for (; i < list.length; i++) {
+                            list[i].end ? list.splice(i--, 1) : list[i]();
+                        };
+                        !list.length && stop();
+                    },
+                    // 停止所有定时器队列
+                    stop = function() {
+                        clearInterval(intervalId);
+                        intervalId = null;
+                    };
+                return function(url, ready, load, error) {
+                    var onready, width, height, newWidth, newHeight,
+                        img = new Image();
 
-                    var posL=winW/2-_W/2-_ow;
-                     //滚动条的位置
-                    var scrollTop = $(window).scrollTop();
-                      console.log(scrollTop)
-                    var _Top = scrollTop-_oh+100;
-                    console.log(_Top)
-                    //var _Top = off.top - scrollTop;
-                    this.showbox.css({
-                        "left":posL,
-                        "top":_Top
-                    })
-                },
-                "open":function(){
+                    img.src = url;
 
-                },
-                "closed":function(){
-                   this.showbox.css({
-                        "left":0,
-                        "top":0
-                    }) 
+                    // 如果图片被缓存，则直接返回缓存数据
+                    if (img.complete) {
+                        ready.call(img);
+                        load && load.call(img);
+                        return;
+                    };
+
+                    width = img.width;
+                    height = img.height;
+
+                    // 加载错误后的事件
+                    img.onerror = function() {
+                        error && error.call(img);
+                        onready.end = true;
+                        img = img.onload = img.onerror = null;
+                    };
+
+                    // 图片尺寸就绪
+                    onready = function() {
+                        newWidth = img.width;
+                        newHeight = img.height;
+                        if (newWidth !== width || newHeight !== height ||
+                            // 如果图片已经在其他地方加载可使用面积检测
+                            newWidth * newHeight > 1024
+                        ) {
+                            ready.call(img);
+                            onready.end = true;
+                        };
+                    };
+                    onready();
+
+                    // 完全加载完毕的事件
+                    img.onload = function() {
+                        // onload在定时器时间差范围内可能比onready快
+                        // 这里进行检查并保证onready优先执行
+                        !onready.end && onready();
+
+                        load && load.call(img);
+
+                        // IE gif动画会循环执行onload，置空onload即可
+                        img = img.onload = img.onerror = null;
+                    };
+
+                    // 加入队列中定期执行
+                    if (!onready.end) {
+                        list.push(onready);
+                        // 无论何时只允许出现一个定时器，减少浏览器性能损耗
+                        if (intervalId === null) intervalId = setInterval(tick, 40);
+                    };
+                };
+            })();
+            _this.parent = $this.closest(".preview--main");
+            _this.setlist = function() {
+                var $list = $(".preview--list", _this.parent).find("[data-burl]")
+                var aimg = [];
+                $list.each(function(index, elem) {
+                    aimg[index] = $(this).attr("data-burl");
+                })
+                return aimg;
+            }
+            _this.list = _this.setlist();
+            _this.listLen = _this.list.length - 1;
+
+            _this.templ = '<div class="showbox preview--box" data-preview="box"><img src="" alt=""/><span class="icon preview--next">&#xf0016;</span><span class="icon preview--prev">&#xf0015;</span><span class="close" data-event="close">×</span></div>'
+            if ($('.preview--box').length == 0) {
+                _this.sbox = $(_this.templ).appendTo(_this.parent)
+            } else {
+                _this.sbox = $('.preview--box',_this.parent);
+            }
+             _this.eNext = $('.preview--next',_this.sbox);
+            _this.ePrev = $('.preview--prev',_this.sbox);
+            _this.simg = $("img",_this.sbox)
+
+            _this.setPic = function(ind) {
+                clearTimeout(_this.timeout)
+                 _this.sbox.addClass("loading");
+               
+              _this.imgReady(_this.list[ind], function(){
+                    var winH = $(window).height() - 100
+                    var height = Math.min(this.height, winH)
+                    var rate = height / this.height;
+                    var width = this.width * rate;
+                    _this.sbox.css({
+                        "width": width,
+                        "height": height,
+                        "margin-left": -width / 2
+                    });                   
+                },function(){
+                      clearTimeout(_this.timeout)
+                       _this.timeout=setTimeout(function(){
+                   _this.sbox.removeClass("loading")
+                    _this.simg.attr("src",_this.list[ind]);
+                },500)
+                });
+            }
+            _this.next = function() {
+                if (_this.index < _this.listLen) {
+                    _this.index = parseInt(_this.index) + 1;
+                    _this.setPic(_this.index)
                 }
-            })
-           $("#picInfo img").on("click",function(){
-            $(this).layer({"target":"picshow","type":"img","position":false})
-           })
+            }
+            _this.prev = function() {
+                if (_this.index > 0) {
+                    _this.index -= 1;
+                    _this.setPic(_this.index)
+                }
+            }
+            _this.init = function() {
+                _this.index = parseInt($this.attr("data-index"))
+                _this.setPic(_this.index)
+                _this.eNext.on("click",_this.next)
+                _this.ePrev.on("click",_this.prev)
+            }
+
+            return {
+                init: _this.init
+            }
+        }
+
+        
+        $(document).on("click", '.preview--start', function(e) {
+            var preview = new Preview($(this));    
+            preview.init()
+            e.preventDefault()
         })
+
+
+        $.layer("img", {
+            "start": function() {
+                //视窗高宽
+                var winW = $(window).width();
+                var winH = $(window).height();
+                //初始位置
+                var _ow = this.showbox.offset().left;
+                var _oh = this.showbox.offset().top;
+                //元素的宽高
+                var _W = this.showbox.width();
+                var _H = this.showbox.height();
+
+                var posL = winW / 2 - _W / 2 - _ow;
+                //滚动条的位置
+                var scrollTop = $(window).scrollTop();
+                var _Top = scrollTop - _oh + 100;
+                //var _Top = off.top - scrollTop;
+                this.showbox.css({
+                    "left": posL,
+                    "top": _Top
+                })
+            },
+            "open": function() {
+
+            },
+            "closed": function() {
+                this.showbox.css({
+                    "left": 0,
+                    "top": 0
+                });
+           
+            }
+        })
+        $("#picInfo img").on("click", function() {
+            $(this).layer({
+                "target": "picshow",
+                "type": "img",
+                "position": false
+            })
+        })
+    })
     </script>
 
-    <script>
-$(function(){
-var imgReady = (function () {
-    var list = [], intervalId = null,
-    // 用来执行队列
-    tick = function () {
-        var i = 0;
-        for (; i < list.length; i++) {
-            list[i].end ? list.splice(i--, 1) : list[i]();
-        };
-        !list.length && stop();
-    },
-    // 停止所有定时器队列
-    stop = function () {
-        clearInterval(intervalId);
-        intervalId = null;
-    };
-    return function (url, ready, load, error) {
-        var onready, width, height, newWidth, newHeight,
-            img = new Image();
-        
-        img.src = url;
-
-        // 如果图片被缓存，则直接返回缓存数据
-        if (img.complete) {
-            ready.call(img);
-            load && load.call(img);
-            return;
-        };
-        
-        width = img.width;
-        height = img.height;
-        
-        // 加载错误后的事件
-        img.onerror = function () {
-            error && error.call(img);
-            onready.end = true;
-            img = img.onload = img.onerror = null;
-        };
-        
-        // 图片尺寸就绪
-        onready = function () {
-            newWidth = img.width;
-            newHeight = img.height;
-            if (newWidth !== width || newHeight !== height ||
-                // 如果图片已经在其他地方加载可使用面积检测
-                newWidth * newHeight > 1024
-            ) {
-                ready.call(img);
-                onready.end = true;
-            };
-        };
-        onready();
-        
-        // 完全加载完毕的事件
-        img.onload = function () {
-            // onload在定时器时间差范围内可能比onready快
-            // 这里进行检查并保证onready优先执行
-            !onready.end && onready();
-        
-            load && load.call(img);
-            
-            // IE gif动画会循环执行onload，置空onload即可
-            img = img.onload = img.onerror = null;
-        };
-
-        // 加入队列中定期执行
-        if (!onready.end) {
-            list.push(onready);
-            // 无论何时只允许出现一个定时器，减少浏览器性能损耗
-            if (intervalId === null) intervalId = setInterval(tick, 40);
-        };
-    };
-})();
-
-var imglist=["http://f.hiphotos.baidu.com/image/w%3D310/sign=09c52426f9edab6474724bc1c734af81/e824b899a9014c08c3cc7248087b02087af4f46c.jpg",
-    "http://e.hiphotos.baidu.com/image/pic/item/503d269759ee3d6d615d4cd341166d224f4ade0b.jpg",
-    "http://b.hiphotos.baidu.com/image/pic/item/4610b912c8fcc3ce22621bbc9045d688d53f209b.jpg",
-    "http://b.hiphotos.baidu.com/image/pic/item/9d82d158ccbf6c81c1057e64be3eb13533fa400f.jpg",
-    "http://f.hiphotos.baidu.com/image/pic/item/21a4462309f7905265ff4ca60ef3d7ca7acbd542.jpg",
-    "http://e.hiphotos.baidu.com/image/pic/item/71cf3bc79f3df8dc9d0cce19cf11728b47102800.jpg",
-    "http://h.hiphotos.baidu.com/image/pic/item/e4dde71190ef76c6307c3cae9f16fdfaae51678d.jpg",
-    "http://c.hiphotos.baidu.com/image/pic/item/024f78f0f736afc3fb747eedb119ebc4b7451239.jpg",
-    "http://e.hiphotos.baidu.com/image/pic/item/71cf3bc79f3df8dc15d2461ccf11728b46102854.jpg",
-    "http://d.hiphotos.baidu.com/image/pic/item/43a7d933c895d14356813f2771f082025aaf073b.jpg",
-    "http://h.hiphotos.baidu.com/image/pic/item/bba1cd11728b471076443e5bc1cec3fdfc03233a.jpg",
-    "http://d.hiphotos.baidu.com/image/pic/item/5366d0160924ab187caf26b237fae6cd7a890bfe.jpg",
-    "http://d.hiphotos.baidu.com/image/pic/item/e1fe9925bc315c60af24a0f78fb1cb1349547771.jpg",
-    "http://g.hiphotos.baidu.com/image/pic/item/11385343fbf2b211c580bca5c88065380dd78eaa.jpg",
-    "http://d.hiphotos.baidu.com/image/pic/item/83025aafa40f4bfb181fa6c2014f78f0f636185c.jpg",
-    "http://f.hiphotos.baidu.com/image/pic/item/b21bb051f8198618f3a09f0c48ed2e738ad4e657.jpg",
-    "http://a.hiphotos.baidu.com/image/pic/item/7dd98d1001e93901c9c42ab479ec54e737d19672.jpg",
-    "http://c.hiphotos.baidu.com/image/pic/item/f703738da977391209f4fcfbfa198618377ae25e.jpg",
-    "http://a.hiphotos.baidu.com/image/pic/item/d043ad4bd11373f0fa132e17a60f4bfbfbed040d.jpg",
-    "http://b.hiphotos.baidu.com/image/pic/item/f9198618367adab4eb8545c289d4b31c8601e4de.jpg",
-    "http://d.hiphotos.baidu.com/image/pic/item/8c1001e93901213f33288bd856e736d12f2e959f.jpg",
-    "http://b.hiphotos.baidu.com/image/pic/item/ae51f3deb48f8c5475ab402b38292df5e0fe7fbe.jpg",
-    "http://h.hiphotos.baidu.com/image/pic/item/5d6034a85edf8db144a844f20b23dd54574e74a5.jpg",
-    "http://g.hiphotos.baidu.com/image/pic/item/b21c8701a18b87d6d9848b9d050828381e30fd6a.jpg",
-    "http://d.hiphotos.baidu.com/image/pic/item/bd315c6034a85edfe62cfbd64b540923dc5475a6.jpg",
-    "http://f.hiphotos.baidu.com/image/pic/item/b90e7bec54e736d11204fbe999504fc2d562693f.jpg",
-    "http://h.hiphotos.baidu.com/image/pic/item/94cad1c8a786c9174806e5becb3d70cf3bc7572b.jpg",
-    "http://h.hiphotos.baidu.com/image/pic/item/c995d143ad4bd1130425f6ba58afa40f4afb0549.jpg",
-    "http://c.hiphotos.baidu.com/image/pic/item/d009b3de9c82d158feae1839820a19d8bc3e420d.jpg",
-    "http://c.hiphotos.baidu.com/image/pic/item/f3d3572c11dfa9ec9875764660d0f703918fc103.jpg",
-    "http://f.hiphotos.baidu.com/image/pic/item/3b292df5e0fe992599de2edd36a85edf8cb17168.jpg",
-    "http://b.hiphotos.baidu.com/image/pic/item/95eef01f3a292df5c1aced9dbe315c6035a873ce.jpg",
-    "http://h.hiphotos.baidu.com/image/pic/item/a50f4bfbfbedab64c4de5358f536afc378311efd.jpg",
-    "http://b.hiphotos.baidu.com/image/pic/item/9c16fdfaaf51f3de152262f396eef01f3b297991.jpg",
-    "http://a.hiphotos.baidu.com/image/pic/item/9358d109b3de9c82119629186e81800a18d843b2.jpg",
-    "http://b.hiphotos.baidu.com/image/pic/item/91ef76c6a7efce1bd4fdbf6fad51f3deb58f6544.jpg",
-    "http://b.hiphotos.baidu.com/image/pic/item/c9fcc3cec3fdfc037b4037bcd63f8794a4c226fe.jpg",
-    "http://a.hiphotos.baidu.com/image/pic/item/ca1349540923dd5496a0728ed309b3de9d824801.jpg",
-    "http://f.hiphotos.baidu.com/image/pic/item/4ec2d5628535e5dd8a6c893c74c6a7efcf1b6294.jpg",
-    "http://d.hiphotos.baidu.com/image/pic/item/f703738da97739127076f3c4fa198618377ae2c7.jpg",
-    "http://e.hiphotos.baidu.com/image/pic/item/d833c895d143ad4b4d893d5a80025aafa50f0680.jpg",
-    "http://e.hiphotos.baidu.com/image/pic/item/91ef76c6a7efce1b81e69227ad51f3deb58f6509.jpg",
-    "http://a.hiphotos.baidu.com/image/pic/item/71cf3bc79f3df8dcd99d0269cf11728b461028a1.jpg",
-    "http://d.hiphotos.baidu.com/image/pic/item/902397dda144ad34ba413a00d2a20cf430ad85bf.jpg",
-    "http://h.hiphotos.baidu.com/image/pic/item/a8773912b31bb0513f1cc78d347adab44aede05f.jpg",
-    "http://d.hiphotos.baidu.com/image/pic/item/9f510fb30f2442a77a358b00d343ad4bd113025f.jpg",
-    "http://g.hiphotos.baidu.com/image/pic/item/b3fb43166d224f4a1e52bf170bf790529922d1ef.jpg",
-    "http://f.hiphotos.baidu.com/image/pic/item/32fa828ba61ea8d318158a00950a304e251f58fb.jpg",
-    "http://d.hiphotos.baidu.com/image/pic/item/1ad5ad6eddc451dae2e64a66b4fd5266d016322e.jpg",
-    "http://e.hiphotos.baidu.com/image/pic/item/38dbb6fd5266d0166d44dcda952bd40734fa35e6.jpg",
-    "http://e.hiphotos.baidu.com/image/pic/item/d62a6059252dd42a6c683840013b5bb5c8eab8f3.jpg",
-    "http://b.hiphotos.baidu.com/image/pic/item/95eef01f3a292df5694d95febe315c6035a8734a.jpg",
-    "http://g.hiphotos.baidu.com/image/pic/item/7e3e6709c93d70cf5551d097fadcd100bba12b84.jpg",
-    "http://g.hiphotos.baidu.com/image/pic/item/3c6d55fbb2fb4316d342388822a4462308f7d3e7.jpg",
-    "http://g.hiphotos.baidu.com/image/pic/item/b8389b504fc2d56203b21bf5e51190ef76c66c74.jpg",
-    "http://e.hiphotos.baidu.com/image/pic/item/b999a9014c086e062199ebad00087bf40ad1cb27.jpg",
-    "http://c.hiphotos.baidu.com/image/pic/item/267f9e2f07082838d5dda48eba99a9014d08f15c.jpg",
-    "http://d.hiphotos.baidu.com/image/pic/item/3812b31bb051f819451370c2d8b44aed2e73e700.jpg",
-    "http://d.hiphotos.baidu.com/image/pic/item/54fbb2fb43166d22643c2b0c442309f79152d2da.jpg",
-    "http://c.hiphotos.baidu.com/image/pic/item/0df431adcbef7609d9e34c792cdda3cc7dd99e68.jpg",
-    "http://e.hiphotos.baidu.com/image/pic/item/7aec54e736d12f2ecd3297f84dc2d56285356876.jpg",
-    "http://f.hiphotos.baidu.com/image/pic/item/54fbb2fb43166d22ba0d6131442309f79052d219.jpg",
-    "http://e.hiphotos.baidu.com/image/pic/item/32fa828ba61ea8d3c1c7358c950a304e241f5854.jpg",
-    "http://e.hiphotos.baidu.com/image/pic/item/a044ad345982b2b75469e54b33adcbef77099b4f.jpg",
-    "http://b.hiphotos.baidu.com/image/pic/item/a08b87d6277f9e2f2efbc4f21d30e924b999f37a.jpg",
-    "http://g.hiphotos.baidu.com/image/pic/item/d0c8a786c9177f3e216abd8572cf3bc79e3d56df.jpg",
-    "http://b.hiphotos.baidu.com/image/pic/item/fc1f4134970a304e0c6f1e72d3c8a786c8175cec.jpg",
-    "http://d.hiphotos.baidu.com/image/pic/item/a6efce1b9d16fdfa74e9417cb68f8c5495ee7b9f.jpg",
-    "http://c.hiphotos.baidu.com/image/pic/item/1c950a7b02087bf438368d7ef0d3572c10dfcf4b.jpg",
-    "http://g.hiphotos.baidu.com/image/pic/item/91529822720e0cf3813a936c0846f21fbf09aa5c.jpg",
-    "http://a.hiphotos.baidu.com/image/pic/item/b7003af33a87e950dd13b2e412385343fbf2b436.jpg",
-    "http://c.hiphotos.baidu.com/image/pic/item/023b5bb5c9ea15ced4d4a181b4003af33a87b204.jpg",
-    "http://c.hiphotos.baidu.com/image/pic/item/b812c8fcc3cec3fd162f4d71d488d43f879427a5.jpg",
-    "http://g.hiphotos.baidu.com/image/pic/item/aec379310a55b31985aa3cfd41a98226cefc17e2.jpg",
-    "http://e.hiphotos.baidu.com/image/pic/item/908fa0ec08fa513d9abb2a533f6d55fbb2fbd92e.jpg",
-    "http://f.hiphotos.baidu.com/image/pic/item/d833c895d143ad4b748d364880025aafa50f0692.jpg",
-    "http://h.hiphotos.baidu.com/image/pic/item/1b4c510fd9f9d72a2fd4db05d62a2834349bbb72.jpg",
-    "http://d.hiphotos.baidu.com/image/pic/item/8326cffc1e178a82aa10a75af403738da977e818.jpg",
-    "http://e.hiphotos.baidu.com/image/pic/item/a686c9177f3e67099d48177339c79f3df9dc55f5.jpg",
-    "http://h.hiphotos.baidu.com/image/pic/item/10dfa9ec8a136327158b45a1938fa0ec08fac73a.jpg",
-    "http://d.hiphotos.baidu.com/image/pic/item/4a36acaf2edda3cce70b56cb03e93901203f926a.jpg",
-    "http://b.hiphotos.baidu.com/image/pic/item/64380cd7912397dd881cede25b82b2b7d1a287ea.jpg",
-    "http://h.hiphotos.baidu.com/image/pic/item/63d9f2d3572c11df7e5ac5a9612762d0f603c2b5.jpg",
-    "http://e.hiphotos.baidu.com/image/pic/item/342ac65c10385343cf279eac9113b07ecb808856.jpg",
-    "http://e.hiphotos.baidu.com/image/pic/item/b03533fa828ba61e94218ea74334970a314e596e.jpg",
-    "http://g.hiphotos.baidu.com/image/pic/item/f31fbe096b63f6240df9d3078544ebf81a4ca30a.jpg",
-    "http://c.hiphotos.baidu.com/image/pic/item/37d12f2eb9389b501d5ce5a78735e5dde6116ea7.jpg",
-    "http://c.hiphotos.baidu.com/image/pic/item/d788d43f8794a4c22fe2afb00cf41bd5ac6e3963.jpg",
-    "http://b.hiphotos.baidu.com/image/pic/item/d8f9d72a6059252d95df269c369b033b5ab5b959.jpg",
-    "http://e.hiphotos.baidu.com/image/pic/item/5ab5c9ea15ce36d33112c5bd38f33a87e950b12d.jpg",
-    "http://h.hiphotos.baidu.com/image/pic/item/7af40ad162d9f2d3501b0c77abec8a136327cc1b.jpg",
-    "http://h.hiphotos.baidu.com/image/pic/item/962bd40735fae6cd94136ce40db30f2443a70f94.jpg",
-    "http://b.hiphotos.baidu.com/image/pic/item/5d6034a85edf8db1da95c2ec0b23dd54574e74fa.jpg",
-    "http://b.hiphotos.baidu.com/image/pic/item/4610b912c8fcc3ce22631bbc9045d688d53f209a.jpg",
-    "http://g.hiphotos.baidu.com/image/pic/item/c8ea15ce36d3d539e892c0413887e950342ab081.jpg",
-    "http://c.hiphotos.baidu.com/image/pic/item/d6ca7bcb0a46f21f8c377bcbf4246b600c33ae22.jpg",
-    "http://b.hiphotos.baidu.com/image/pic/item/730e0cf3d7ca7bcbfb0bbdb5bc096b63f624a83c.jpg",
-    "http://h.hiphotos.baidu.com/image/pic/item/024f78f0f736afc306497d97b119ebc4b64512fe.jpg",
-    "http://b.hiphotos.baidu.com/image/pic/item/a6efce1b9d16fdfae6ffb74bb68f8c5495ee7b87.jpg",
-    "http://c.hiphotos.baidu.com/image/pic/item/b3b7d0a20cf431ad39a108a24936acaf2edd983e.jpg",
-    "http://g.hiphotos.baidu.com/image/pic/item/6a63f6246b600c3341b56a4f184c510fd8f9a16d.jpg",
-    "http://d.hiphotos.baidu.com/image/pic/item/faf2b2119313b07e81877ceb0ed7912397dd8c1e.jpg",
-    "http://a.hiphotos.baidu.com/image/pic/item/7c1ed21b0ef41bd5c5b4b67553da81cb38db3d4f.jpg",
-    "http://e.hiphotos.baidu.com/image/pic/item/f636afc379310a5537169f7cb54543a982261003.jpg",
-    "http://c.hiphotos.baidu.com/image/pic/item/8cb1cb134954092387f413f69058d109b2de499c.jpg",
-    "http://h.hiphotos.baidu.com/image/pic/item/b90e7bec54e736d198b7710c99504fc2d562690a.jpg",
-    "http://c.hiphotos.baidu.com/image/pic/item/bf096b63f6246b60dec9f3efe9f81a4c500fa262.jpg",
-    "http://h.hiphotos.baidu.com/image/pic/item/21a4462309f790525f7406b60ef3d7ca7acbd5cb.jpg",
-    "http://g.hiphotos.baidu.com/image/pic/item/cefc1e178a82b9010c994d37718da9773912effa.jpg",
-    "http://f.hiphotos.baidu.com/image/pic/item/a9d3fd1f4134970a65147bd697cad1c8a6865de7.jpg",
-    "http://c.hiphotos.baidu.com/image/pic/item/63d0f703918fa0ec42ebb209249759ee3d6ddb82.jpg",
-    "http://h.hiphotos.baidu.com/image/pic/item/d043ad4bd11373f085a1bf87a60f4bfbfbed040f.jpg",
-    "http://a.hiphotos.baidu.com/image/pic/item/8435e5dde71190efde52472ecc1b9d16fcfa6092.jpg",
-    "http://c.hiphotos.baidu.com/image/pic/item/f11f3a292df5e0febb0ac8895e6034a85edf7223.jpg",
-    "http://g.hiphotos.baidu.com/image/pic/item/8601a18b87d6277f602011ba2a381f30e924fc06.jpg",
-    "http://d.hiphotos.baidu.com/image/pic/item/4b90f603738da977ca19a1cfb251f8198618e324.jpg",
-    "http://c.hiphotos.baidu.com/image/pic/item/cefc1e178a82b90180ccc1d3718da9773812efe9.jpg",
-    "http://h.hiphotos.baidu.com/image/pic/item/0df3d7ca7bcb0a464d273cbe6963f6246b60af34.jpg",
-    "http://d.hiphotos.baidu.com/image/pic/item/cf1b9d16fdfaaf51582457bb8e5494eef11f7aeb.jpg",
-    "http://f.hiphotos.baidu.com/image/pic/item/adaf2edda3cc7cd93884c3283b01213fb90e9192.jpg",
-    "http://e.hiphotos.baidu.com/image/pic/item/2cf5e0fe9925bc31d86e20005cdf8db1cb137072.jpg",
-    "http://e.hiphotos.baidu.com/image/pic/item/ae51f3deb48f8c54506e3d2b38292df5e0fe7f71.jpg",
-    "http://a.hiphotos.baidu.com/image/pic/item/96dda144ad3459824a56a41a0ef431adcaef845e.jpg",
-    "http://d.hiphotos.baidu.com/image/pic/item/e1fe9925bc315c606f64604a8fb1cb13485477a5.jpg",
-    "http://h.hiphotos.baidu.com/image/pic/item/9213b07eca8065384bfe8e9995dda144ad348227.jpg",
-    "http://g.hiphotos.baidu.com/image/pic/item/91529822720e0cf36169f37c0846f21fbf09aa9f.jpg",
-    "http://f.hiphotos.baidu.com/image/pic/item/b21c8701a18b87d632fc6007050828381f30fd68.jpg",
-    "http://f.hiphotos.baidu.com/image/pic/item/b21bb051f8198618f3859f0c48ed2e738ad4e67c.jpg",
-    "http://f.hiphotos.baidu.com/image/pic/item/9e3df8dcd100baa1185d9fbf4510b912c8fc2e45.jpg",
-    "http://c.hiphotos.baidu.com/image/pic/item/0e2442a7d933c8950348bbe3d31373f082020077.jpg",
-    "http://e.hiphotos.baidu.com/image/pic/item/83025aafa40f4bfbf7ef4f50014f78f0f73618f2.jpg",
-    "http://c.hiphotos.baidu.com/image/pic/item/ac6eddc451da81cbab3cf3455066d0160824315b.jpg",
-    "http://c.hiphotos.baidu.com/image/pic/item/c83d70cf3bc79f3d227734a7b8a1cd11738b2997.jpg",
-    "http://b.hiphotos.baidu.com/image/pic/item/4ec2d5628535e5dd6e596d5274c6a7efcf1b62c2.jpg",
-    "http://g.hiphotos.baidu.com/image/pic/item/64380cd7912397ddef32b6e75b82b2b7d1a2878d.jpg",
-    "http://e.hiphotos.baidu.com/image/pic/item/3812b31bb051f819428473c2d8b44aed2f73e791.jpg",
-    "http://g.hiphotos.baidu.com/image/pic/item/7aec54e736d12f2e8779d9c54dc2d56285356812.jpg",
-    "http://e.hiphotos.baidu.com/image/pic/item/8435e5dde71190effaf05b52cc1b9d16fdfa6030.jpg",
-    "http://d.hiphotos.baidu.com/image/pic/item/1f178a82b9014a9075ce0c23ab773912b21beeb8.jpg",
-    "http://h.hiphotos.baidu.com/image/pic/item/e7cd7b899e510fb3d8314f83db33c895d1430cfd.jpg",
-    "http://e.hiphotos.baidu.com/image/pic/item/4afbfbedab64034ff4a3908aadc379310b551dcb.jpg",
-    "http://h.hiphotos.baidu.com/image/pic/item/21a4462309f790525fca06b60ef3d7ca7acbd565.jpg",
-    "http://b.hiphotos.baidu.com/image/pic/item/d8f9d72a6059252ded153e86369b033b5bb5b935.jpg",
-    "http://b.hiphotos.baidu.com/image/pic/item/9358d109b3de9c82e06bb8076e81800a19d8432f.jpg",
-    "http://f.hiphotos.baidu.com/image/pic/item/1e30e924b899a901f15230cf1f950a7b0308f5e0.jpg",
-    "http://e.hiphotos.baidu.com/image/pic/item/8718367adab44aed32b07a6db11c8701a08bfbb9.jpg",
-    "http://f.hiphotos.baidu.com/image/pic/item/1c950a7b02087bf4a7801661f0d3572c10dfcfce.jpg",
-    "http://h.hiphotos.baidu.com/image/pic/item/dc54564e9258d1099cf1e83ad358ccbf6c814d23.jpg",
-    "http://h.hiphotos.baidu.com/image/pic/item/f9198618367adab4dde25bcb89d4b31c8701e40c.jpg",
-    "http://d.hiphotos.baidu.com/image/pic/item/18d8bc3eb13533fa79e614bcaad3fd1f40345bd4.jpg",
-    "http://d.hiphotos.baidu.com/image/pic/item/9345d688d43f87944f339e2ad01b0ef41ad53ae2.jpg",
-    "http://a.hiphotos.baidu.com/image/pic/item/8435e5dde71190ef0ebcb747cc1b9d16fcfa60e6.jpg",
-    "http://g.hiphotos.baidu.com/image/pic/item/377adab44aed2e73a5ca53dd8501a18b87d6fa24.jpg",
-    "http://f.hiphotos.baidu.com/image/pic/item/dcc451da81cb39db8bb3c9dcd2160924aa1830cc.jpg",
-    "http://c.hiphotos.baidu.com/image/pic/item/d000baa1cd11728b953c4ba7cafcc3cec3fd2c26.jpg",
-    "http://b.hiphotos.baidu.com/image/pic/item/6c224f4a20a44623f07dd0849a22720e0df3d7a5.jpg",
-    "http://g.hiphotos.baidu.com/image/pic/item/a1ec08fa513d26976764cfd857fbb2fb4216d884.jpg",
-    "http://e.hiphotos.baidu.com/image/pic/item/1c950a7b02087bf42eee9f64f0d3572c11dfcf39.jpg",
-    "http://d.hiphotos.baidu.com/image/pic/item/83025aafa40f4bfbf0ef4e50014f78f0f73618f2.jpg",
-    "http://c.hiphotos.baidu.com/image/pic/item/cdbf6c81800a19d8c65581f031fa828ba71e46f4.jpg",
-    "http://a.hiphotos.baidu.com/image/pic/item/f9198618367adab4d26c5acb89d4b31c8601e4fe.jpg",
-    "http://e.hiphotos.baidu.com/image/pic/item/1ad5ad6eddc451da6541cb6eb4fd5266d1163284.jpg",
-    "http://a.hiphotos.baidu.com/image/pic/item/ca1349540923dd543eb1aad4d309b3de9d82484f.jpg"
-];
-function setpic(ind){
-   imgReady(imglist[ind], function () {
-
-     var winH=$(window).height()-200
-    var height=Math.min(this.height,winH)
-    var rate=height/this.height;
-    var width=this.width*rate;
-   $(".showbox").css({
-      "width":width,
-      "height":height,
-      "margin-left":-width/2
-   })
-   setTimeout(function(){
-  var img=$(".showbox").find("img")
-    img.attr("src",imglist[ind])
-    .removeClass("show");
-}, 500)
-   
-}); 
-}
-var i=0;
-$(".showbox").on("click",function(){
-    var img=$(".showbox").find("img")
-    img.addClass("show");
-    setpic(i++)
-})
-
-})
-
-    </script>
 </body>
 </html>
