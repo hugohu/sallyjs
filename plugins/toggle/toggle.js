@@ -3,13 +3,15 @@
  * Copyright (c) 2014 Huugle  http://sallyjs.huugle.org/
  * Date: 2014-06-04
  *
- *  思路说明:可以用addMethod的方法添加补充事件,比如
- *  $.stoggle({name},{f})
+ *  思路说明:可以直接像stoggle内添加事件方法.
+ *  $.stoggle("name",fn($this,tar){})
  *  其中name为模块名称,f为匿名函数.
  *  如果不是click事件,请在结尾处添加 $.stoggle.load({name});
- *  click事件直接写具体事件$.stoggle({name},function($this,tar){ //code })
+ *  click可以直接进行绑定 并用 data-toggle-click="name",进行绑定
+ *  click事件直接写具体事件$.stoggle({name},function($this,e,tar){ //code })
  *  $this 为触发事件的元素
  *  tar为触发元素自定义属性 data-target 里的字符串.
+ *  e为e 可以取消默认事件用
  *  通常用于自定义切换样式等.
  *
  */
@@ -24,14 +26,14 @@
   }
 }(function($) {
   $.stoggle = function(eventanme, fn) {
-    $.stoggle[eventanme]=fn;
+    $.stoggle[eventanme] = fn;
   };
   $.extend($.stoggle, {
     alert: function($this, e, tar) {
       $this.parent().hide(350);
     },
     actived: function($this, e, tar) {
-      var _this = $(e.target)
+      var _this = $this.children();
       _this.addClass(tar).siblings().removeClass(tar);
     },
     anchor: function($this, e) {
@@ -53,26 +55,26 @@
     closed: function($this, e, tar) {
       $this.closest(tar).removeClass("active");
     },
-    timeout: function(start, stop, delay) {
-      start();
-      setTimeout(function() {
-        stop();
-      }, delay)
+    timeout: function(obj) {
+      obj.start();
+      obj.tiemout = setTimeout(function() {
+        obj.stop();
+      }, obj.delay);
     },
     sMethods: [{
       type: "hover",
       motion: function($this, tar) {
-          $this.on("mouseover", function() {
-            clearTimeout($this.timeout);
-            $this.timeout = setTimeout(function() {
-              $this.addClass(tar);
-            }, 200);
-          }).on("mouseout", function() {
-            clearTimeout($this.timeout);
-            $this.timeout = setTimeout(function() {
-              $this.removeClass(tar);
-            }, 200);
-          });
+        $this.on("mouseover", function() {
+          clearTimeout($this.timeout);
+          $this.timeout = setTimeout(function() {
+            $this.addClass(tar);
+          }, 200);
+        }).on("mouseout", function() {
+          clearTimeout($this.timeout);
+          $this.timeout = setTimeout(function() {
+            $this.removeClass(tar);
+          }, 200);
+        });
       }
     }],
     load: function(s) {

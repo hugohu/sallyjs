@@ -47,23 +47,14 @@
 		<li>1212121</li>
 		<li>1212121</li>
 	</ul>
-	<div id="demo"></div>
 	<script src="http://libs.baidu.com/jquery/1.8.2/jquery.min.js"></script>
 	<script src="toggle.js"></script>
 	<script>
-  //     jQuery(function($) {
-  //   $.stoggle.addMethod("hover", function($this) {
-  //     $this.hover(
-  //       function() {
-  //         $this.addClass("active")
-  //       },
-  //       function() {
-  //         $this.removeClass("active")
-  //       }
-  //     )
-  //   })
-  //   $.stoggle.load("hover");
-  // })
+$.stoggle.timeout({
+	start:function(){console.log("x")},
+	stop:function(){console.log("xx")},
+	delay:300
+})
     </script>
 </body>
 </html>
