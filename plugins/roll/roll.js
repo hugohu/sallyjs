@@ -141,7 +141,7 @@
   jQuery.fn.roll = function(options) {
     var defaults = {};
     var options = $.extend(defaults, options);
-    this.each(function() {
+    return this.each(function() {
       var $this = $(this),
         _target = $this.attr("data-target") || "active",
         _event = options.event || $this.attr("data-roll");
@@ -160,9 +160,9 @@
           var dis = "";
           $this.dirs = $this.dirs ? $this.dirs : st;
           if (st < $this.dirs) {
-            dis = "up"
+            dis = "up";
           } else {
-            dis = "down"
+            dis = "down";
           }
           $this.dirs = st;
           return dis;
@@ -200,10 +200,10 @@
               setActived(index);
             } else if (st < _aTop && st > _aPrev.top) {
               $this.data("index", _aPrev.index)
-              setActived(_aPrev.index)
+              setActived(_aPrev.index);
             } else if (st > _aNext.top) {
-              $this.data("index", _aNext.index)
-              setActived(_aNext.index)
+              $this.data("index", _aNext.index);
+              setActived(_aNext.index);
             }
 
 
