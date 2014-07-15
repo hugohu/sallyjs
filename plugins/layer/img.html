@@ -7,7 +7,7 @@
     <style>
     #picshow img,.showbox img{max-width:100%;opacity:1;-webkit-transform-style:preserve-3d;-webkit-transform:perspective(0) rotateY(0deg);-moz-transform:rotateY(0deg);}
 #picInfo{margin-top:500px;margin-left:100px;}
-#picInfo,#picshow,.showbox{height:530px;width:450px;}
+#picInfo,#picshow{height:530px;width:450px;}
 #picshow{text-align:center;display:table-cell;vertical-align:middle;*font-family:Arial;*line-height:1;}
 #picshow,#picshow img,.maskpic,.showbox{-webkit-transition:0.5s;-moz-transition:0.5s;-ms-transition:0.5s;-o-transition:0.5s;transition:0.5s;}
 #picshow{position:relative;z-index:999;}
@@ -18,14 +18,16 @@
 max-width:100%;height:auto;text-align:center;}
 .showbox.loading img{
 opacity:0;-webkit-transform:perspective(0px) rotateY(180deg);-moz-transform:rotateY(180deg);}
-.showbox{position:fixed;left:50%;margin-left:-226px;top:50px;visibility:hidden;opacity:0;border:1px solid #000;background:#fff;background-color:rgba(255,255,255,0);background-position: center center;z-index:1002;text-align:center;}
-.img-show .showbox{-webkit-transition-delay:150ms;visibility:visible;opacity:1;background-color:rgba(255,255,255,1);}
+.showbox{position:fixed;left:50%;margin-left:-500px;top:4%;
+    /*visibility:hidden;opacity:0;*/
+    border:1px solid #000;background:#000;/*background-color:rgba(255,255,255,0);*/background-position: center center;z-index:1002;text-align:center;height: 92%;width: 1000px;}
+.img-show .showbox{-webkit-transition-delay:150ms;visibility:visible;opacity:1;/*background-color:rgba(255,255,255,1);*/}
 .showbox span{position:absolute;right:-50px;width:50px;height:50px;line-height:50px;background-color:#000;color:#999;font-weight: bold;text-align:center;font-size:20px;margin: 0;cursor: pointer;}
 .showbox span:hover{color: #fff;}
 .showbox span.close{top:0}
 .showbox .preview--next{top:100px;}
 .showbox .preview--prev{top:170px;}
-.showbox.loading{background:#fff url(../images/loading.gif) center center no-repeat;}
+.showbox.loading{background:#000 url(../images/loading.gif) center center no-repeat;}
 
 </style>
 
@@ -240,11 +242,11 @@ opacity:0;-webkit-transform:perspective(0px) rotateY(180deg);-moz-transform:rota
                     var height = Math.min(this.height, winH)
                     var rate = height / this.height;
                     var width = this.width * rate;
-                    _this.sbox.css({
-                        "width": width,
-                        "height": height,
-                        "margin-left": -width / 2
-                    });                   
+                    // _this.sbox.css({
+                    //     "width": width,
+                    //     "height": height,
+                    //     "margin-left": -width / 2
+                    // });                   
                 },function(){
                       clearTimeout(_this.timeout)
                        _this.timeout=setTimeout(function(){
