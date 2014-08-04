@@ -32,6 +32,29 @@
     alert: function($this, e, tar) {
       $this.parent().hide(350);
     },
+    window:function($this, e){
+      var _this = $(e.target);
+      var url = _this.attr("href");
+      var width=_this.attr("data-width")*1;
+       var height=_this.attr("data-height")*1;
+      var screenX = typeof window.screenX != 'undefined' ? window.screenX : window.screenLeft;
+    var screenY = typeof window.screenY != 'undefined' ? window.screenY : window.screenTop;
+    var outerWidth = typeof window.outerWidth != 'undefined' ? window.outerWidth : document.body.clientWidth;
+    var outerHeight = typeof window.outerHeight != 'undefined' ? window.outerHeight : (document.body.clientHeight - 22);
+    var left = parseInt(screenX + ((outerWidth - width) / 2), 10);
+    var top = parseInt(screenY + ((outerHeight - height) / 2.5), 10);
+    var settings = (
+        'width=' + width +
+            ',height=' + height +
+            ',left=' + left +
+            ',top=' + top
+        );
+      var newwindow = window.open(url, '', settings);
+    if (window.focus) {
+        newwindow.focus()
+    }
+      e.preventDefault();
+    },
     actived: function($this, e, tar) {
       var _this = $this.children();
       _this.addClass(tar).siblings().removeClass(tar);
