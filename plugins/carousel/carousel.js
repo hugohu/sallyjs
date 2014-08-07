@@ -71,8 +71,9 @@
 			hasDot: false,
 			hasArr: false,
 			easyPlay: true,
-			hideButton:false,
-			hideButtonClass:"hide"
+			move:false,
+			hideButton: false,
+			hideButtonClass: "hide"
 		};
 
 		/**
@@ -94,7 +95,7 @@
 		_this.pageLen = Math.floor(_this.params["width"] / _this.slideBoxWidth);
 		_this.moveWidth = _this.pageLen * _this.slideBoxWidth;
 		_this.pageCount = Math.ceil(_this.slideBoxLen / _this.pageLen);
-
+		_this.dis = 0;
 
 		/**
 		 * [setCarousel 设置初始轮播点跟左右箭头]
@@ -128,18 +129,18 @@
 			var isIE9_ = document.all && !window.atob;
 			//计算移动长度
 			if (index == _this.pageCount - 1) {
-				var dis = _this.params["width"] - _this.slideBoxAllWidth;
+				_this.dis = _this.params["width"] - _this.slideBoxAllWidth;
 			} else {
-				var dis = -_this.moveWidth * index;
+				_this.dis = -_this.moveWidth * index;
 			}
 			if (_this.isNotSupportTranslate()) {
 				_this.params["ebox"].animate({
-					"margin-left": dis
+					"margin-left": _this.dis
 				}, 350)
 			} else {
 				if (_this.params["easyPlay"]) {
 					var el = _this.params["ebox"][0];
-					_this.setTranslate(el, dis);
+					_this.setTranslate(el, _this.dis);
 				} else {
 					var delayLong = 35 * _this.slideBoxLen;
 					_this.slideBox.each(function(index, elem) {
@@ -149,7 +150,7 @@
 							delay = (35 * index) > delayLong ? delayLong : (35 * index);
 						}
 						var that = $(this)[0];
-						_this.setTranslate(that, dis);
+						_this.setTranslate(that, _this.dis);
 						_this.setTransitionDelay(that, delay);
 
 					})
@@ -210,7 +211,7 @@
 			clearInterval(_this.loop);
 		}
 		_this.hideButton = function(index) {
-			var hideButtonClass =_this.params["hideButtonClass"]
+			var hideButtonClass = _this.params["hideButtonClass"]
 			if (index == _this.pageCount - 1) {
 				_this.enext.addClass(hideButtonClass);
 				_this.eprev.removeClass(hideButtonClass);
@@ -222,12 +223,52 @@
 				_this.eprev.removeClass(hideButtonClass);
 			}
 		}
+		_this.mouse = function() {
+
+			_this.$this.on("mousedown",function(e) {
+				_this.ismove = true;
+				_this.sdx = e.pageX;
+				e.preventDefault();
+			})
+
+			_this.$this.on("mousemove.move", function(e) {
+				if (_this.ismove) {
+					mdx = e.pageX;
+					mds = (mdx - _this.sdx) * 1;
+					var that = _this.params["ebox"][0];
+					_this.setTransitionDuration(that, 0);
+					_this.setTranslate(that, _this.dis * 1 + mds);
+					e.preventDefault()
+				}
+			});
+
+			_this.$this.on("mouseup",function(e) {
+				_this.ismove = false;
+				dxEnd = e.pageX;
+				$(document).off("mousemove.move");
+				var that = _this.params["ebox"][0];
+				_this.setTransitionDuration(that, 350);
+				var diff=dxEnd-_this.sdx;
+
+				if(Math.abs(diff)<75){
+					_this.setTranslate(that, _this.dis);
+					return ;
+				}
+				if (dxEnd < _this.sdx) {
+					_this.play("+");
+				} else {
+					_this.play("-");
+				}
+				e.preventDefault();
+			})
+
+		}
 		_this.init = function() {
 			if (_this.pageCount <= 1) {
 				return;
 			}
 			_this.setCarousel();
-		_this.params["hideButton"] && _this.hideButton(0);
+			_this.params["hideButton"] && _this.hideButton(0);
 			//添加事件
 			if (_this.params["auto"]) {
 				_this.autoPlay();
@@ -240,7 +281,9 @@
 					}
 				});
 			}
-
+			if(_this.params["move"]){
+				_this.mouse();
+			}
 			// next
 			_this.enext.on("click", function() {
 				_this.play("+");
@@ -275,6 +318,11 @@
 			'use strict';
 			var es = el.style;
 			es.webkitTransitionDelay = es.MsTransitionDelay = es.msTransitionDelay = es.MozTransitionDelay = es.OTransitionDelay = es.transitionDelay = Delay + 'ms';
+		},
+		setTransitionDuration: function(el, Delay) {
+			'use strict';
+			var es = el.style;
+			es.webkitTransitionDuration = es.MsTransitionDuration = es.msTransitionDuration = es.MozTransitionDuration = es.OTransitionDuration = es.transitionDuration = Delay + 'ms';
 		}
 	}
 	// code

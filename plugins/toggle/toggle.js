@@ -32,6 +32,9 @@
     alert: function($this, e, tar) {
       $this.parent().hide(350);
     },
+    aclass:function($this, e, tar){
+      $(tar).toggleClass("active");
+    }
     window:function($this, e){
       var _this = $(e.target);
       var url = _this.attr("href");
