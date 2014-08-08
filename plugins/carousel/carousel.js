@@ -224,37 +224,43 @@
 			}
 		}
 		_this.mouse = function() {
+			isTouch=!!(('ontouchstart' in window) || window.DocumentTouch && document instanceof DocumentTouch);
+		var desktopEvents = ['mousedown', 'mousemove', 'mouseup'];
+		_this.touches={diff:0};
+    _this.touchEvents = {
+        touchStart : isTouch  ? 'touchstart' : desktopEvents[0],
+        touchMove : isTouch ? 'touchmove' : desktopEvents[1],
+        touchEnd : isTouch ? 'touchend' : desktopEvents[2]
+    };
 
-			_this.$this.on("mousedown",function(e) {
-				_this.ismove = true;
-				_this.sdx = e.pageX;
+
+			_this.$this.on(_this.touchEvents.touchStart,function(e) {
+				_this.touches.ismove = true;
+				_this.touches.startX  = isTouch ? event.targetTouches[0].pageX : (e.pageX || e.clientX);
 				e.preventDefault();
 			})
 
-			_this.$this.on("mousemove.move", function(e) {
-				if (_this.ismove) {
-					mdx = e.pageX;
-					mds = (mdx - _this.sdx) * 1;
+			$(document).on(_this.touchEvents.touchMove, function(e) {
+				if (_this.touches.ismove) {
+					_this.touches.current = isTouch ? event.targetTouches[0].pageX : (e.pageX || e.clientX);
+					_this.touches.diff = (_this.touches.current - _this.touches.startX) * 1;
 					var that = _this.params["ebox"][0];
 					_this.setTransitionDuration(that, 0);
-					_this.setTranslate(that, _this.dis * 1 + mds);
+					_this.setTranslate(that, _this.dis * 1 + _this.touches.diff);
 					e.preventDefault()
 				}
 			});
 
-			_this.$this.on("mouseup",function(e) {
-				_this.ismove = false;
-				dxEnd = e.pageX;
-				$(document).off("mousemove.move");
+			$(document).on(_this.touchEvents.touchEnd,function(e) {
+				_this.touches.ismove = false;
+				//$(document).off(_this.touchEvents.touchMove);
 				var that = _this.params["ebox"][0];
 				_this.setTransitionDuration(that, 350);
-				var diff=dxEnd-_this.sdx;
-
-				if(Math.abs(diff)<75){
+				if(Math.abs(_this.touches.diff)<75){
 					_this.setTranslate(that, _this.dis);
 					return ;
 				}
-				if (dxEnd < _this.sdx) {
+				if (_this.touches.diff<0) {
 					_this.play("+");
 				} else {
 					_this.play("-");
