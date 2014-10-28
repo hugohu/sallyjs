@@ -20,11 +20,11 @@
 	}
 }(function($) {
 
-	var Carousel = function($this, params) {
+	var Carousel = function(that, params) {
 		var _this = this;
-		_this.$this = $this;
+		_this.that = that;
 		_this.index = 0;
-		_this.dataSet = _this.$this.attr("data-set");
+		_this.dataSet = _this.that.attr("data-set");
 		_this.set = _this.dataSet ? $.parseJSON(_this.dataSet) : {};
 		/**
 		 * [defaults 默认参数列表]
@@ -61,10 +61,10 @@
 		 *
 		 */
 		var defaults = {
-			width: _this.$this.width(),
+			width: _this.that.width(),
 			auto: true,
 			outTime: 4000,
-			ebox: _this.$this.children().first(),
+			ebox: _this.that.children().first(),
 			edot: ".dot",
 			eprev: ".prev",
 			enext: ".next",
@@ -88,7 +88,7 @@
 		 * 程序运行需要的参数
 		 *
 		 */
-		_this.slideBox = _this.$this.find(_this.params["ebox"]).children();
+		_this.slideBox = _this.that.find(_this.params["ebox"]).children();
 		_this.slideBoxLen = _this.slideBox.size();
 		_this.slideBoxWidth = _this.slideBox.width();
 		_this.slideBoxAllWidth = _this.slideBoxWidth * _this.slideBoxLen;
@@ -96,7 +96,6 @@
 		_this.moveWidth = _this.pageLen * _this.slideBoxWidth;
 		_this.pageCount = Math.ceil(_this.slideBoxLen / _this.pageLen);
 		_this.dis = 0;
-
 		/**
 		 * [setCarousel 设置初始轮播点跟左右箭头]
 		 */
@@ -114,10 +113,10 @@
 				html += '<i class="dir prev" data-dir="-"></i>\n' +
 					'<i class="dir next" data-dir="+"></i>'
 			}
-			$(html).appendTo(_this.$this);
-			_this.edot = _this.$this.find(_this.params["edot"]).children();
-			_this.eprev = _this.$this.find(_this.params["eprev"]);
-			_this.enext = _this.$this.find(_this.params["enext"]);
+			$(html).appendTo(_this.that);
+			_this.edot = _this.that.find(_this.params["edot"]).children();
+			_this.eprev = _this.that.find(_this.params["eprev"]);
+			_this.enext = _this.that.find(_this.params["enext"]);
 		}
 		/**
 		 * [play 进行轮播主体内容]
@@ -234,7 +233,7 @@
     };
 
 
-			_this.$this.on(_this.touchEvents.touchStart,function(e) {
+			_this.that.on(_this.touchEvents.touchStart,function(e) {
 				_this.touches.ismove = true;
 				_this.touches.startX  = isTouch ? event.targetTouches[0].pageX : (e.pageX || e.clientX);
 				e.preventDefault();
@@ -278,7 +277,7 @@
 			//添加事件
 			if (_this.params["auto"]) {
 				_this.autoPlay();
-				_this.$this.on({
+				_this.that.on({
 					"mouseover": function() {
 						_this.stopPlay();
 					},
@@ -333,10 +332,13 @@
 	}
 	// code
 	$.fn.carousel = function(params) {
-		var s = new Carousel($(this), params);
-		$(this).data('carousel', s);
-		return s;
-	};
+		 this.each(function() {
+			var s = new Carousel($(this), params);
+					$(this).data('carousel', s);
+					console.log(	$(this).data('carousel'))
+					return s;
+		 })
+		};
 	//DATA API
 	$('[data-event="carousel"]').carousel();
 	//return $.widget;
