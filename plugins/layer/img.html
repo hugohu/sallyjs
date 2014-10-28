@@ -1,0 +1,334 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../assets/css/reset.css" />
+    <link rel="stylesheet" href="layer.css" />
+    <style>
+    #picshow img,.showbox img{max-width:100%;opacity:1;-webkit-transform-style:preserve-3d;-webkit-transform:perspective(0) rotateY(0deg);-moz-transform:rotateY(0deg);}
+#picInfo{margin-top:500px;margin-left:100px;}
+#picInfo,#picshow{height:530px;width:450px;}
+#picshow{text-align:center;display:table-cell;vertical-align:middle;*font-family:Arial;*line-height:1;}
+#picshow,#picshow img,.maskpic,.showbox{-webkit-transition:0.5s;-moz-transition:0.5s;-ms-transition:0.5s;-o-transition:0.5s;transition:0.5s;}
+#picshow{position:relative;z-index:999;}
+.img-show #picshow img{opacity:0;*visibility:hidden;-webkit-transform:rotateY(180deg);-moz-transform:rotateY(180deg);}
+.img-show .m-masklayer{background:rgba(0,0,0,0.7);}
+.showbox img{-webkit-transition: 0.45s;
+-moz-transition: 0.45s;
+max-width:100%;height:auto;text-align:center;}
+.showbox.loading img{
+opacity:0;-webkit-transform:perspective(0px) rotateY(180deg);-moz-transform:rotateY(180deg);}
+.showbox{position:fixed;left:50%;margin-left:-500px;top:4%;
+    /*visibility:hidden;opacity:0;*/
+    border:1px solid #000;background:#000;/*background-color:rgba(255,255,255,0);*/background-position: center center;z-index:1002;text-align:center;height: 92%;width: 1000px;}
+.img-show .showbox{-webkit-transition-delay:150ms;visibility:visible;opacity:1;/*background-color:rgba(255,255,255,1);*/}
+.showbox span{position:absolute;right:-50px;width:50px;height:50px;line-height:50px;background-color:#000;color:#999;font-weight: bold;text-align:center;font-size:20px;margin: 0;cursor: pointer;}
+.showbox span:hover{color: #fff;}
+.showbox span.close{top:0}
+.showbox .preview--next{top:100px;}
+.showbox .preview--prev{top:170px;}
+.showbox.loading{background:#000 url(../images/loading.gif) center center no-repeat;}
+
+</style>
+
+
+    <title>弹窗</title>
+</head>
+<body>
+
+    <div class="info preview--main">
+        
+<div id="picInfo">
+        <div id="picshow" class="u-img">
+            <img alt="" src="http://b.hiphotos.baidu.com/image/w%3D2048/sign=e32990b6eb50352ab1612208677bfaf2/2e2eb9389b504fc20cb82f04e7dde71191ef6dc8.jpg" data-index="1" class="preview--start" ></div>
+    </div>
+
+           <ul class="mod preview--list" id="img-list" >
+                                <li>
+                                    <a data-burl="http://ww2.sinaimg.cn/mw690/51a2bfdagw1egwnhnjwnyj208m0c874h.jpg" href="http://ww2.sinaimg.cn/mw690/51a2bfdagw1egwnhnjwnyj208m0c874h.jpg" class="u-img">
+                                        <img src="http://ww2.sinaimg.cn/mw690/51a2bfdagw1egwnhnjwnyj208m0c874h.jpg" alt=""></a>
+                                </li>
+                                <li>
+                                    <a data-burl="http://ww4.sinaimg.cn/mw690/51a2bfdagw1egwnhn047lj208m0caq3h.jpg" href="http://ww4.sinaimg.cn/mw690/51a2bfdagw1egwnhn047lj208m0caq3h.jpg" class="u-img">
+                                        <img src="http://ww4.sinaimg.cn/mw690/51a2bfdagw1egwnhn047lj208m0caq3h.jpg" alt=""></a>
+                                </li>
+                                <li>
+                                    <a data-burl="http://ww4.sinaimg.cn/mw690/51a2bfdagw1egwnhjccjzj208m0cqq37.jpg" href="http://ww4.sinaimg.cn/mw690/51a2bfdagw1egwnhjccjzj208m0cqq37.jpg" class="u-img">
+                                        <img src="http://ww 4.sinaimg.cn/mw690/51a2bfdagw1egwnhjccjzj208m0cqq37.jpg" alt=""></a>
+                                </li>
+                                <li>
+                                    <a data-burl="http://ww4.sinaimg.cn/mw690/51a2bfdagw1egwnhisjyij208m0ccq3a.jpg" href="http://ww4.sinaimg.cn/mw690/51a2bfdagw1egwnhisjyij208m0ccq3a.jpg" class="u-img">
+                                        <img src="http://ww4.sinaimg.cn/mw690/51a2bfdagw1egwnhisjyij208m0ccq3a.jpg" alt=""></a>
+                                </li>
+                                <li>
+                                    <a data-burl="http://ww4.sinaimg.cn/mw690/51a2bfdagw1egwnhi1geyj208m0bgt93.jpg" href="http://ww4.sinaimg.cn/mw690/51a2bfdagw1egwnhi1geyj208m0bgt93.jpg" class="u-img">
+                                        <img src="http://ww4.sinaimg.cn/mw690/51a2bfdagw1egwnhi1geyj208m0bgt93.jpg" alt=""></a>
+
+                                </li>
+                                <li>
+                                    <a data-burl="http://ww2.sinaimg.cn/mw690/51a2bfdagw1egwnhhdnpzj208m0ccq37.jpg" href="http://ww2.sinaimg.cn/mw690/51a2bfdagw1egwnhhdnpzj208m0ccq37.jpg" class="u-img">
+                                        <img src="http://ww2.sinaimg.cn/mw690/51a2bfdagw1egwnhhdnpzj208m0ccq37.jpg" alt=""></a>
+
+                                </li>
+                                <li>
+                                    <a data-burl="http://ww4.sinaimg.cn/mw690/51a2bfdagw1egwnhgtwxsj208m0c674m.jpg" href="http://ww4.sinaimg.cn/mw690/51a2bfdagw1egwnhgtwxsj208m0c674m.jpg" class="u-img">
+                                        <img src="http://ww4.sinaimg.cn/mw690/51a2bfdagw1egwnhgtwxsj208m0c674m.jpg" alt=""></a>
+
+                                </li>
+                                <li>
+                                    <a data-burl="http://ww1.sinaimg.cn/mw690/51a2bfdagw1egwnhg6d76j208m0bz3yz.jpg" href="http://ww1.sinaimg.cn/mw690/51a2bfdagw1egwnhg6d76j208m0bz3yz.jpg" class="u-img">
+                                        <img src="http://ww1.sinaimg.cn/mw690/51a2bfdagw1egwnhg6d76j208m0bz3yz.jpg" alt=""></a>
+
+                                </li>
+                                <li>
+                                    <a data-burl="http://ww1.sinaimg.cn/mw690/51a2bfdagw1egwnhf63hdj208m0brdg0.jpg" href="http://ww1.sinaimg.cn/mw690/51a2bfdagw1egwnhf63hdj208m0brdg0.jpg" class="u-img">
+                                        <img src="http://ww1.sinaimg.cn/mw690/51a2bfdagw1egwnhf63hdj208m0brdg0.jpg" alt=""></a>
+
+                                </li>
+                                <li>
+                                    <a data-burl="http://ww1.sinaimg.cn/mw690/51a2bfdagw1egwnheckxdj208m0ci0t3.jpg" href="http://ww1.sinaimg.cn/mw690/51a2bfdagw1egwnheckxdj208m0ci0t3.jpg" class="u-img">
+                                        <img src="http://ww1.sinaimg.cn/mw690/51a2bfdagw1egwnheckxdj208m0ci0t3.jpg" alt=""></a>
+
+                                </li>
+                                <li>
+                                    <a data-burl="http://ww2.sinaimg.cn/mw690/51a2bfdagw1egwnheqdf6j208m0cpq33.jpg" href="http://ww2.sinaimg.cn/mw690/51a2bfdagw1egwnheqdf6j208m0cpq33.jpg" class="u-img">
+                                        <img src="http://ww2.sinaimg.cn/mw690/51a2bfdagw1egwnheqdf6j208m0cpq33.jpg" alt=""></a>
+
+                                </li>
+                                <li>
+                                    <a data-burl="http://ww3.sinaimg.cn/mw690/51a2bfdagw1egwnhdj7x3j208m0c6aac.jpg" href="http://ww3.sinaimg.cn/mw690/51a2bfdagw1egwnhdj7x3j208m0c6aac.jpg" class="u-img">
+                                        <img src="http://ww3.sinaimg.cn/mw690/51a2bfdagw1egwnhdj7x3j208m0c6aac.jpg" alt=""></a>
+
+                                </li>
+                                <li>
+                                    <a data-burl="http://ww4.sinaimg.cn/mw690/51a2bfdagw1egwnh9oiflj208m0ck0t5.jpg" href="http://ww4.sinaimg.cn/mw690/51a2bfdagw1egwnh9oiflj208m0ck0t5.jpg" class="u-img">
+                                        <img src="http://ww4.sinaimg.cn/mw690/51a2bfdagw1egwnh9oiflj208m0ck0t5.jpg" alt=""></a>
+
+                                </li>
+                                <li>
+                                    <a data-burl="http://ww1.sinaimg.cn/mw690/51a2bfdagw1egwnh8o3zkj208m0cfjrk.jpg" href="http://ww1.sinaimg.cn/mw690/51a2bfdagw1egwnh8o3zkj208m0cfjrk.jpg" class="u-img">
+                                        <img src="http://ww1.sinaimg.cn/mw690/51a2bfdagw1egwnh8o3zkj208m0cfjrk.jpg" alt=""></a>
+
+                                </li>
+                                <li>
+                                    <a data-burl="http://ww4.sinaimg.cn/mw690/51a2bfdagw1egwnh83glcj208m0c30sv.jpg" href="http://ww4.sinaimg.cn/mw690/51a2bfdagw1egwnh83glcj208m0c30sv.jpg" class="u-img">
+                                        <img src="http://ww4.sinaimg.cn/mw690/51a2bfdagw1egwnh83glcj208m0c30sv.jpg" alt=""></a>
+
+                                </li>
+                            </ul>
+
+    </div>
+
+    <!-- 区块命名规范:id为 templ-模块名称
+可配置变量 #{data}进行替换 -->
+    <script type="text/html" id="templ-quick">
+    <div class="m-layer" id="quick">
+        <span class="close" data-event="close">×</span>
+        <div class="lyct">
+            <div id="loading"></div>
+           hllow
+        </div>
+    </div>
+</script>
+
+    <script src="http://libs.baidu.com/jquery/1.8.2/jquery.min.js"></script>
+    <script src="layer.js"></script>
+    <script>
+    //test
+    $(function() {
+         function Preview($this) {
+            var _this = this;
+            _this.imgReady = (function() {
+                var list = [],
+                    intervalId = null,
+                    // 用来执行队列
+                    tick = function() {
+                        var i = 0;
+                        for (; i < list.length; i++) {
+                            list[i].end ? list.splice(i--, 1) : list[i]();
+                        };
+                        !list.length && stop();
+                    },
+                    // 停止所有定时器队列
+                    stop = function() {
+                        clearInterval(intervalId);
+                        intervalId = null;
+                    };
+                return function(url, ready, load, error) {
+                    var onready, width, height, newWidth, newHeight,
+                        img = new Image();
+
+                    img.src = url;
+
+                    // 如果图片被缓存，则直接返回缓存数据
+                    if (img.complete) {
+                        ready.call(img);
+                        load && load.call(img);
+                        return;
+                    };
+
+                    width = img.width;
+                    height = img.height;
+
+                    // 加载错误后的事件
+                    img.onerror = function() {
+                        error && error.call(img);
+                        onready.end = true;
+                        img = img.onload = img.onerror = null;
+                    };
+
+                    // 图片尺寸就绪
+                    onready = function() {
+                        newWidth = img.width;
+                        newHeight = img.height;
+                        if (newWidth !== width || newHeight !== height ||
+                            // 如果图片已经在其他地方加载可使用面积检测
+                            newWidth * newHeight > 1024
+                        ) {
+                            ready.call(img);
+                            onready.end = true;
+                        };
+                    };
+                    onready();
+
+                    // 完全加载完毕的事件
+                    img.onload = function() {
+                        // onload在定时器时间差范围内可能比onready快
+                        // 这里进行检查并保证onready优先执行
+                        !onready.end && onready();
+
+                        load && load.call(img);
+
+                        // IE gif动画会循环执行onload，置空onload即可
+                        img = img.onload = img.onerror = null;
+                    };
+
+                    // 加入队列中定期执行
+                    if (!onready.end) {
+                        list.push(onready);
+                        // 无论何时只允许出现一个定时器，减少浏览器性能损耗
+                        if (intervalId === null) intervalId = setInterval(tick, 40);
+                    };
+                };
+            })();
+            _this.parent = $this.closest(".preview--main");
+            _this.setlist = function() {
+                var $list = $(".preview--list", _this.parent).find("[data-burl]")
+                var aimg = [];
+                $list.each(function(index, elem) {
+                    aimg[index] = $(this).attr("data-burl");
+                })
+                return aimg;
+            }
+            _this.list = _this.setlist();
+            _this.listLen = _this.list.length - 1;
+
+            _this.templ = '<div class="showbox preview--box" data-preview="box"><img src="" alt=""/><span class="icon preview--next">&#xf0016;</span><span class="icon preview--prev">&#xf0015;</span><span class="close" data-event="close">×</span></div>'
+            if ($('.preview--box').length == 0) {
+                _this.sbox = $(_this.templ).appendTo(_this.parent)
+            } else {
+                _this.sbox = $('.preview--box',_this.parent);
+            }
+             _this.eNext = $('.preview--next',_this.sbox);
+            _this.ePrev = $('.preview--prev',_this.sbox);
+            _this.simg = $("img",_this.sbox)
+
+            _this.setPic = function(ind) {
+                clearTimeout(_this.timeout)
+                 _this.sbox.addClass("loading");
+               
+              _this.imgReady(_this.list[ind], function(){
+                    var winH = $(window).height() - 100
+                    var height = Math.min(this.height, winH)
+                    var rate = height / this.height;
+                    var width = this.width * rate;
+                    // _this.sbox.css({
+                    //     "width": width,
+                    //     "height": height,
+                    //     "margin-left": -width / 2
+                    // });                   
+                },function(){
+                      clearTimeout(_this.timeout)
+                       _this.timeout=setTimeout(function(){
+                   _this.sbox.removeClass("loading")
+                    _this.simg.attr("src",_this.list[ind]);
+                },500)
+                });
+            }
+            _this.next = function() {
+                if (_this.index < _this.listLen) {
+                    _this.index = parseInt(_this.index) + 1;
+                    _this.setPic(_this.index)
+                }
+            }
+            _this.prev = function() {
+                if (_this.index > 0) {
+                    _this.index -= 1;
+                    _this.setPic(_this.index)
+                }
+            }
+            _this.init = function() {
+                _this.index = parseInt($this.attr("data-index"))
+                _this.setPic(_this.index)
+                _this.eNext.on("click",_this.next)
+                _this.ePrev.on("click",_this.prev)
+            }
+
+            return {
+                init: _this.init
+            }
+        }
+
+        
+        $(document).on("click", '.preview--start', function(e) {
+            var preview = new Preview($(this));    
+            preview.init()
+            e.preventDefault()
+        })
+
+
+        $.layer("img", {
+            "start": function() {
+                //视窗高宽
+                var winW = $(window).width();
+                var winH = $(window).height();
+                //初始位置
+                var _ow = this.showbox.offset().left;
+                var _oh = this.showbox.offset().top;
+                //元素的宽高
+                var _W = this.showbox.width();
+                var _H = this.showbox.height();
+
+                var posL = winW / 2 - _W / 2 - _ow;
+                //滚动条的位置
+                var scrollTop = $(window).scrollTop();
+                var _Top = scrollTop - _oh + 100;
+                //var _Top = off.top - scrollTop;
+                this.showbox.css({
+                    "left": posL,
+                    "top": _Top
+                })
+            },
+            "open": function() {
+
+            },
+            "closed": function() {
+                this.showbox.css({
+                    "left": 0,
+                    "top": 0
+                });
+           
+            }
+        })
+        $("#picInfo img").on("click", function() {
+            $(this).layer({
+                "target": "picshow",
+                "type": "img",
+                "position": false
+            })
+        })
+    })
+    </script>
+
+</body>
+</html>

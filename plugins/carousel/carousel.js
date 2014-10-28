@@ -70,7 +70,14 @@
 			enext: ".next",
 			hasDot: false,
 			hasArr: false,
+<<<<<<< HEAD
 			easyPlay: false
+=======
+			easyPlay: true,
+			move:false,
+			hideButton: false,
+			hideButtonClass: "hide"
+>>>>>>> remotes/origin/master
 		};
 
 		/**
@@ -92,7 +99,11 @@
 		_this.pageLen = Math.floor(_this.params["width"] / _this.slideBoxWidth);
 		_this.moveWidth = _this.pageLen * _this.slideBoxWidth;
 		_this.pageCount = Math.ceil(_this.slideBoxLen / _this.pageLen);
+<<<<<<< HEAD
 
+=======
+		_this.dis = 0;
+>>>>>>> remotes/origin/master
 
 		/**
 		 * [setCarousel 设置初始轮播点跟左右箭头]
@@ -108,7 +119,11 @@
 				html += "</span>";
 			}
 			if (!_this.params["hasArr"]) {
+<<<<<<< HEAD
 				html += '<i class="dir prev hide" data-dir="-"></i>\n' +
+=======
+				html += '<i class="dir prev" data-dir="-"></i>\n' +
+>>>>>>> remotes/origin/master
 					'<i class="dir next" data-dir="+"></i>'
 			}
 			$(html).appendTo(_this.$this);
@@ -126,6 +141,7 @@
 			var isIE9_ = document.all && !window.atob;
 			//计算移动长度
 			if (index == _this.pageCount - 1) {
+<<<<<<< HEAD
 				var dis = _this.params["width"] - _this.slideBoxAllWidth;
 			} else {
 				var dis = -_this.moveWidth * index;
@@ -133,11 +149,24 @@
 			if (_this.isNotSupportTranslate()) {
 				_this.params["ebox"].animate({
 					"margin-left": dis
+=======
+				_this.dis = _this.params["width"] - _this.slideBoxAllWidth;
+			} else {
+				_this.dis = -_this.moveWidth * index;
+			}
+			if (_this.isNotSupportTranslate()) {
+				_this.params["ebox"].animate({
+					"margin-left": _this.dis
+>>>>>>> remotes/origin/master
 				}, 350)
 			} else {
 				if (_this.params["easyPlay"]) {
 					var el = _this.params["ebox"][0];
+<<<<<<< HEAD
 					_this.setTranslate(el, dis);
+=======
+					_this.setTranslate(el, _this.dis);
+>>>>>>> remotes/origin/master
 				} else {
 					var delayLong = 35 * _this.slideBoxLen;
 					_this.slideBox.each(function(index, elem) {
@@ -147,7 +176,11 @@
 							delay = (35 * index) > delayLong ? delayLong : (35 * index);
 						}
 						var that = $(this)[0];
+<<<<<<< HEAD
 						_this.setTranslate(that, dis);
+=======
+						_this.setTranslate(that, _this.dis);
+>>>>>>> remotes/origin/master
 						_this.setTransitionDelay(that, delay);
 
 					})
@@ -157,7 +190,11 @@
 			}
 			//others
 			_this.setActive(index);
+<<<<<<< HEAD
 			!_this.params["auto"] && _this.hideButton(index);
+=======
+			_this.params["hideButton"] && _this.hideButton(index);
+>>>>>>> remotes/origin/master
 		}
 		/**
 		 * [setIndex 设置索引]
@@ -208,6 +245,7 @@
 			clearInterval(_this.loop);
 		}
 		_this.hideButton = function(index) {
+<<<<<<< HEAD
 			if (index == _this.pageCount - 1) {
 				_this.enext.addClass("hide");
 				_this.eprev.removeClass("hide");
@@ -219,11 +257,75 @@
 				_this.eprev.removeClass("hide");
 			}
 		}
+=======
+			var hideButtonClass = _this.params["hideButtonClass"]
+			if (index == _this.pageCount - 1) {
+				_this.enext.addClass(hideButtonClass);
+				_this.eprev.removeClass(hideButtonClass);
+			} else if (index == 0) {
+				_this.eprev.addClass(hideButtonClass);
+				_this.enext.removeClass(hideButtonClass);
+			} else {
+				_this.enext.removeClass(hideButtonClass);
+				_this.eprev.removeClass(hideButtonClass);
+			}
+		}
+		_this.mouse = function() {
+			isTouch=!!(('ontouchstart' in window) || window.DocumentTouch && document instanceof DocumentTouch);
+		var desktopEvents = ['mousedown', 'mousemove', 'mouseup'];
+		_this.touches={diff:0};
+    _this.touchEvents = {
+        touchStart : isTouch  ? 'touchstart' : desktopEvents[0],
+        touchMove : isTouch ? 'touchmove' : desktopEvents[1],
+        touchEnd : isTouch ? 'touchend' : desktopEvents[2]
+    };
+
+
+			_this.$this.on(_this.touchEvents.touchStart,function(e) {
+				_this.touches.ismove = true;
+				_this.touches.startX  = isTouch ? event.targetTouches[0].pageX : (e.pageX || e.clientX);
+				e.preventDefault();
+			})
+
+			$(document).on(_this.touchEvents.touchMove, function(e) {
+				if (_this.touches.ismove) {
+					_this.touches.current = isTouch ? event.targetTouches[0].pageX : (e.pageX || e.clientX);
+					_this.touches.diff = (_this.touches.current - _this.touches.startX) * 1;
+					var that = _this.params["ebox"][0];
+					_this.setTransitionDuration(that, 0);
+					_this.setTranslate(that, _this.dis * 1 + _this.touches.diff);
+					e.preventDefault()
+				}
+			});
+
+			$(document).on(_this.touchEvents.touchEnd,function(e) {
+				_this.touches.ismove = false;
+				//$(document).off(_this.touchEvents.touchMove);
+				var that = _this.params["ebox"][0];
+				_this.setTransitionDuration(that, 350);
+				if(Math.abs(_this.touches.diff)<75){
+					_this.setTranslate(that, _this.dis);
+					return ;
+				}
+				if (_this.touches.diff<0) {
+					_this.play("+");
+				} else {
+					_this.play("-");
+				}
+				e.preventDefault();
+			})
+
+		}
+>>>>>>> remotes/origin/master
 		_this.init = function() {
 			if (_this.pageCount <= 1) {
 				return;
 			}
 			_this.setCarousel();
+<<<<<<< HEAD
+=======
+			_this.params["hideButton"] && _this.hideButton(0);
+>>>>>>> remotes/origin/master
 			//添加事件
 			if (_this.params["auto"]) {
 				_this.autoPlay();
@@ -236,7 +338,13 @@
 					}
 				});
 			}
+<<<<<<< HEAD
 
+=======
+			if(_this.params["move"]){
+				_this.mouse();
+			}
+>>>>>>> remotes/origin/master
 			// next
 			_this.enext.on("click", function() {
 				_this.play("+");
@@ -247,8 +355,13 @@
 			});
 			//edot
 			_this.edot.on("click", function() {
+<<<<<<< HEAD
 				var index = edot.index(this);
 				carousel.play("click", index);
+=======
+				var index = _this.edot.index(this);
+				_this.play("click", index);
+>>>>>>> remotes/origin/master
 			})
 		}
 		_this.init();
@@ -271,15 +384,36 @@
 			'use strict';
 			var es = el.style;
 			es.webkitTransitionDelay = es.MsTransitionDelay = es.msTransitionDelay = es.MozTransitionDelay = es.OTransitionDelay = es.transitionDelay = Delay + 'ms';
+<<<<<<< HEAD
+=======
+		},
+		setTransitionDuration: function(el, Delay) {
+			'use strict';
+			var es = el.style;
+			es.webkitTransitionDuration = es.MsTransitionDuration = es.msTransitionDuration = es.MozTransitionDuration = es.OTransitionDuration = es.transitionDuration = Delay + 'ms';
+>>>>>>> remotes/origin/master
 		}
 	}
 	// code
 	$.fn.carousel = function(params) {
 		var s = new Carousel($(this), params);
+<<<<<<< HEAD
 		$(this).data('swiper', s);
+=======
+		$(this).data('carousel', s);
+>>>>>>> remotes/origin/master
 		return s;
 	};
 	//DATA API
 	$('[data-event="carousel"]').carousel();
 	//return $.widget;
+<<<<<<< HEAD
 }));
+=======
+	
+}));
+
+window.console&&window.console.info('  ┏┓　　　┏┓\n┏┛┻━━━┛┻┓\n┃　　　　　　　┃ 　\n┃　　　━　　　┃\n┃　┳┛　┗┳　┃\n┃　　　　　　　┃\n┃　　　┻　　　┃\n┃　　　　　　　┃\n┗━┓　　　┏━┛\n    ┃　　　┃  Beast god bless　　　　　　　　\n    ┃　　　┃  The code no bug！\n    ┃　　　┗━━━┓\n    ┃　　　　　　　┣┓\n    ┃　　　　　　　┏┛\n    ┗┓┓┏━┳┓┏┛\n      ┃┫┫　┃┫┫\n      ┗┻┛  ┗┻┛')
+
+ 
+>>>>>>> remotes/origin/master

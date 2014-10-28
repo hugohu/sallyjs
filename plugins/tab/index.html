@@ -6,11 +6,16 @@
 <style>
   *{padding: 0;margin: 0;}
 /* 含标题和Tab的模块头部-默认不定宽 */
+<<<<<<< HEAD
 .demo .tab-hd li{background-color: #f8f8f8;padding: 5px 10px}
+=======
+.demo .tab-hd .item{background-color: #f8f8f8;padding: 5px 10px}
+>>>>>>> remotes/origin/master
 .demo .tab-hd {position: relative;}
 /*m-tab部分样式*/
 .m-tab{display: block;}
 .m-tab .tab-hd{overflow: hidden;}
+<<<<<<< HEAD
 .m-tab .tab-hd li{float: left;margin-right:15px;}
 .m-tab .tab-bd{height: 100px;}
 .m-tab .item{display: none;}
@@ -30,12 +35,28 @@ transition: 0.35s;
 .m-tab .tab-hd li:nth-child(2):hover ~ li:last-child::after{left: 100px}
 .m-tab .tab-hd li:nth-child(3):hover ~ li:last-child::after{left: 200px}
 .m-tab .tab-hd li:nth-child(4):hover ~ li:last-child::after{left: 300px}
+=======
+.m-tab .tab-hd .item{float: left;margin-right:15px;}
+.m-tab .tab-bd{height: 100px;}
+.m-tab .tab-bd .item{display: none;}
+.m-tab .tab-bd .item.active{display: block;}
+
+/* am */
+.arr{
+padding:0 10px;
+-webkit-transition: 0.35s;
+position: absolute;
+left: 0;bottom:0;width: 100px;height: 6px;
+background-color: #666;
+}
+>>>>>>> remotes/origin/master
 </style>
 <title>滑动门</title>
 </head>
 <body>
 <!--滑动门-->
 <div class="m-tab demo" data-event="tab">
+<<<<<<< HEAD
 	<ul class="tab-hd">
         <li class="active">默认：居左，不定宽</li>
         <li>“标题”和“更多”可删</li>
@@ -43,6 +64,18 @@ transition: 0.35s;
         <li>标签标签</li>
   </ul> 
 	<div class="tab-bd">
+=======
+<div class="hd">
+		<ul class="tab-hd" data-tab="hd">
+        <li class="item active">默认：居左，不定宽</li>
+        <li class="item" >“标题”和“更多”可删</li>
+        <li class="item" >扩展类可以自由组合</li>
+        <li class="item" >标签标签</li>
+        <li class="arr" data-tab="led"></li>
+  </ul> 
+</div>
+	<div class="tab-bd" data-tab='bd'>
+>>>>>>> remotes/origin/master
 		<div class="item active">1</div>
 		<div class="item">2</div>
 		<div class="item">3</div>
@@ -50,7 +83,11 @@ transition: 0.35s;
 	</div>
 </div>
 
+<<<<<<< HEAD
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+=======
+<script src="http://libs.baidu.com/jquery/1.10.0/jquery.min.js"></script>
+>>>>>>> remotes/origin/master
 <script type="text/javascript" src="tab.js"></script>
 </body>
 </html>

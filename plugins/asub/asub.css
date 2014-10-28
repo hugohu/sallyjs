@@ -1,3 +1,4 @@
+<<<<<<< HEAD
     /* 操作型弹出浮层-默认居中 */
 /* layer */
 .m-masklayer{position:fixed;_position:absolute;z-index:999;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);}
@@ -50,9 +51,33 @@ transform-origin: 50% 50%;
 }
 .m-masklayer,.m-layer{visibility: hidden;opacity:0;}
 .m-masklayer,.m-layer,.m-layer .close,#loading{
+=======
+.m-alert{
+>>>>>>> remotes/origin/master
 -webkit-transition: 0.35s;
 -moz-transition: 0.35s;
 -ms-transition: 0.35s;
 -o-transition: 0.35s;
 transition: 0.35s;
+<<<<<<< HEAD
 }
+=======
+}
+.m-alert .progress{
+  -webkit-transition: 4s;
+  -moz-transition: 4s;
+  -ms-transition: 4s;
+  -o-transition: 4s;
+  transition: 4s;
+  
+}
+
+.m-alert{visibility:hidden;opacity: 0;min-height:50px;padding:15px 10px 10px 10px;width:320px;background-color: #000;position: fixed;top:0;left: 50%;margin-left: -160px;z-index: 999;color: #fff;}
+.m-alert .closed{position: absolute;right:5px;top:8px;color: #ddd;font-size: 14px;width: 20px;height: 20px;display: block;cursor: pointer;text-align: center;line-height: 20px;font-weight: bold;}
+.m-alert .closed:hover{color: #fff;}
+.m-alert .text{padding:15px 0;font-size: 14px;font-weight: bold; }
+.m-alert .progress{position: absolute;top:0;left:0;width:0;height:4px;background-color: #f60;}
+
+.m-alert.active{visibility: visible;opacity: 1;}
+.m-alert.active .progress{width: 100%}
+>>>>>>> remotes/origin/master
