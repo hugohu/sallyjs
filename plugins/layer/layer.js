@@ -15,65 +15,6 @@
   }
 }(function($) {
   // code
-<<<<<<< HEAD
-  var layer = {
-    open: function() {
-      $("body").on('keyup', this.onDocumentKeyup)
-        .on("click", this.onDocumentClick)
-        .addClass("f-layer-show");
-    },
-    closed: function() {
-      $("body").off('keyup', this.onDocumentKeyup)
-        .off("click", this.onDocumentClick)
-        .removeClass("f-layer-show");
-    },
-    onDocumentKeyup: function(e) {
-      if (e.keyCode === 27) {
-        layer.closed();
-      }
-    },
-    onDocumentClick: function(e) {
-      if ($(e.target).is('[data-event="close"],.m-masklayer')) {
-        e.preventDefault();
-        layer.closed();
-      }
-    },
-    setoff: function(ele) {
-      var off = ele.offset();
-      var scrollTop = $(window).scrollTop();
-      var _Top = off.top - scrollTop;
-    this.etarget=$("#"+ele.attr("data-target"))
-     this.etarget.css({
-        "left": off.left,
-        "top": _Top
-      })
-    }
-  }
-
-
-  $.fn.layer = function(options) {
-    var defaults = {};
-    var options = $.extend(defaults, options);
-    
-    //code
-     if ($(".m-masklayer").length == 0) {
-        $("body").append('<div class="m-masklayer"></div>');
-      } 
-      layer.open();
-  };
-
-   
-  //DATA API
-   $(document).on("click", '[data-event="layer"]', function(e) {
-    $(this).layer();
-      e.preventDefault();
-    }).on("mouseover", '[data-event="layer"]', function() {
-      layer.setoff($(this));
-    })
-  // return $.widget;
-
-}));
-=======
   var Layer = function($this, params) {
     var _this = this;
     _this.$this = $this;
@@ -206,4 +147,3 @@
  * 其中插件中的this指向为Layer函数.所以可以直接使用对应的方法.属性.
  * 默认为layer
  */
->>>>>>> remotes/origin/master
