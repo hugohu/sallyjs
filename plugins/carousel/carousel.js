@@ -335,16 +335,16 @@
 		 this.each(function() {
 			var s = new Carousel($(this), params);
 					$(this).data('carousel', s);
-					console.log(	$(this).data('carousel'))
 					return s;
 		 })
 		};
-	//DATA API
-	$('[data-event="carousel"]').carousel();
 	//return $.widget;
-	
 }));
 
+jQuery(function(){
+			//DATA API
+	$('[data-event="carousel"]').carousel();
+	})
 window.console&&window.console.info('  ┏┓　　　┏┓\n┏┛┻━━━┛┻┓\n┃　　　　　　　┃ 　\n┃　　　━　　　┃\n┃　┳┛　┗┳　┃\n┃　　　　　　　┃\n┃　　　┻　　　┃\n┃　　　　　　　┃\n┗━┓　　　┏━┛\n    ┃　　　┃  Beast god bless　　　　　　　　\n    ┃　　　┃  The code no bug！\n    ┃　　　┗━━━┓\n    ┃　　　　　　　┣┓\n    ┃　　　　　　　┏┛\n    ┗┓┓┏━┳┓┏┛\n      ┃┫┫　┃┫┫\n      ┗┻┛  ┗┻┛')
 
  
