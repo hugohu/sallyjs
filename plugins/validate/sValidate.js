@@ -189,7 +189,9 @@
     });
   };
   //data api
-  $("[data-event='validate']").sValidate();
+$(function(){
+    $("[data-event='validate']").sValidate();
+})
 
   //return $.widget;
 }));

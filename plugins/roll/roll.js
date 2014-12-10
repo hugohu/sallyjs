@@ -186,7 +186,10 @@
   };
 
   //DATA API
-  $("[data-roll]").roll();
+  $(function(){
+      $("[data-roll]").roll();
+  })
+
   // return $.widget;
 
 }));

@@ -74,6 +74,8 @@
         });
     };
     /*  DARA API  */
-    $('[data-event="tab"]').tab();
+    $(function(){
+        $('[data-event="tab"]').tab();
+    })
     //return $.widget;
 }));

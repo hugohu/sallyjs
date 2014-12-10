@@ -338,13 +338,12 @@
 					return s;
 		 })
 		};
+		$(function(){
+				$('[data-event="carousel"]').carousel();
+		})
 	//return $.widget;
 }));
 
-jQuery(function(){
-			//DATA API
-	$('[data-event="carousel"]').carousel();
-	})
 window.console&&window.console.info('  ┏┓　　　┏┓\n┏┛┻━━━┛┻┓\n┃　　　　　　　┃ 　\n┃　　　━　　　┃\n┃　┳┛　┗┳　┃\n┃　　　　　　　┃\n┃　　　┻　　　┃\n┃　　　　　　　┃\n┗━┓　　　┏━┛\n    ┃　　　┃  Beast god bless　　　　　　　　\n    ┃　　　┃  The code no bug！\n    ┃　　　┗━━━┓\n    ┃　　　　　　　┣┓\n    ┃　　　　　　　┏┛\n    ┗┓┓┏━┳┓┏┛\n      ┃┫┫　┃┫┫\n      ┗┻┛  ┗┻┛')
 
  
