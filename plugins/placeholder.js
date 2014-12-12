@@ -32,9 +32,11 @@
       });
     });
     /*  DARA API  */
-     var input = $("input[placeholder]");
+    $(function(){
+       var input = $("input[placeholder]");
   if (!("placeholder" in document.createElement("input"))) {
     input.placeholder();
   };
+    })
     //return $.widget;
 }));
