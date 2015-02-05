@@ -222,52 +222,6 @@
 				_this.eprev.removeClass(hideButtonClass);
 			}
 		}
-		_this.mouse = function() {
-			isTouch=!!(('ontouchstart' in window) || window.DocumentTouch && document instanceof DocumentTouch);
-		var desktopEvents = ['mousedown', 'mousemove', 'mouseup'];
-		_this.touches={diff:0};
-    _this.touchEvents = {
-        touchStart : isTouch  ? 'touchstart' : desktopEvents[0],
-        touchMove : isTouch ? 'touchmove' : desktopEvents[1],
-        touchEnd : isTouch ? 'touchend' : desktopEvents[2]
-    };
-
-
-			_this.that.on(_this.touchEvents.touchStart,function(e) {
-				_this.touches.ismove = true;
-				_this.touches.startX  = isTouch ? event.targetTouches[0].pageX : (e.pageX || e.clientX);
-				e.preventDefault();
-			})
-
-			$(document).on(_this.touchEvents.touchMove, function(e) {
-				if (_this.touches.ismove) {
-					_this.touches.current = isTouch ? event.targetTouches[0].pageX : (e.pageX || e.clientX);
-					_this.touches.diff = (_this.touches.current - _this.touches.startX) * 1;
-					var that = _this.params["ebox"][0];
-					_this.setTransitionDuration(that, 0);
-					_this.setTranslate(that, _this.dis * 1 + _this.touches.diff);
-					e.preventDefault()
-				}
-			});
-
-			$(document).on(_this.touchEvents.touchEnd,function(e) {
-				_this.touches.ismove = false;
-				//$(document).off(_this.touchEvents.touchMove);
-				var that = _this.params["ebox"][0];
-				_this.setTransitionDuration(that, 350);
-				if(Math.abs(_this.touches.diff)<75){
-					_this.setTranslate(that, _this.dis);
-					return ;
-				}
-				if (_this.touches.diff<0) {
-					_this.play("+");
-				} else {
-					_this.play("-");
-				}
-				e.preventDefault();
-			})
-
-		}
 		_this.init = function() {
 			if (_this.pageCount <= 1) {
 				return;

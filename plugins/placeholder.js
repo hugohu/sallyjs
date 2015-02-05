@@ -10,15 +10,16 @@
 
 
 (function(factory) {
-    if (typeof define === "function" && define.amd) {
-        // AMD. Register as an anonymous module.
-        define(["jquery"], factory);
-    } else {
-        // Browser globals
-        factory(jQuery);
-    }
+  if (typeof define === "function" && define.amd) {
+    // AMD. Register as an anonymous module.
+    define(["jquery"], factory);
+  } else {
+    // Browser globals
+    factory(jQuery);
+  }
 }(function($) {
-        this.each(function() {
+  $.fn.placeholder = function(options) {
+    this.each(function() {
       var _this = $(this);
       var text = _this.attr("placeholder");
       _this.val(text).focus(function() {
@@ -30,13 +31,14 @@
           _this.val(_this.attr("placeholder"));
         };
       });
-    });
-    /*  DARA API  */
-    $(function(){
-       var input = $("input[placeholder]");
+    })
+  };
+/*  DARA API  */
+$(function() {
+  var input = $("input[placeholder]");
   if (!("placeholder" in document.createElement("input"))) {
     input.placeholder();
   };
-    })
-    //return $.widget;
+})
+  
 }));
