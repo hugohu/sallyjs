@@ -10,8 +10,6 @@ var build = {
       url: url,
       async: false
     }).responseText;
-
-
     // //localStorage
     // if (!window.localStorage) {
     //   return $.ajax({
@@ -39,7 +37,6 @@ var build = {
     //   localStorage.setItem(url, html);
     // }
     // return localStorage.getItem(url);
-
   },
   addRelate: function(mod, id) {
     if (this.data[mod][id].relate == undefined) {
@@ -64,7 +61,7 @@ var build = {
     var ret = {},
       url = (s || location.search);
     if (!url) {
-      ret["p"] = "README";
+      ret["p"] = "index";
       return ret;
     }
     var seg = url.replace(/^\?/, '').split('&'),
@@ -143,7 +140,7 @@ var build = {
             height=$this.attr("data-setheight") || "100%";
           var url=build.file+apage+".html";
           var scss=build.file+apage+".css";
-           var html = $('<iframe src="'+url+'" frameborder="0" style="width: 100%;height:'+height+'"></iframe><a href="'+url+'" class="s-html">查看页面</a><a href="'+scss+'" class="s-css">查看样式</a>');
+           var html = $('<iframe src="'+url+'" frameborder="0" style="width: 100%;height:'+height+'"></iframe><a href="'+url+'">查看页面</a><a href="'+scss+'">查看样式</a>');
            $this.append(html)
         })
       },
@@ -152,12 +149,26 @@ var build = {
           hljs.highlightBlock(this);
         }).attr("contentEditable", true);
       },
+      loadMod:function(){
+         var css=$("#modcss").html();
+          $("head").append("<style>"+css+"</style>");
+          $("[data-load]").each(function (index, elem) {
+            var _this=$(this);
+            var _id=_this.attr("data-load");
+            var html=$(_id).html();
+            _this.html(html);
+            var html=build.mdToHtml("```html\n"+html+"\n```");
+            _this.after(html)
+          })      
+      },
       main: function(data) {
         !data && (data = "#error...")
         var main = $("#main");
         var html = build.mdToHtml(data);
         main.html(html);
-        // Highlight syntax
+       
+        this.loadMod();
+         // Highlight syntax
         this.Highlight();
         //add blue
         this.setlist();

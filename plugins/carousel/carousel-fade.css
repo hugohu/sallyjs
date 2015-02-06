@@ -1,0 +1,111 @@
+@charset "utf-8";
+.m-banner{position: relative;width:100%;height: auto;}
+.m-banner .mod{display: block;width: 100%;height: auto;}
+.m-banner .mod img{max-width: 100%;height: auto;}
+.m-banner .mod li{width: 100%;}
+
+.m-banner .dot{display: block;position:absolute; bottom:0;right:10px;height:25px;z-index:2;}
+.m-banner .dot i{display: inline-block; width:20px;height:8px; cursor:pointer; overflow:hidden; background:#fff;margin:5px 4px 0 0;*display:inline;*zoom:1;*float: left;}
+.m-banner .dot i:hover{background: #ddd;}
+.prev,.next{background:rgba(255,255,255,0.6) url(img/i-icon-arr.png) no-repeat;cursor: pointer;}
+.m-banner .next, .m-banner .prev{display: block;visibility: hidden;opacity:0;height:50px;width:50px;position: absolute;z-index:2;top:50%;margin-top:-20px;}
+.m-banner .prev{background-position: 15px 4px;left:0}
+.m-banner .next{background-position: -65px 4px;right:0}
+.m-banner .prev:hover,.m-banner .next:hover{background-color: #fff;}
+.m-banner:hover .next,.m-banner:hover .prev{visibility:visible;opacity: 1;}
+.m-banner:hover .next{right:10px;}
+.m-banner:hover .prev{left:10px;}
+
+.m-banner .mod,.m-banner .next, .m-banner .prev,.m-banner .mod li{
+-webkit-transition: 0.5s ease-in-out;
+-moz-transition: 0.5s ease-in-out;
+-ms-transition: 0.5s ease-in-out;
+-o-transition: 0.5s ease-in-out;
+transition: 0.5s ease-in-out;
+}
+
+.m-banner .dot i.active{background-color:#f2395b;background-color:rgba(255,255,255,0.95);}
+/**Animation can be deleted**/
+.m-banner .dot i:before {content: "";width: 0;display: block;height:20px;background:#F15C22;opacity:1;}
+.m-banner .dot i.active:before{
+	width: 20px;
+ 	-webkit-transition: 4s;
+ 	-moz-transition: 4s;
+ 	-ms-transition: 4s;
+ 	-o-transition: 4s;
+ 	transition: 4s;
+}
+.m-banner:hover .dot i.active{background-color:#f2395b;}
+.m-banner:hover .dot i.active:before{
+	width: 0;
+ 	-webkit-transition: 0s;
+ 	-moz-transition: 0s;
+ 	-ms-transition: 0s;
+ 	-o-transition: 0s;
+ 	transition: 0s;
+}
+
+
+
+/* fade */
+.m-banner{background:none;}
+.m-banner .mod li.black{position: relative;}
+.m-banner .mod li{
+	position: absolute;left: 0;top: 0;opacity: 0;}
+.m-banner .mod li.active{opacity: 1;}
+.m-banner .mod li .transition-header {
+        opacity: 0;
+        -webkit-transition: opacity 300ms ease 300ms, -webkit-transform 500ms ease 300ms;
+        -moz-transition: opacity 300ms ease 300ms, -moz-transform 500ms ease 300ms;
+        transition: opacity 300ms ease 300ms, transform 500ms ease 300ms;
+        -webkit-transform: translateY(30px);
+        -moz-transform: translateY(30px);
+        transform: translateY(30px)
+    }
+
+.m-banner .mod li .transition-text {
+        opacity: 0;
+        -webkit-transition: opacity 300ms ease 400ms, -webkit-transform 500ms ease 400ms;
+        -moz-transition: opacity 300ms ease 400ms, -moz-transform 500ms ease 400ms;
+        transition: opacity 300ms ease 400ms, transform 500ms ease 400ms;
+        -webkit-transform: translateY(30px);
+        -moz-transform: translateY(30px);
+        transform: translateY(30px)
+    }
+
+.m-banner .mod li .transition-image {
+        opacity: 0;
+        -webkit-transition: opacity 500ms ease 500ms;
+        -moz-transition: opacity 500ms ease 500ms;
+        transition: opacity 500ms ease 500ms;
+        -webkit-transition-property: opacity, -webkit-transform;
+        -moz-transition-property: opacity, -moz-transform;
+        transition-property: opacity, transform;
+        -webkit-transform: translateX(20px);
+        -moz-transform: translateX(20px);
+        transform: translateX(20px)
+    }
+
+
+.m-banner .mod li.active .transition-text {
+        opacity: 1;
+        -webkit-transform: translateY(0);
+        -moz-transform: translateY(0);
+        -ms-transform: translateY(0);
+        -o-transform: translateY(0);
+        transform: translateY(0)
+    }
+
+.m-banner .mod li.active .transition-header {
+        opacity: 1;
+        -webkit-transform: translateY(0);
+        -moz-transform: translateY(0);
+        transform: translateY(0)
+    }
+
+.m-banner .mod li.active .transition-image {
+        opacity: 1;
+        -webkit-transform: translateX(0);
+        -moz-transform: translateX(0);
+        transform: translateX(0)
+    }

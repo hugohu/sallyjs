@@ -93,6 +93,7 @@
       var $this = $(this),
         _target = $this.attr("data-target") || "active",
         _event = options.event || $this.attr("data-roll");
+        _event 
       var build = {
         fixed: function() {
           var HEIGTH_THIS = $this.height(),
@@ -186,8 +187,8 @@
   };
 
   //DATA API
-  $(function(){
-      $("[data-roll]").roll();
+  $(function() {
+    $("[data-roll]").roll();
   })
 
   // return $.widget;
