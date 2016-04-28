@@ -25,7 +25,7 @@
       target: "",
       fn: {},
       type: "layer",
-      position:true,
+      position:false,
       timeout:"150"
     };
     /**
@@ -87,15 +87,10 @@
         $("body").append(templ_html);
         _this.showbox = $("#" + _this.target);
       }
-      if(_this.params["position"]){
-        var off = $this.offset();
-      var scrollTop = $(window).scrollTop();
-      var _Top = off.top - scrollTop;
-      _this.showbox.css({
-        "left": off.left,
-        "top": _Top
-      })
-      }
+      //实例化 showbox
+
+
+
       _this.run("start");
       var timeout = setTimeout(function() {
         _this.showbox.addClass("active");

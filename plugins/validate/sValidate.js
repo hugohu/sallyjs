@@ -25,7 +25,6 @@
     var defaults = {};
     var options = $.extend(defaults, options);
     this.each(function() {
-
       var $this = $(this),
         einput = $("input,textarea", $this),
         required = $("input[required],textarea[required],[data-type='required']", $this),
@@ -140,7 +139,6 @@
             //esubmit.removeClass("disabled");
           } else {
             $this.attr("data-state", 0);
-
             esubmit.attr("disabled", "disabled");
             //esubmit.addClass("disabled");
           }
