@@ -89,6 +89,7 @@
 		 * 程序运行需要的参数
 		 *
 		 */
+	
 		_this.slideBox = _this.that.find(_this.params["ebox"]).children();
 		_this.slideBoxLen = _this.slideBox.length;
 		_this.slideBoxWidth = _this.slideBox.width();
@@ -98,6 +99,8 @@
 		_this.pageCount = Math.ceil(_this.slideBoxLen / _this.pageLen);
 		_this.dis = 0;
 		_this.type = _this.params["type"];
+
+			console.log(_this.params["ebox"])
 		/**
 		 * [setCarousel 设置初始轮播点跟左右箭头]
 		 */
@@ -137,11 +140,12 @@
 							_this.dis = -_this.moveWidth * index;
 						}
 						if (_this.isNotSupportTranslate()) {
-							_this.params["ebox"].animate({
+							_this.that.find(_this.params["ebox"]).animate({
 								"margin-left": _this.dis
 							}, 350)
 						} else {
 							if (_this.params["easyPlay"]) {
+							
 								var el = _this.params["ebox"][0];
 								_this.setTranslate(el, _this.dis);
 							} else {
@@ -275,6 +279,7 @@
 			},
 			setTranslate: function(el, dis) {
 				'use strict';
+				console.log(el)
 				var es = el.style;
 				var transformString = 'translate(' + dis + 'px,0px)  translateZ(0px)'
 				es.webkitTransform = es.MsTransform = es.msTransform = es.MozTransform = es.OTransform = es.transform = transformString;

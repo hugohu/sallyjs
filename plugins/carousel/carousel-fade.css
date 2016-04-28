@@ -19,8 +19,6 @@
 .m-banner .mod,.m-banner .next, .m-banner .prev,.m-banner .mod li{
 -webkit-transition: 0.5s ease-in-out;
 -moz-transition: 0.5s ease-in-out;
--ms-transition: 0.5s ease-in-out;
--o-transition: 0.5s ease-in-out;
 transition: 0.5s ease-in-out;
 }
 
@@ -31,8 +29,6 @@ transition: 0.5s ease-in-out;
 	width: 20px;
  	-webkit-transition: 4s;
  	-moz-transition: 4s;
- 	-ms-transition: 4s;
- 	-o-transition: 4s;
  	transition: 4s;
 }
 .m-banner:hover .dot i.active{background-color:#f2395b;}
@@ -40,8 +36,6 @@ transition: 0.5s ease-in-out;
 	width: 0;
  	-webkit-transition: 0s;
  	-moz-transition: 0s;
- 	-ms-transition: 0s;
- 	-o-transition: 0s;
  	transition: 0s;
 }
 
@@ -91,8 +85,6 @@ transition: 0.5s ease-in-out;
         opacity: 1;
         -webkit-transform: translateY(0);
         -moz-transform: translateY(0);
-        -ms-transform: translateY(0);
-        -o-transform: translateY(0);
         transform: translateY(0)
     }
 
